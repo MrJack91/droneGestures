@@ -1,0 +1,106 @@
+\chapter{Allgemein zur Cloud}
+
+\section{Definitionen}
+\label{sec:cloud:definition}
+% allgemeine Definition von Cloud
+
+Der Begriff \textit{\Gls{glos:cloudLabel}} resp. \textit{\Gls{glos:cloudLabel} Computing} wird sehr häufig gebraucht (eine Google Suche findet 136 Mio. Resultate zum zweit genannten Begriff).
+Trotz dem verbreiteten Wortgebrauch ist eine klare Definition kaum bekannt.
+
+Folgend drei Beispiele, die mögliche Definitionen aufzeigen.
+
+\begin{quote}
+	Die \textit{\Gls{glos:cloudLabel}} ist eines der ältesten Sinnbilder der Informationstechnik und steht als solches für Rechnernetze, deren Inneres unbedeutend oder unbekannt ist. \textit{- Quelle: The Wall Street Journal}  \footcite{The_Internet_Industry_Is_on_a_Cloud_--_Whatever_That_May_Mean_-_WSJ_2014-10-03}
+\end{quote}
+
+Oder ein wenig konkreter:
+
+\begin{quote}
+	Unter \textit{\Gls{glos:cloudLabel} Computing} (deutsch etwa: Rechnen in der Wolke) versteht man das Speichern von Daten in einem entfernten Rechenzentrum (umgangssprachlich: "`Ich lade das Bild mal in die \Gls{glos:cloudLabel} hoch."'), aber auch die Ausführung von Programmen, die nicht auf dem lokalen Rechner installiert sind, sondern eben in der (metaphorischen) Wolke (englisch \textit{cloud}). \textit{- Quelle: Wikipedia} \footcite{Cloud_Computing__Wikipedia_2014-10-03}
+\end{quote}
+
+Oder ganz einfach:
+
+\begin{quote}
+	In simple terms, using \textit{cloud computing} means storing your files on a place that is not your local hard drive.  \textit{- Quelle: news.com.au} \footcite{What_really_is_The_Cloud?_And_how_does_it_work?_A_simple_explainer_2014-10-31}
+\end{quote}
+
+Sinngemässe Übersetzung des oberen:
+\begin{quote}
+	Einfach gesagt, \textit{Cloud computing} bezeichnet das Speichern von Daten, die nicht auf der lokalen Festplatte abgelegt werden, sondern irgendwo anders.
+\end{quote}
+% evt. was für die Präsi: https://www.youtube.com/watch?v=ecZL4Q2EVuY
+
+Es wird deutlich, dass keine eindeutige Definition vom Begriff \textit{\Gls{glos:cloudLabel}} existiert.
+
+Im Rahmen unserer Arbeit haben wir selbst eine Definition von \Gls{glos:cloudLabel} erstellt:
+\begin{quote}
+	\textit{Cloud} bietet dem Benutzer Software oder Hardware zur Benutzung an, ohne das jener im Detail weiss, auf was für Infrastruktur er arbeitet.
+	Meist stehen Komponenten im Internet bereit, so dass weltweiter Zugriff ermöglicht wird.
+\end{quote}
+
+Beispiele für \textit{\Gls{glos:cloudLabel} Computing}:
+\begin{itemize}
+	\item Dropbox
+	\item Google Mail GMail
+	\item Google Drive
+	\item GitHub
+\end{itemize}
+
+\section{Herkunft}
+Das Konzept von skalierbaren (Mainframe-)Computern wurde schon in den 60er-Jahren definiert.
+Wer dafür den Begriff \textit{\Gls{glos:cloudLabel}} erfunden hat ist unklar. Die Bezeichnung selbst ist kein neuer Begriff
+sondern wird allgemein für grosse Ansammlungen von Objekten gebraucht, bei denen man aus der Distanz betrachtet, nicht auf Details eingehen will.\footcite{Cloud_computing_-_Wikipedia_the_free_encyclopedia_2014-10-31}
+Als Symbol für das Internet wird die Wolke seit 1994 verwendet.
+
+Massgeblich beigetragen zur Nutzung des Begriffes haben zwei bekannte Unternehmen im Jahr 2006.
+
+Einerseits hatte \textit{Amazon} durch den Tag eine zehnfach höhere Spitzenlast als in der Nacht. Als Konsequenz entwickelten sie skalierbare \Gls{glos:cloudLabel}-Lösungen.
+Diese Lösungen boten sie als Produkt \textit{Elastic Compute Cloud} öffentlich an. \footcite{Announcing_Amazon_Elastic_Compute_Cloud_(Amazon_EC2)_-_beta_2014-10-31}
+
+Auch \textit{Google} CEO Eric Schmidt hatte zur selben Zeit folgende Aussage gemacht: \footcite{Who_Coined_'Cloud_Computing'?_|_MIT_Technology_Review_2014-10-31}
+\begin{quote}
+	"`What’s interesting [now] is that there is an emergent new model.
+	I don’t think people have really understood how big this opportunity really is.
+	It starts with the premise that the data services and architecture should be on servers.
+	We call it cloud computing - they should be in a "`cloud"' somewhere."'
+\end{quote}
+
+
+\section{Services für Workstation}
+% spezifisch für unser Fall: Workstation
+Mittlerweile gibt es viele verschiedene Möglichkeiten und Anbieter, bei welchen man seine Daten in der \Gls{glos:cloudLabel} ablegen kann. Mit \Gls{iaasLabel} wird die Idee ein Level weiter getragen.
+Anstelle des Kaufes von Infrastrukturen, wie Personal Computer oder Servern, werden diese bei Bedarf gemietet.
+
+Konkret gibt es auch den Begriff \Gls{daasLabel}, der bezeichnet exakt die Bereitstellung einer Workstation in der \Gls{glos:cloudLabel}.
+
+\subsection{Vorteile}
+\label{sec:Vorteile}
+\subsubsection{Belastungsspitzen}
+Bei vielen Anwendungen gibt es tägliche, saisonale, jährliche oder andere Belastungsspitzen, zu welcher zusätzliche Leistung benötigt wird.
+Traditionell müsste dann zu jeder Zeit die Leistung zur Verfügung stehen, um die Spitzen abzufangen. Wenn weniger Betrieb herrscht liegt dieses Potenzial brach.
+
+Mit \Gls{iaasLabel} und \Gls{daasLabel} kann dynamisch zu Lastzeiten mehr Leistung hinzu gemietet werden.
+
+% \subsubsection{Bring your own Device}
+% mha: nimmt viele Security issues ab, die bei byod vorhanden sind. -> mha: das haben wir aber abgegrenzt.
+
+
+\subsubsection{Ausfallsicherheit}
+Um eine annähernde Ausfallsicherheit von 100 Prozent zu erreichen, braucht es redundante Hardware, wodurch die Kosten für die Anschaffung und den Betrieb rasch steigen.
+
+\subsubsection{Skalierbarkeit}
+Da der Erfolg einer Firma nicht im Voraus bekannt ist, bietet \Gls{iaasLabel} den Vorteil, dass man immer nur genau die Infrastruktur zahlt, die man auch benötigt.
+Innerhalb kurzer Frist kann man Leistung und verbundene Kosten steigern oder verkleinern.
+Das Restrisiko ungenutzte Hardware zu bezahlen, aber nicht zu verwenden, sinkt.
+
+\subsubsection{Kostenübersicht}
+Die Kosten können für das Business kalkuliert werden, da diese voraussehbar sind.
+Es müssen keine Wartungen und Ersatzteile in das Budget mit eingerechnet werden.
+
+% neuer Cloud norm
+% http://www.computerwoche.de/a/die-neue-iso-iec-27018-im-ueberblick,3069892
+
+% \section{Vorliegendes Material}
+
+% \subsection{Angebotsübersicht (Preise für Cloud Lösungen)}
