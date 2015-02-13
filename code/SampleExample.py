@@ -6,7 +6,12 @@
 # between Leap Motion and you, your company or other organization.             #
 ################################################################################
 
-import Leap, sys, thread, time
+import os, sys, inspect, thread, time
+src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
+lib_dir = os.path.abspath(os.path.join(src_dir, 'lib'))
+sys.path.insert(0, lib_dir)
+
+import Leap
 from Leap import CircleGesture, KeyTapGesture, ScreenTapGesture, SwipeGesture
 
 
@@ -105,7 +110,7 @@ class SampleListener(Leap.Listener):
                 swept_angle = 0
                 if circle.state != Leap.Gesture.STATE_START:
                     previous_update = CircleGesture(controller.frame(1).gesture(circle.id))
-                    swept_angle =  (circle.progress - previous_update.progress) * 2 * Leap.PI
+                    swept_angle = (circle.progress - previous_update.progress) * 2 * Leap.PI
 
                 print "  Circle id: %d, %s, progress: %f, radius: %f, angle: %f degrees, %s" % (
                         gesture.id, self.state_names[gesture.state],
@@ -121,17 +126,18 @@ class SampleListener(Leap.Listener):
                 keytap = KeyTapGesture(gesture)
                 print "  Key Tap id: %d, %s, position: %s, direction: %s" % (
                         gesture.id, self.state_names[gesture.state],
-                        keytap.position, keytap.direction )
+                        keytap.position, keytap.direction)
 
             if gesture.type == Leap.Gesture.TYPE_SCREEN_TAP:
                 screentap = ScreenTapGesture(gesture)
                 print "  Screen Tap id: %d, %s, position: %s, direction: %s" % (
                         gesture.id, self.state_names[gesture.state],
-                        screentap.position, screentap.direction )
+                        screentap.position, screentap.direction)
 
         if not (frame.hands.is_empty and frame.gestures().is_empty):
             print ""
 
+'''
     def state_string(self, state):
         if state == Leap.Gesture.STATE_START:
             return "STATE_START"
@@ -144,6 +150,7 @@ class SampleListener(Leap.Listener):
 
         if state == Leap.Gesture.STATE_INVALID:
             return "STATE_INVALID"
+'''
 
 def main():
     # Create a sample listener and controller
