@@ -163,7 +163,7 @@
 % \cleardoublepage
 % -- declaration --
 % (only in bachelor/master thesis)
-% \input{content/Z-Declaration.tex}
+\input{content/Z-Declaration.tex}
 
 \frontmatter
 \IfPackageLoaded{scrpage2}{\pagestyle{scrheadings}}
@@ -200,16 +200,19 @@
 %
 \include{content/0-Introduction}
 \include{content/1-WorkDefinition}
-\include{content/2-Definitions}
-\include{content/3-Contribution}
-\include{content/4-Discussion}
-\include{content/5-Summary}
+\include{content/2-Analysis}
+\include{content/3-Concept}
+\include{content/4-Proof-Of-Concept}
+\include{content/5-Testing}
+% \include{content/5-Contribution}
+\include{content/6-Summary}
 
 % \include{content/2-Experiments}
 
 %%% -- end of main content
 
 % show all biblatex entries
+\glsaddall
 \nocite{*}
 
 % set title

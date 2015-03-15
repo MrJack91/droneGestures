@@ -7,20 +7,7 @@
 
 % our used acronyms
 \newacronym{vdiLabel}{VDI}{Virtual Desktop Infrastructure}
-\newacronym{adLabel}{AD}{Active Directory}
-\newacronym{awsLabel}{AWS}{Amazon Web Services}
-\newacronym{iaasLabel}{IaaS}{Infastructure-as-a-Service}
-\newacronym{daasLabel}{DaaS}{Desktop-as-a-Service}
-\newacronym{vdmLabel}{VDM}{Virtual Desktop Manager}
-\newacronym{dmzLabel}{DMZ}{Demilitarized Zone}
-\newacronym{ldapLabel}{LDAP}{Lightweight Directory Access Protocol}
-\newacronym{httpsLabel}{HTTPS}{Hypertext Transfer Protocol Secure}
-\newacronym{ssdLabel}{SSD}{Solid State Drive}
-\newacronym{cpuLabel}{CPU}{Central Processing Unit}
-\newacronym{pueLabel}{PUE}{Power usage effectiveness}
-\newacronym{b2bLabel}{B2B}{Business-To-Business}
-\newacronym{byodLabel}{BYOD}{Bring your own Device}
-\newacronym{kmuLabel}{KMUs}{kleine und mittlere Unternehmen}
+
 }
 
 %%% --- Symbol list entries
@@ -36,53 +23,10 @@
 \newglossaryentry{glos:dmzLabel}{name=DMZ,
   description={Die Demilitarized Zone (DMZ) ist ein logisches oder physikaliches Subnetzwerk, welches interne Server zu einem grösseren, nicht vertrauenswürdigen Netzwerk verbindet. Es bietet eine zusätzliche Schicht Sicherheit und gibt den Administratoren mehr Kontrollmöglichkeiten, wer Zugriff auf Netzwerkressourcen hat.}
 }
-\newglossaryentry{glos:ldapLabel}{name=LDAP,
-  description={Das Lightweight Directory Access Protocol (LDAP) ist ein offenes, Anbieter unspezifisches Applikations-Protokoll um ein verteilter Verzeichnissdienst über das Netzwerk auszutauschen. Darüber können Informationen über Benutzer, Systeme, Netzwerke, Services und Applikationen abgefragt werden.}
-}
-\newglossaryentry{glos:httpsLabel}{name=HTTPS,
-  description={Das Hypertext Transfer Protocol Secure (HTTPS) ist ein Internet-Protokoll für eine verschlüsselte Kommunikation über ein Compunternetzwerk.}
-}
-\newglossaryentry{glos:pueLabel}{name=PUE,
-  description={Mit der Power usage effectiveness (PUE) wird der Stromverbrauch eines Datenzenters berechnet. Dieser setzt sich folgendermassen zusammen:
-  \begin{gather*}
-  	\text{PUE} = \frac{\text{Total Stromkosten}}{\text{Stromkosten der IT}}
-  \end{gather*}}
-}
-\newglossaryentry{glos:failureSafetyLabel}{name=Ausfallsicherheit,
-	description={Mit der Ausfallsicherheit wird die minimale zeitliche Erreichbarkeit (resp. maximale Ausfallzeit) eines Systems angegeben. Ist diese Ausfallzeit sehr gering spricht man von Hochverfügbarkeit (High Availability), dazu ist mindestens eine Verfügbarkeit von 99.9 \% nötig.
-	Die Verfügbarkeit berechnet man wie folgt:
-	\begin{gather*}
-		\text{Verfügbarkeit} = (1- \frac{\text{Ausfallzeit}}{\text{Periode}}) * 100\\
-		\text{Ausfallzeit} = (1 - \frac{\text{Verfügbarkeit}}{100}) * \text{Periode}
-	\end{gather*}}
-}
-\newglossaryentry{glos:loadBalancingLabel}{name=Load Balancing,
-  description={Load Balancing verteilt die Arbeitsbelastung auf verschiedene Systeme. Damit kann die Antwortzeit reduziert werden. Wenn ein System ausfällt, hat es immer noch weitere die funktionieren. Dies steigert die Ausfallsicherheit des Gesamtsystems.}
-}
-\newglossaryentry{glos:thinClientLabel}{
-  name=Thin Client,
-  plural={Thin Clients},
-  description={Ein Thin Client ist ein günstiger, rechen-schwacher Computer. Er wird dazu verwendet, um Arbeiten zu erledigen die auf einem rechen-starken Server statt finden. Ein Thin Client übernimmt hauptsächlich die Bereitstellung von \Glspl{glos:ioDeviceLabel}.}
-}
-\newglossaryentry{glos:homeOfficeLabel}{
-  name=Home Office,
-  description={Mit Home Office wird das Arbeiten von zu Hause bezeichnet. Dabei wird oft eine sichere Verbindung von zu Hause auf die Infrastruktur der Firma erzeugt.}
-}
-\newglossaryentry{glos:vpnLabel}{
-  name=Virtual Private Netzwork,
-  description={Ein Virtual Private Netzwork wird zwischen einem Teilnehmer und dem Server aufgebaut. Dabei wird innerhalb eines öffentlichen Netzwerkes, wie dem Internet, ein privates und sicheres Netzwerk erstellt.}
-}
-\newglossaryentry{glos:onPremiseLabel}{name=on-premise,
-	description={On-premise Software bezeichnet jegliche Ausführung von Software die vorwiegend auf dem Endgerät selbst läuft. Alternativ existiert das \Gls{glos:cloudLabel} Modell, bei dem der Grossteil der Software auf einem Server ausgeführt wird.}
-}
 \newglossaryentry{glos:ioDeviceLabel}{
 	name=I/O-Device,
 	plural={I/O-Devices},
 	description={Input/Output (I/O) Devices sind Geräte, welche für die Kommunikation zwischen Mensch und Maschine notwendig sind. (Bsp.: Bildschirm, Tastatur, Drucker,...)}
-}
-\newglossaryentry{glos:cloudLabel}{
-	name=Cloud,
-	description={Der Begriff \textit{Cloud} ist im \cref{sec:cloud:definition} definiert.}
 }
 
 
