@@ -21,40 +21,40 @@ Im Folgenden wird auf die grundlegenden Flugmanöver eingegangen.
 
 \subsubsection{Init}
 
-Da die Hand die Drohne repräsentieren soll, muss eine initiale Position eingenommen werden, aus dieser die Drohne anschliessend (relativ gesehen) gesteuert werden kann.
+Da die Hand die Drohne repräsentieren soll, muss eine initiale Position eingenommen werden, aus dieser die Drohne anschliessend (relativ gemessen) gesteuert werden kann.
 
 Dieser Prozess vom Finden der initialen Position wird folgend als \textit{Init-Prozess} bezeichnet und sieht wie folgt aus:
 
 \begin{itemize}
 	\item Die Drohne befindet sich im \textit{Init-Zustand}.
-	\item Die Hand wird auf idealer Höhe, ca. 10-20 cm über dem Sensor, platziert.
+	\item Die Hand wird auf idealer Höhe platziert (ca. 10-20 cm über dem Sensor).
 	\item Die Position gilt als eingenommen, sobald nach einer Faust wiederum die offene Hand erkannt wird. (Faust-Gesten in nicht idealen Höhen werden ignoriert.)
 	\item Die Drohne befindet sich nun im \textit{flugbereiten-Zustand} (die Rotoren drehen nicht).
 	\item Die Hand bleibt geöffnet (erneute Faust-Geste wechselt vom \textit{flugbereiten-Zustand} zurück in den \textit{Init-Zustand}).
 \end{itemize}
 
-\subsubsection{Start}
+\subsubsection{Start / Thrust}
 Um mit der Drohne abzuheben wird die offene Hand nach oben bewegt. Dabei gilt, desto höher die Hand zur relativen Position gehoben wird, umso mehr drehen die Rotoren und umso schneller bewegt die Drohne sich nach oben (dies entspricht dem \textit{Thrust}).
 
-Umgekehrtes gilt auch: wird die Hand gesenkt, senkt sich auch die Drehzahl der Rotoren, sprich die Drohne sinkt.
-Der \textit{Thrust} kann während des ganzen Fluges, gemäss diesen Bewegungen gesteuert werden.
-Die Drohne befindet sich, sobald abgehoben, im \textit{Flug-Zustand} (mit drehende Rotoren und in der Luft).
+Umgekehrtes gilt auch: wird die Hand gesenkt, senkt sich auch die Drehzahl der Rotoren, sprich die Drohne verliert an Steigung.
+Der \textit{Thrust} kann während des ganzen Fluges mit diesen Bewegungen gesteuert werden.
+Die Drohne befindet sich, sobald abgehoben, im \textit{Flug-Zustand} (mit drehenden Rotoren und in der Luft).
 
 \subsubsection{Flug}
 Während dem Flug kann nebst dem \textit{Thrust}, die Drehung (\textit{Yaw}) und die Neigung (\textit{Pitch/Roll}) gesteuert werden.
 Auch hier gilt jeweils, dass die Drohne sich nach der Hand ausrichtet.
 Die Drohne ist solange im \textit{Flug-Zustand} bis sie wieder auf festem Untergrund ist, dann ist sie wieder im \textit{flugbereiten-Zustand}.
-Bezüglich der Steuermöglichkeiten ändert sich weder im \textit{Flug} noch im \textit{flugbereiten-Zustand} etwas.
-Sprich um die Drohne zu landen, ist kein Zustandswechsel nötig.
+Bezüglich der Steuermöglichkeiten ändert sich weder im \textit{Flug-} noch im \textit{flugbereiten-Zustand} etwas.
+Sprich es ist kein Zustandswechsel nötig, um die Drohne zu landen.
+
+\textbf{Bemerkung zur Steuerung:} Grundsätzlich wird der Level (Power) einer Steueranweisung, gemäss der Abweichung der natürlichen, rechtwinkligen, vertikalen Achsen gesetzt.
+Wobei ein ca. 60\textdegree-Abweichung dem Maximum entspricht.
 
 \subsubsection{Yaw}
-Analog zur Drohne bedeutet eine flache Drehung (Drehung an der vertikalen Rotations-Achsen) eine Drehung der Drohne.
+Analog zum Thrust bedeutet eine flache Drehung der Hand (Drehung an der vertikalen Rotations-Achsen) eine entsprechende Richtungsänderung der Drohne.
 
 \subsubsection{Pitch (Neigung) / Roll (Rolle)}
 Beim Pitch und Roll dreht sich die Drohne um eine horizontale Rotations-Achse. Beim Pitch hebt oder neigt die Drohne ihre Front. Bei Roll sinkt oder erhebt sich ihre eine Seite.
-
-\textbf{Bemerkung:} Grundsätzlich wird der Level (Power) einer Steueranweisung, gemäss der Abweichung der natürlichen rechtwinkligen vertikalen Achsen gesetzt.
-Wobei ein ca. 60\textdegree-Abweichung dem Maximum entspricht.
 
 \subsubsection{Finish}
 Befindet sich die Drohne im \textit{flugbereiten-Zustand}, kann via eine Faust-Geste, die Steuerung abgebrochen werden.
@@ -76,6 +76,7 @@ Die Drohne befindet sich in der Luft.
 
 %%% 
 
+%todo
 \section{Problembehandlung}
 Während den verschiedenen Zustände können verschiedene Fehler auftreten.
 
