@@ -12,7 +12,7 @@ Der Grundgedanke der Steuerung soll die Hand sein, welche die Drohne verkörpert
 \subsection{LeapMotion}
 Es folgen grobe Informationen zum LeapMotion.
 
-Der Sensor erkennt problemlos Gesten innerhalb eines 150\textdegree-Winkels und zwischen einer Höhe von 25 mm bis 600 mm.
+Der Sensor erkennt problemlos Gesten innerhalb eines 150\textdegree-Winkels und zwischen einer Höhe von 25mm bis 600mm.
 Sprich auf ca. 30 cm Höhe funktioniert die Erkennung bestens und wir haben genügend vertikale Spatzung um Höhenunterschiede festzustellen.
 Im Folgenden wird auf die grundlegenden Flugmanöver eingegangen.
 
@@ -81,9 +81,24 @@ Die Drohne befindet sich in der Luft.
 Während den verschiedenen Zustände können verschiedene Fehler auftreten.
 
 \subsubsection{Init-Zustand}
-Problem:        Faust wird nicht erkannt oder mehrere Hände werden erkannt
-Gefahr:        gering
-Folge:                Die Drohne kann nicht abheben. Der Init Zustand wird belassen.
+
+\begin{center}
+% Style changes
+\small\renewcommand{\arraystretch}{1.4}
+% tabular
+\begin{tabular}{|rp{0.2\linewidth}|lp{0.6\linewidth}|}
+	\hline
+	Problem: & Faust wird nicht erkannt oder mehrere Hände werden erkannt\\
+	Gefahr: & gering\\
+	Folge: & Die Drohne kann nicht abheben. Der \textit{Init-Zustand} wird belassen.\\
+%
+\end{tabular}
+\end{center}
+
+
+%Problem:        Faust wird nicht erkannt oder mehrere Hände werden erkannt
+%Gefahr:        gering
+%Folge:                Die Drohne kann nicht abheben. Der Init Zustand wird belassen.
 
 \subsubsection{Flugbereiten-Zustand}
 Problem:        Die Hand wird nicht mehr erkannt
