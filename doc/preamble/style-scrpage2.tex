@@ -15,7 +15,9 @@
 \IfElseDefined{chapter}{
    \ohead{\pagemark} % header outside: page number
    \ihead{\headmark} % header inside: chapter and section titles
+   \chead{v\input{version.txt}} % header center: version -> selfmade
    \ofoot[\pagemark]{} % footer outside: page numbers on plain pages
+   \lofoot[v\input{version.txt}]{} % footer left/center: version on first empty page of chapter  -> selfmade
 }{
    \cfoot[\pagemark]{\pagemark} % Mitte unten: Seitenzahlen bei plain
 }
