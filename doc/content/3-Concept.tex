@@ -3,18 +3,23 @@
 \section{Detaillierter Gesten-Steuerbeschrieb}
 
 Gestensteuerungen sind für "`gewöhnliche"' Steueraufgaben nach wie vor sehr wenig verbreitet, obwohl es theoretisch nichts intuitiveres als Gesten gibt.
-Dies kann unter Anderem an fehlenden Anwendungsfällen oder an falsch angesetzten Umsetzungen liegen.
+Dies kann unter anderem an fehlenden Anwendungsfällen oder an falsch angesetzten Umsetzungen liegen.
 
 Ziel dieser Steuerung ist es, die Drohne sehr einfach steuern zu können.
 Das auswendig Lernen der möglichen Gesten soll durch intuitive Schlussfolgerungen des Anwendungswunsches entfallen.
 Der Grundgedanke der Steuerung soll die Hand sein, welche die Drohne verkörpert.
 
-\subsection{LeapMotion}
-Es folgen grobe Informationen zum LeapMotion.
+\begin{framed}
+\textit{Definition: }\textbf{Position}\\
+Im Folgenden ist mit dem Begriff \textit{Position} jeweils die dreidimensionale Ausrichtung im Raum und nicht der effektive Standort gemeint.
+\end{framed}
 
-Der Sensor erkennt problemlos Gesten innerhalb eines 150\textdegree-Winkels und zwischen einer Höhe von 25mm bis 600mm.
-Sprich auf ca. 30 cm Höhe funktioniert die Erkennung bestens und wir haben genügend vertikale Spatzung um Höhenunterschiede festzustellen.
-Im Folgenden wird auf die grundlegenden Flugmanöver eingegangen.
+\subsection{LeapMotion}
+Es folgen grobe Informationen zum Gestenerkennungs-Sensor \textit{LeapMotion}.
+
+Der Sensor erkennt Gesten innerhalb eines 150\textdegree-Winkels zwischen 25\,mm und 600\,mm Höhe.
+Sprich auf ca. 30\,cm Höhe funktioniert die Erkennung bestens und wir haben genügend vertikale Spatzung um Höhenunterschiede festzustellen.
+Folgend wird auf die grundlegenden Flugmanöver eingegangen.
 
 
 \subsection{Flugmanöver}
@@ -27,48 +32,52 @@ Dieser Prozess vom Finden der initialen Position wird folgend als \textit{Init-P
 
 \begin{itemize}
 	\item Die Drohne befindet sich im \textit{Init-Zustand}.
-	\item Die Hand wird auf idealer Höhe platziert (ca. 10-20 cm über dem Sensor).
+	\item Die Hand wird auf idealer Höhe platziert (ca. 10 -- 20\,cm über dem Sensor).
 	\item Die Position gilt als eingenommen, sobald nach einer Faust wiederum die offene Hand erkannt wird. (Faust-Gesten in nicht idealen Höhen werden ignoriert.)
-	\item Die Drohne befindet sich nun im \textit{flugbereiten-Zustand} (die Rotoren drehen nicht).
-	\item Die Hand bleibt geöffnet (erneute Faust-Geste wechselt vom \textit{flugbereiten-Zustand} zurück in den \textit{Init-Zustand}).
+	\item Die Drohne befindet sich nun im \textit{flugbereiten Zustand} (die Rotoren drehen nicht).
+	\item Die Hand bleibt geöffnet (erneute Erkennung einer Faust-Geste löst einen Zustandswechsel vom \textit{flugbereiten Zustand} zurück in den \textit{Init-Zustand}) aus.
 \end{itemize}
 
-\subsubsection{Start / Thrust}
-Um mit der Drohne abzuheben wird die offene Hand nach oben bewegt. Dabei gilt, desto höher die Hand zur relativen Position gehoben wird, umso mehr drehen die Rotoren und umso schneller bewegt die Drohne sich nach oben (dies entspricht dem \textit{Thrust}).
+\subsubsection{Start / Thrust (Höhe)}
+Um mit der Drohne abzuheben wird die offene Hand nach oben bewegt. Dabei gilt, umso höher die Hand zur relativen Position gehoben wird, desto mehr drehen die Rotoren und umso schneller bewegt sich die Drohne nach oben (dies entspricht dem \textit{Thrust}).
 
 Umgekehrtes gilt auch: wird die Hand gesenkt, senkt sich auch die Drehzahl der Rotoren, sprich die Drohne verliert an Steigung.
 Der \textit{Thrust} kann während des ganzen Fluges mit diesen Bewegungen gesteuert werden.
-Die Drohne befindet sich, sobald abgehoben, im \textit{Flug-Zustand} (mit drehenden Rotoren und in der Luft).
+Die Drohne befindet sich, sobald sie abgehoben ist, im \textit{Flug-Zustand} (mit drehenden Rotoren in der Luft).
 
 \subsubsection{Flug}
 Während dem Flug kann nebst dem \textit{Thrust}, die Drehung (\textit{Yaw}) und die Neigung (\textit{Pitch/Roll}) gesteuert werden.
 Auch hier gilt jeweils, dass die Drohne sich nach der Hand ausrichtet.
-Die Drohne ist solange im \textit{Flug-Zustand} bis sie wieder auf festem Untergrund ist, dann ist sie wieder im \textit{flugbereiten-Zustand}.
-Bezüglich der Steuermöglichkeiten ändert sich weder im \textit{Flug-} noch im \textit{flugbereiten-Zustand} etwas.
+Die Drohne ist solange im \textit{Flug-Zustand} bis sie wieder auf festem Untergrund ist, dann ist sie wieder im \textit{flugbereiten Zustand}.
+Bezüglich der Steuermöglichkeiten ändert sich weder im \textit{Flug-} noch im \textit{flugbereiten Zustand} etwas.
 Sprich es ist kein Zustandswechsel nötig, um die Drohne zu landen.
 
-\textbf{Bemerkung zur Steuerung:} Grundsätzlich wird der Level (Power) einer Steueranweisung, gemäss der Abweichung der natürlichen, rechtwinkligen, vertikalen Achsen gesetzt.
-Wobei ein ca. 60\textdegree-Abweichung dem Maximum entspricht.
+\textbf{Bemerkung zur Steuerung:} Grundsätzlich wird der Level (Power) einer Steueranweisung, gemäss der Abweichung der natürlichen, rechtwinkligen, vertikalen Achsen gesetzt, wobei eine ca. 60\textdegree-Abweichung dem Maximum entspricht.\\
+Eine mögliche Optimierung ist, dass die Drohne-Position immer exakt der Hand-Position angepasst wird.
+Dazu muss die Steuerung die Position der Drohne mit der Hand-Position vergleichen und falls nötig die Position der Drohne korrigieren.
+Der Unterschied zur Basis-Steuerung besteht darin, dass sich das Fliegen noch intuitiver anfühlt, da die Drohne sich wirklich an der Hand orientiert und nicht nur wie mit einer klassischen Fernsteuerung ein Steuerkommando erhält und ausführt.
+%todo remove remark
+Ob dies so umzusetzen ist bleibt abzuklären und ist stark abhängig von der API der Drohne.
 
-\subsubsection{Yaw}
+\subsubsection{Yaw (Drehung)}
 Analog zum Thrust bedeutet eine flache Drehung der Hand (Drehung an der vertikalen Rotations-Achsen) eine entsprechende Richtungsänderung der Drohne.
 
 \subsubsection{Pitch (Neigung) / Roll (Rolle)}
-Beim Pitch und Roll dreht sich die Drohne um eine horizontale Rotations-Achse. Beim Pitch hebt oder neigt die Drohne ihre Front. Bei Roll sinkt oder erhebt sich ihre eine Seite.
+Beim Pitch und Roll dreht sich die Drohne um eine horizontale Rotations-Achse. Beim Pitch hebt oder neigt die Drohne ihre Front. Bei Roll sinkt oder erhebt sich eine Seite.
 
 \subsubsection{Finish}
-Befindet sich die Drohne im \textit{flugbereiten-Zustand}, kann via eine Faust-Geste, die Steuerung abgebrochen werden.
-Die Drohne reagiert bis zum nächsten \textit{Init-Prozess} nicht.
+Befindet sich die Drohne im \textit{flugbereiten Zustand}, kann via eine Faust-Geste, die Steuerung abgebrochen werden.
+Die Drohne reagiert bis zum nächsten \textit{Init-Prozess} nicht mehr.
 
 
 \subsection{Zustands Übersicht}
-Die Drohne, insofern eingeschaltet, kann drei Zustände einnehmen:
+Die Drohne, insofern sie eingeschaltet ist, kann drei Zustände einnehmen:
 
 \subsubsection{Init-Zustand}
-Die Drohne kann nicht geflogen werden, sondern die Hand muss zuerst die initiale Position einnehmen.
+Die Drohne kann nicht geflogen werden, sondern eine Hand muss zuerst in der initialen Position erkannt werden.
 
-\subsubsection{Flugbereiten-Zustand}
-Die Drohne fliegt nicht, hat aber eine gültige Hand an der Steuerung. Dies kann nach und vor einem Flug sein.
+\subsubsection{Flugbereiten Zustand}
+Die Drohne fliegt nicht, hat aber eine korrekt initialisierte Hand für die Steuerung registriert. Dies kann nach und vor einem Flug sein.
 
 \subsubsection{Flug-Zustand}
 Die Drohne befindet sich in der Luft.
@@ -78,43 +87,83 @@ Die Drohne befindet sich in der Luft.
 
 %todo
 \section{Problembehandlung}
-Während den verschiedenen Zustände können verschiedene Fehler auftreten.
+Während den verschiedenen Zustände können verschiedene Fehler auftreten:
 
 \subsubsection{Init-Zustand}
 
-\begin{center}
-% Style changes
-\small\renewcommand{\arraystretch}{1.4}
-% tabular
-\begin{tabular}{|rp{0.2\linewidth}|lp{0.6\linewidth}|}
-	\hline
-	Problem: & Faust wird nicht erkannt oder mehrere Hände werden erkannt\\
-	Gefahr: & gering\\
-	Folge: & Die Drohne kann nicht abheben. Der \textit{Init-Zustand} wird belassen.\\
-%
-\end{tabular}
-\end{center}
+\begin{table}[H]
+	\centering
+	\small\renewcommand{\arraystretch}{1.4}
+	\rowcolors{1}{tablerowcolor}{tablebodycolor}
+	%
+	\captionabove{Problem: (Init) Hand-Erkennung}
+	%
+	\begin{tabularx}{0.9\textwidth}{ L{0.121\linewidth} | X  }%
+		\hline
+		Problem: & Faust wird nicht erkannt oder mehrere Hände werden erkannt.\\
+		Risiko: & \textit{gering}\\
+		Folge: & Die Drohne kann nicht abheben. Der \textit{Init-Zustand} wird belassen.\\
+		\hline
+	\end{tabularx}
+\end{table}
 
 
-%Problem:        Faust wird nicht erkannt oder mehrere Hände werden erkannt
-%Gefahr:        gering
-%Folge:                Die Drohne kann nicht abheben. Der Init Zustand wird belassen.
 
 \subsubsection{Flugbereiten-Zustand}
-Problem:        Die Hand wird nicht mehr erkannt
-Gefahr:        gering
-Folge:                Die Drone setzt sich zurück in den Init Zustand. (Die Drohne befindet sich noch auf dem Boden.)
+
+\begin{table}[H]
+	\centering
+	\small\renewcommand{\arraystretch}{1.4}
+	\rowcolors{1}{tablerowcolor}{tablebodycolor}
+	%
+	\captionabove{Problem: (Flugbereit) Hand-Erkennung}
+	%
+	\begin{tabularx}{0.9\textwidth}{ L{0.121\linewidth} | X  }%
+		\hline
+		Problem: & Die Hand wird nicht mehr erkannt.\\
+		Risiko: & \textit{gering}\\
+		Folge: & Die Drone setzt sich zurück in den \textit{Init-Zustand}. (Die Drohne befindet sich noch auf dem Boden.)\\
+		\hline
+	\end{tabularx}
+\end{table}
+
 
 \subsubsection{Flug-Zustand}
-Problem:        Die Hand wird nicht mehr erkannt oder mehrere Hände werden erkannt
-Einstufung:        sehr gross
-Verhalten:        Der Thrust wird sofort auf mässiges Level getrimmt. Falls länger als t Sekunden keine Hand erkannt wird, werden die Rotoren ausgeschaltet. Die Drohne wechselt in den Init Zustand.
-Folge:                Die Drohne befindet sich ungesteuert in der Luft oder wird notgelandet.
+\begin{table}[H]
+	\centering
+	\small\renewcommand{\arraystretch}{1.4}
+	\rowcolors{1}{tablerowcolor}{tablebodycolor}
+	%
+	\captionabove{Problem: (Flug) Hand-Erkennung}
+	%
+	\begin{tabularx}{0.9\textwidth}{ L{0.121\linewidth} | X  }%
+		\hline
+		Problem: & Die Hand wird nicht mehr erkannt oder mehrere Hände werden erkannt.\\
+		Risiko: & \textit{sehr gross}\\
+		Verhalten: & Der Thrust wird sofort auf mässiges Level getrimmt. Falls länger als $t$ Sekunden keine Hand erkannt wird, werden die Rotoren ausgeschaltet. Die Drohne wechselt in den Init Zustand.\\
+		Folge: & Die Drohne befindet sich ungesteuert in der Luft oder wird notgelandet (resp. stürzt ab).\\
+		\hline
+	\end{tabularx}
+\end{table}
 
-Problem:        grosse ruckartiger Gestenwechsel (Angst-Reaktion oder ähnliches)
-Gefahr:        erheblich
-Verhalten:        Die Steuerung reguliert, resp. vermeidet sprunghafte Steuerbefehle.
-Folge:                Kunst Flüge mit bewussten schnellen Anweisungen sind nicht möglich.
+
+\begin{table}[H]
+	\centering
+	\small\renewcommand{\arraystretch}{1.4}
+	\rowcolors{1}{tablerowcolor}{tablebodycolor}
+	%
+	\captionabove{Problem: (Flug) Ruckartige Bewegungen}
+	%
+	\begin{tabularx}{0.9\textwidth}{ L{0.121\linewidth} | X  }%
+		\hline
+		Problem: & Starke, unkontrollierte und ruckartige Steuerschwankungen (z.B. aus Angst-Reaktionen etc.).\\
+		Risiko: & \textit{erheblich}\\
+		Verhalten: & Die Steuerung reguliert, resp. vermeidet sprunghafte Steuerbefehle.\\
+		Folge: & Kunstflüge mit bewussten schnellen Anweisungen sind nicht möglich.\\
+		\hline
+	\end{tabularx}
+\end{table}
+%
 
 \section{Tests}
 
