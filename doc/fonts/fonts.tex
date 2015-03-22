@@ -18,13 +18,15 @@
 %% ==== Font Families / Font Combinations  (Sans + Serif) ================
 
 %% - Latin Modern (LaTeX Standard)
-\usepackage{lmodern}
+%\usepackage{lmodern}
 %% sans math, use with '\mathversion{sans}'
-\IfPackageLoaded{lmodern}{\input{fonts/fonts-lmodern-sansmath.tex}}
+%\IfPackageLoaded{lmodern}{\input{fonts/fonts-lmodern-sansmath.tex}}
+
+\renewcommand*{\familydefault}{\sfdefault}
 
 %% -------------------
 %
-%% - Times, Helvetica, Courier (Word Standard...)
+% - Times, Helvetica, Courier (Word Standard...)
 %\usepackage{mathptmx}                 %% --- Times (incl math)
 %\usepackage[scaled=.90]{helvet}       %% --- Helvetica (Arial)
 %\usepackage{courier}                  %% --- Courier
