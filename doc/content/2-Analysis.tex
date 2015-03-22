@@ -13,13 +13,6 @@ Der Ausdruck \gls{glos:droneLabel} kommt vom niederdeutschen Wort \textit{"`dron
 \end{framed}
 
 \subsection{Geschichte der Drohne}
-% http://www.informatik.uni-oldenburg.de/~iug08/snd/geschichte1.html
-% http://diepresse.com/home/politik/innenpolitik/1385181/Die-Geschichte-der-Drohnen
-% http://www.welt.de/print/welt_kompakt/print_lifestyle/article135929763/Kleine-Geschichte-der-Drohnen.html
-% http://www.welt.de/print/die_welt/wissen/article127106535/Geschichte-der-Drohne.html
-% http://de.wikipedia.org/wiki/Unbemanntes_Luftfahrzeug
-% http://de.wikipedia.org/w/index.php?title=Autonomes_Luftfahrzeug&action=edit&redlink=1
-% http://en.wikipedia.org/wiki/History_of_unmanned_aerial_vehicles
 
 \subsection{Frühe Entwicklung}
 Eine der allerersten bekannten \gls{glos:droneLabel} war wohl, 1783 von den Brüder Mongolfier aus Frankreich, ein unbemannter Heissluftballon. \footcite{Kleine_Geschichte_der_Drohnen_-_Nachrichten_Print_-_WELT_KOMPAKT_-_Lifestyle_-_DIE_WELT_2015-03-21}
@@ -37,19 +30,19 @@ So wurden bereits 1849, vom österreichischen Königsreich, unbemannte Heissluft
 Weder die "`\gls{glos:droneLabel}"' selbst, noch das Abwerfen der Bombe konnten aktiv gesteuert werden.
 Die Heissluftballons flogen mit dem Wind und die Bomben wurde per Zeitzünder gezündet. Tatsächlich erreichten einzelne Ballons ihr Ziel und konnten Schaden anrichten, andere jedoch wurden vom Wind zurück geweht und zerstörten das eigene Territorium Österreichs. \footcite{Remote_Piloted_Aerial_Vehicles_2015-03-21}
 
-Während des Ersten Weltkrieges wurden die ersten unbemannten Flugzeuge in Amerika entwickelt.
+Während des Ersten Weltkrieges wurden die ersten unbemannten Flugzeuge von den Amerikanern entwickelt.
 Mit diesen wurden vordefinierte Routen abgeflogen und es konnten \textit{Flugtorpedos} abgeworfen werden, welche wie die Flugzeuge selbst, mit Hilfe von gyroskopischen Stabilisierer und Aneroidbarometer zwar Richtung und Höhe halten konnten, jedoch nicht per Funk steuerbar waren.
 
 Die ersten funkgesteuerten \glspl{glos:droneLabel} wurde erst nach dem Krieg 1918 fertig. Nebst den Amerikanern, hatten auch die Briten 1925 ihren ersten Drohnenflug verbucht. Diese konnte ca. 300\,Meilen (ca. 483\,km) mit einer Geschwindigkeit von 190\,mph (ca. 306\,km/h) zurücklegen.\footcite{Informatik_und_Gesellschaft_2015-03-21}
 
-Da der Krieg vorbei war, wurden die \glspl{glos:droneLabel} für Jagd-Trainings der Armee genutzt.
+Da der Krieg vorbei war, wurden die \glspl{glos:droneLabel} hauptsächlich für Jagd-Trainings der Armee genutzt.
 
 Mit den Jahren wurde die \gls{glos:droneLabel} immer weiter verbessert und werden heute aktiv gegen terroristische Aktivitäten verwendet.
 
 \subsection{Weitere Zwecke}
 % http://diepresse.com/home/politik/innenpolitik/1385181/Die-Geschichte-der-Drohnen
 Nebst den erwähnten Waffenträger gibt es auch diverse weitere Aufgaben für \glspl{glos:droneLabel}.
-Besonders für Beobachtungen werden sie sehr häufig gebraucht (z.B. Aufklärung, Luftaufnahmen, Wetterbeobachtung, Transporte, Filmproduktionen), aber auch für Messungen an Orten die für Menschen ungeeignet oder schädlich sind.
+Besonders für Beobachtungen werden sie sehr häufig gebraucht (z.B. Aufklärung, Luftaufnahmen, Wetterbeobachtung, Filmproduktionen), aber auch für Messungen an Orten die für Menschen ungeeignet oder schädlich sind oder für Transporte.
 
 Obschon jene Aufgabenbereiche gewaltfrei sind, dienen \glspl{glos:droneLabel} trotzdem mehrheitlich polizeilichen und militärischen Organisationen.\footcite{Die_Geschichte_der_Drohnen_DiePresse.com_2015-03-21}
 
@@ -61,8 +54,23 @@ Auch Amazon verkündet ihren \textit{Prime Air}-Service, der Pakete direkt vor d
 Im Jahr 2014 wurde der Einsatz für landwirtschaftliche Zwecke erprobt und auch die \gls{glos:dhlLabel} führt Testlieferungen mit \glspl{glos:droneLabel} aus.\footcite{Kleine_Geschichte_der_Drohnen_-_Nachrichten_Print_-_WELT_KOMPAKT_-_Lifestyle_-_DIE_WELT_2015-03-21}
 
 
-\subsection{Flugeigenschaften von Drohnen}
+\section{Quadrocopter}
+\begin{wrapfigure}{r}{0.4\textwidth}
+	\includegraphics[width=1.0\linewidth]{images/analysis/crazyflize.jpg}
+	\caption[Crazyflie 2.0]{Crazyflie 2.0 \protect\footcite{Crazyflie_2.0_Seeedstudio_2015-03-22}}
+\end{wrapfigure}
+Die Quadrocopter eignen sich für \glspl{glos:droneLabel}, da die Steuerung ausschliesslich über die vier Rotoren realisiert wird.
+Weitere mechanische Steuerkomponente entfallen, was die Komplexität des Luftfahrzeuges deutlich vereinfacht.
+Je zwei der Rotoren drehen in die selbe Richtung (im bzw. gegen den Uhrzeigersinn) und sind diagonal angeordnet.
 
+\subsection{Steuerung}
+Bezüglich der Flugeigenschaften entspricht ein Quadrocopter am ehesten einem Hubschrauber und gehört ebenfalls zur Kategorie der  \gls{glos:vtolLabel}-Flugzeugen.
+Es sind jegliche Steuermöglichkeiten im dreidimensionalen Raum möglich (steigen/sinken (\textit{thrust}), gieren (\textit{yaw}), nicken (\textit{pitch} und rollen (\textit{roll}))).
+
+Durch das, dass die Rotoren in entgegengesetzte Richtungen drehen, hebt sich das auf das Traggestell übertragene Drehmoment auf und der Quadrocopter kann ohne Drehung fliegen.
+Um sich nun in eine Richtung zu \textit{gieren}, werden die Drehzahlen von jeweils zwei gegenüberliegende Rotoren gleichmässig verändert, so dass der Drehmoment auf das Traggestell nicht mehr neutralisiert wird.
+
+Um dem Piloten die Steuerung zu erleichtern, befinden sich oft verschieden farbige Markierungen oder LED's an der Vorder- oder Rückseite des Quadrocopters, da die Steuerung üblicherweise aus relativer Sicht der Drohne erfolgt und somit ein Umdenken des Piloten erfordert..\footcite{Quadrocopter__Wikipedia_2015-03-22}
 
 
 \subsection{Bereits bestehende Arbeiten}
