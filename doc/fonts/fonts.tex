@@ -17,12 +17,14 @@
 
 %% ==== Font Families / Font Combinations  (Sans + Serif) ================
 
-%% - Latin Modern (LaTeX Standard)
-%\usepackage{lmodern}
-%% sans math, use with '\mathversion{sans}'
-%\IfPackageLoaded{lmodern}{\input{fonts/fonts-lmodern-sansmath.tex}}
+% - Latin Modern (LaTeX Standard)
+\usepackage{lmodern}
+% sans math, use with '\mathversion{sans}'
+\IfPackageLoaded{lmodern}{\input{fonts/fonts-lmodern-sansmath.tex}}
 
+\renewcommand{\sfdefault}{lmss}
 \renewcommand*{\familydefault}{\sfdefault}
+
 
 %% -------------------
 %
