@@ -79,13 +79,16 @@ Die Drohne, insofern sie eingeschaltet ist, kann drei Zustände einnehmen:
 	\caption[Zustand-Diagramm: Drohne mit Gestensteuerung]{Zustand-Diagramm: Drohne mit Gestensteuerung}
 \end{figure}
 
-\subsubsection{Init-Zustand}
+\subsubsection{Off-Zustand - Z0}
+Zustand in dem die Drohne ausgeschaltet.
+
+\subsubsection{Init-Zustand - Z1}
 Die Drohne kann nicht geflogen werden, sondern eine Hand muss zuerst in der initialen Position erkannt werden.
 
-\subsubsection{Flugbereiten Zustand}
+\subsubsection{Flugbereiten Zustand - Z2}
 Die Drohne fliegt nicht, hat aber eine korrekt initialisierte Hand für die Steuerung registriert. Dies kann nach und vor einem Flug sein.
 
-\subsubsection{Flug-Zustand}
+\subsubsection{Flug-Zustand - Z3}
 Die Drohne befindet sich in der Luft.
 
 
