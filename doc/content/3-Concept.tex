@@ -31,11 +31,11 @@ Da die Hand die Drohne repräsentieren soll, muss eine initiale Position eingeno
 Dieser Prozess vom Finden der initialen Position wird folgend als \textit{Init-Prozess} bezeichnet und sieht wie folgt aus:
 
 \begin{itemize}
-	\item Die Drohne befindet sich im \textit{Init-Zustand}.
+	\item Die Drohne befindet sich im \textit{Init-Zustand (Z1)}.
 	\item Die Hand wird auf idealer Höhe platziert (ca. 10 -- 20\,cm über dem Sensor).
 	\item Die Position gilt als eingenommen, sobald nach einer Faust wiederum die offene Hand erkannt wird. (Faust-Gesten in nicht idealen Höhen werden ignoriert.)
-	\item Die Drohne befindet sich nun im \textit{flugbereiten Zustand} (die Rotoren drehen nicht).
-	\item Die Hand bleibt geöffnet (erneute Erkennung einer Faust-Geste löst einen Zustandswechsel vom \textit{flugbereiten Zustand} zurück in den \textit{Init-Zustand}) aus.
+	\item Die Drohne befindet sich nun im \textit{flugbereiten Zustand (Z2)} (die Rotoren drehen nicht).
+	\item Die Hand bleibt geöffnet (erneute Erkennung einer Faust-Geste löst einen Zustandswechsel vom \textit{flugbereiten Zustand (Z2)} zurück in den \textit{Init-Zustand (Z1)}) aus.
 \end{itemize}
 
 \subsubsection{Start / Thrust (Höhe)}
@@ -43,13 +43,13 @@ Um mit der Drohne abzuheben wird die offene Hand nach oben bewegt. Dabei gilt, u
 
 Umgekehrtes gilt auch: wird die Hand gesenkt, senkt sich auch die Drehzahl der Rotoren, sprich die Drohne verliert an Steigung.
 Der \textit{Thrust} kann während des ganzen Fluges mit diesen Bewegungen gesteuert werden.
-Die Drohne befindet sich, sobald sie abgehoben ist, im \textit{Flug-Zustand} (mit drehenden Rotoren in der Luft).
+Die Drohne befindet sich, sobald sie abgehoben ist, im \textit{Flug-Zustand (Z3)} (mit drehenden Rotoren in der Luft).
 
 \subsubsection{Flug}
 Während dem Flug kann nebst dem \textit{Thrust}, die Drehung (\textit{Yaw}) und die Neigung (\textit{Pitch/Roll}) gesteuert werden.
 Auch hier gilt jeweils, dass die Drohne sich nach der Hand ausrichtet.
-Die Drohne ist solange im \textit{Flug-Zustand} bis sie wieder auf festem Untergrund ist, dann ist sie wieder im \textit{flugbereiten Zustand}.
-Bezüglich der Steuermöglichkeiten ändert sich weder im \textit{Flug-} noch im \textit{flugbereiten Zustand} etwas.
+Die Drohne ist solange im \textit{Flug-Zustand (Z3)} bis sie wieder auf festem Untergrund ist, dann ist sie wieder im \textit{flugbereiten Zustand (Z2)}.
+Bezüglich der Steuermöglichkeiten ändert sich weder im \textit{Flug- (Z3)} noch im \textit{flugbereiten Zustand (Z2)} etwas.
 Sprich es ist kein Zustandswechsel nötig, um die Drohne zu landen.
 
 \textbf{Bemerkung zur Steuerung:} Grundsätzlich wird der Level (Power) einer Steueranweisung, gemäss der Abweichung der natürlichen, rechtwinkligen, vertikalen Achsen gesetzt, wobei eine ca. 60\textdegree-Abweichung dem Maximum entspricht.\\
@@ -66,7 +66,7 @@ Analog zum Thrust bedeutet eine flache Drehung der Hand (Drehung an der vertikal
 Beim Pitch und Roll dreht sich die Drohne um eine horizontale Rotations-Achse. Beim Pitch hebt oder neigt die Drohne ihre Front. Bei Roll sinkt oder erhebt sich eine Seite.
 
 \subsubsection{Finish}
-Befindet sich die Drohne im \textit{flugbereiten Zustand}, kann via eine Faust-Geste, die Steuerung abgebrochen werden.
+Befindet sich die Drohne im \textit{flugbereiten Zustand (Z2)}, kann via eine Faust-Geste, die Steuerung abgebrochen werden.
 Die Drohne reagiert bis zum nächsten \textit{Init-Prozess} nicht mehr.
 
 
@@ -79,19 +79,19 @@ Die Drohne, insofern sie eingeschaltet ist, kann drei Zustände einnehmen:
 	\caption[Zustand-Diagramm: Drohne mit Gestensteuerung]{Zustand-Diagramm: Drohne mit Gestensteuerung}
 \end{figure}
 
-\subsubsection{Off-Zustand - Z0}
-Zustand in dem die Drohne ausgeschaltet.
+\subsubsection{Off-Zustand (Z0)}
+Die Drohne ist ausgeschaltet.
 
-\subsubsection{Init-Zustand - Z1}
+\subsubsection{Init-Zustand (Z1)}
 Die Drohne kann nicht geflogen werden, sondern eine Hand muss zuerst in der initialen Position erkannt werden.
 
-\subsubsection{Flugbereiten Zustand - Z2}
+\subsubsection{Flugbereiten Zustand (Z2)}
 Die Drohne fliegt nicht, hat aber eine korrekt initialisierte Hand für die Steuerung registriert. Dies kann nach und vor einem Flug sein.
 
-\subsubsection{Flug-Zustand - Z3}
+\subsubsection{Flug-Zustand (Z3)}
 Die Drohne befindet sich in der Luft.
 
-\subsubsection{Unkontrollierten Zustand - Z4}
+\subsubsection{Unkontrollierten Zustand (Z4)}
 %todo correct
 Die Hand wird während dem Flug nicht mehr erkannt.
 Wenn keine Hand innerhalb einer bestimmten Zeit erfasst wird, wird die Drohne Not gelandet (stürzt sie ab).
@@ -102,58 +102,58 @@ Wenn keine Hand innerhalb einer bestimmten Zeit erfasst wird, wird die Drohne No
 \section{Problembehandlung}
 Während den verschiedenen Zustände können verschiedene Fehler auftreten:
 
-\subsubsection{Init-Zustand}
+\subsubsection{Init-Zustand (Z1)}
 
 \begin{table}[H]
 	\centering
 	\small\renewcommand{\arraystretch}{1.4}
 	\rowcolors{1}{tablerowcolor}{tablebodycolor}
 	%
-	\captionabove{Problem: \textit{Init-Zustand} -- Hand-Erkennung}
+	\captionabove{Problem: \textit{Init-Zustand (Z1)} -- Hand-Erkennung}
 	%
 	\begin{tabularx}{0.9\textwidth}{ L{0.121\linewidth} | X  }%
 		\hline
 		Problem: & Faust wird nicht erkannt oder mehrere Hände werden erkannt.\\
 		Risiko: & \textit{gering}\\
-		Folge: & Die Drohne kann nicht abheben. Der \textit{Init-Zustand} wird belassen.\\
+		Folge: & Die Drohne kann nicht abheben. Der \textit{Init-Zustand (Z1)} wird belassen.\\
 		\hline
 	\end{tabularx}
 \end{table}
 
 
 
-\subsubsection{Flugbereiten Zustand}
+\subsubsection{Flugbereiten Zustand (Z2)}
 
 \begin{table}[H]
 	\centering
 	\small\renewcommand{\arraystretch}{1.4}
 	\rowcolors{1}{tablerowcolor}{tablebodycolor}
 	%
-	\captionabove{Problem: \textit{Flugbereiten Zustand} -- Hand-Erkennung}
+	\captionabove{Problem: \textit{Flugbereiten Zustand (Z2)} -- Hand-Erkennung}
 	%
 	\begin{tabularx}{0.9\textwidth}{ L{0.121\linewidth} | X  }%
 		\hline
 		Problem: & Die Hand wird nicht mehr erkannt.\\
 		Risiko: & \textit{gering}\\
-		Folge: & Die Drone setzt sich zurück in den \textit{Init-Zustand}. (Die Drohne befindet sich noch auf dem Boden.)\\
+		Folge: & Die Drone setzt sich zurück in den \textit{Init-Zustand (Z1)}. (Die Drohne befindet sich noch auf dem Boden.)\\
 		\hline
 	\end{tabularx}
 \end{table}
 
 
-\subsubsection{Flug-Zustand}
+\subsubsection{Flug-Zustand (Z3)}
 \begin{table}[H]
 	\centering
 	\small\renewcommand{\arraystretch}{1.4}
 	\rowcolors{1}{tablerowcolor}{tablebodycolor}
 	%
-	\captionabove{Problem: \textit{Flug-Zustand} -- Hand-Erkennung}
+	\captionabove{Problem: \textit{Flug-Zustand (Z3)} -- Hand-Erkennung}
 	%
 	\begin{tabularx}{0.9\textwidth}{ L{0.121\linewidth} | X  }%
 		\hline
 		Problem: & Die Hand wird nicht mehr erkannt oder mehrere Hände werden erkannt.\\
 		Risiko: & \textit{sehr gross}\\
-		Verhalten: & Der Thrust wird sofort auf mässiges Level getrimmt. Falls länger als $t$ Sekunden keine Hand erkannt wird, werden die Rotoren ausgeschaltet. Die Drohne wechselt in den Init Zustand.\\
+		Verhalten: & Der Thrust wird sofort auf mässiges Level getrimmt. Falls länger als $t$ Sekunden keine Hand erkannt wird, werden die Rotoren ausgeschaltet. Die Drohne wechselt in den Init-Zustand  (Z1).\\
 		Folge: & Die Drohne befindet sich ungesteuert in der Luft oder wird notgelandet (resp. stürzt ab).\\
 		\hline
 	\end{tabularx}
@@ -165,7 +165,7 @@ Während den verschiedenen Zustände können verschiedene Fehler auftreten:
 	\small\renewcommand{\arraystretch}{1.4}
 	\rowcolors{1}{tablerowcolor}{tablebodycolor}
 	%
-	\captionabove{Problem: \textit{Flug-Zustand} -- Ruckartige Bewegungen}
+	\captionabove{Problem: \textit{Flug-Zustand (Z3)} -- Ruckartige Bewegungen}
 	%
 	\begin{tabularx}{0.9\textwidth}{ L{0.121\linewidth} | X  }%
 		\hline
