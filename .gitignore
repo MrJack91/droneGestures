@@ -1,6 +1,9 @@
 #general
 .idea
 
+#libreoffice
+.~lock.state-diagram.odg*
+
 #latex
 ## Core latex/pdflatex auxiliary files:
 *.aux
