@@ -13,6 +13,7 @@
 *.fls
 *.out
 *.toc
+*.sty
 
 ## Intermediate documents:
 *.dvi
