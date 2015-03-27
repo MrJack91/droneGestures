@@ -51,7 +51,7 @@ Seit 2013 werden, in Grand Forks County im US-Bundesstaat North Dakota, \glspl{g
 
 Auch Amazon kündet ihren "`\textit{Prime Air}"'-Service an, der Pakete direkt vor die Haustür liefert.
 
-Im Jahr 2014 wurde der Einsatz für landwirtschaftliche Zwecke erprobt und auch die \gls{glos:dhlLabel} führte Testlieferungen mit \glspl{glos:droneLabel} aus.\footcite{Kleine_Geschichte_der_Drohnen_-_Nachrichten_Print_-_WELT_KOMPAKT_-_Lifestyle_-_DIE_WELT_2015-03-21}
+Im Jahr 2014 wurde der Einsatz für landwirtschaftliche Zwecke erprobt und auch die \gls{glos:dhlLabel} führte Testlieferungen mit \glspl{glos:droneLabel} aus. \footcite{Kleine_Geschichte_der_Drohnen_-_Nachrichten_Print_-_WELT_KOMPAKT_-_Lifestyle_-_DIE_WELT_2015-03-21}
 
 
 \section{Quadrocopter}
@@ -81,21 +81,78 @@ Die Steuerung erfolgt üblicherweise aus relativer Sicht der Drohne und erforder
 \subsubsection{Sensoren Integration auf bestehende Steuerungen}
 
 %%% 
-
+%todo correct
 \section{Ist-Analyse}
-\subsection{Gestensensor}
 
-\subsubsection{Einsatz}
+\begin{wrapfigure}{r}{0.4\textwidth}
+	\includegraphics[width=1.0\linewidth]{images/analysis/leap_simple.png}
+	\caption[Leap Motion Sensor]{Leap Motion Sensor\protect\footcite{Move_Over_Kinect:_Early_Gestural_Musical_Demos_for_Leap_Motion_Look_Terrific_-_Create_Digital_Music_2015-03-27}}
+\end{wrapfigure}
+\subsection{Gestensensor} \label{subsec:leapmotion}
+%\begin{wrapfigure}{l}{0.4\textwidth}
+%	\includegraphics[width=1.0\linewidth]{images/analysis/leap_laptop.jpg}
+%	\caption[Leap Motion -- Produktbild]{Leap Motion -- Produktbild \protect\footcite{Leap_Motion_Motion_Controller_2015-03-27}}
+%\end{wrapfigure}
+
+Für die Erkennung der Gesten wird der \textit{Leap Moption}\footcite{Leap_Motion_Motion_Controller_2015-03-27} Sensor verwendet.
+Dieser erkennt Hände (inkl. einzelne Finger) und stellt Daten deren Position, Gesten und Bewegungen zur Verfügung.
 
 \subsubsection{Technische Details}
+Die Erkennung erfolgt via optische Sensoren und Infrarot Licht.
+Der Leap Motion wird per USB 2.0 angeschlossen und erkennt Gesten innerhalb eines 150\textdegree-Winkels zwischen 25\,mm und 600\,mm Höhe.
+Am besten funktioniert der Sensor, wenn die Silhouette der Hand mit hohem Kontrast zur Umgebung unterschieden werden kann.
+Die Messdaten werden mit einem internen Handmodell kombiniert, um so immer eine vollständige Hand erkannt zu haben.
+\footcite{API_Overview__Leap_Motion_v2.2_documentation_2015-03-27}
+
+
+\begin{figure}[H]
+  \IfDefined{RawFloats}{\RawFloats} % required if floatrow is loaded
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+   	\includegraphics[width=1.0\linewidth]{images/analysis/leap_360_view.png}
+   	\caption[Leap Motion von allen Seiten]{Leap Motion von allen Seiten \protect\footcite{Leap_Motion_-_VJs_Magazine_2015-03-27}}
+  \end{minipage}%
+  \hspace{.1\linewidth}
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+	\includegraphics[width=1.0\linewidth]{images/analysis/leap_technical_specifiaction.png}
+	\caption[Leap Motion -- Technische Spezifikationen]{Leap Motion -- Technische Spezifikationen \protect\footcite{Leap_Motion_Motion_Controller_2015-03-27}}
+  \end{minipage}
+\end{figure}
+
+Weitere Informationen könne übersichtlich auf der Website des Herstellers\footcite{Leap_Motion_Motion_Controller_2015-03-27} gefunden werden.
+
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+	\includegraphics[width=1.0\linewidth]{images/analysis/leap_vr.png}
+	\caption[Oculus Rift VR]{\gls{vrLabel} Oculus Rift \protect\footcite{Leap_Motion_Developers_2015-03-27}}
+\end{wrapfigure}
+\subsubsection{Anwendungsbereich}
+Der Anwendungsbereich für Gestenerkennung ist beinahe grenzenlos.
+Da der Leap Motion speziell für Entwickler produziert wurde, kann der Sensor für jegliche Programme oder Steuerungen verwendet werden.
+
+Gestensteuerungen sind für "`gewöhnliche"' Steueraufgaben nach wie vor sehr wenig verbreitet, obwohl es theoretisch nichts intuitiveres als Gesten gibt.
+Dies kann unter anderem an fehlenden Anwendungsfällen oder an falsch angesetzten Umsetzungen liegen.
+
+
+
+\subsubsection{Einrichtung}
+
+
 
 \subsubsection{API}
+% sprachen
+% Aufbau der Antworten
+
+
 
 
 \subsection{Drohne}
 
 \subsubsection{API}
-% \subsubsection{Sensoren charakterisieren}
+
+\subsubsection{Sensoren charakterisieren}
+
 
 %%% 
 

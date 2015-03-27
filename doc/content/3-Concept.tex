@@ -2,9 +2,6 @@
 
 \section{Detaillierter Gesten-Steuerbeschrieb}
 
-Gestensteuerungen sind für "`gewöhnliche"' Steueraufgaben nach wie vor sehr wenig verbreitet, obwohl es theoretisch nichts intuitiveres als Gesten gibt.
-Dies kann unter anderem an fehlenden Anwendungsfällen oder an falsch angesetzten Umsetzungen liegen.
-
 Ziel dieser Steuerung ist es, die Drohne sehr einfach steuern zu können.
 Das auswendig Lernen der möglichen Gesten soll durch intuitive Schlussfolgerungen des Anwendungswunsches entfallen.
 Der Grundgedanke der Steuerung soll die Hand sein, welche die Drohne verkörpert.
@@ -14,8 +11,11 @@ Der Grundgedanke der Steuerung soll die Hand sein, welche die Drohne verkörpert
 Im Folgenden ist mit dem Begriff \textit{Position} jeweils die dreidimensionale Ausrichtung im Raum und nicht der effektive Standort gemeint.
 \end{framed}
 
-\subsection{LeapMotion}
-Es folgen grobe Informationen zum Gestenerkennungs-Sensor \textit{LeapMotion}.
+\subsection{Leap Motion}
+%todo correct
+Es folgt eine grobe Übersicht des Gestenerkennungs-Sensores \textit{Leap Motion}.
+Detailliertere Informationen finden Sie im \secref{subsec:leapmotion}.
+% Es folgen grobe Informationen zum Gestenerkennungs-Sensor \textit{Leap Motion}.
 
 Der Sensor erkennt Gesten innerhalb eines 150\textdegree-Winkels zwischen 25\,mm und 600\,mm Höhe.
 Sprich auf ca. 30\,cm Höhe funktioniert die Erkennung bestens und wir haben genügend vertikale Spatzung um Höhenunterschiede festzustellen.
@@ -99,7 +99,7 @@ Die Drohne befindet sich in der Luft.
 Die Hand wird während dem Flug nicht mehr erkannt.
 Wenn keine Hand innerhalb einer bestimmten Zeit erfasst wird, wird die Drohne Not gelandet (stürzt sie ab).
 
-%%% 
+%%%
 
 %todo
 \section{Problembehandlung}
@@ -184,4 +184,4 @@ Während den verschiedenen Zustände können verschiedene Fehler auftreten:
 \section{Tests}
 
 
-%%% 
+%%%

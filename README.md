@@ -1,2 +1,2 @@
 # droneGestures
-Controll Crazyflie Nano Quadcopter by Bitcraze with LeapMotion controller
+Controll Crazyflie Nano Quadcopter by Bitcraze with Leap Motion controller
