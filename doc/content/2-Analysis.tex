@@ -1,6 +1,7 @@
 \chapter{Analyse}
 
 \section{Recherche}
+\label{sec:recherche}
 
 \subsubsection{Bezeichnung}
 Der Ausdruck \gls{glos:droneLabel} kommt vom niederdeutschen Wort \textit{"`drone"'}, welches wiederum seinen Ursprung beim indogermanischen Wort \textit{"`dhren"'} findet. Die Bedeutung dieses Wortes lautet "`brummen"' oder "`dröhnen"'. \footcite{Geschichte_der_Drohne_-_Nachrichten_Print_-_DIE_WELT_-_Wissen_Print_DW_-_DIE_WELT_2015-03-21}
@@ -63,6 +64,8 @@ Der Quadrocopter eignet sich als \gls{glos:droneLabel}, da die Steuerung ausschl
 Weitere mechanische Steuerkomponente entfallen, was die Komplexität des Luftfahrzeuges deutlich vereinfacht.
 Je zwei der Rotoren drehen in dieselbe Richtung (im bzw. gegen den Uhrzeigersinn) und stehen sich gegenüber.
 
+Generell gilt für vorliegendes Dokument, insofern nicht anders vermerkt oder aus dem Kontext ersichtlich, dass der Begriff Drohne mit dem Begriff Quadrocopter gleichzustellen ist (davon ausgeschlossen ist \secref{sec:recherche}).
+
 \subsection{Steuerung}
 Bezüglich der Flugeigenschaften entspricht ein Quadrocopter am ehesten einem Hubschrauber und gehört ebenfalls zur Kategorie der  \gls{glos:vtolLabel}-Flugzeugen.
 Es sind jegliche Steuermöglichkeiten im dreidimensionalen Raum möglich (steigen/sinken "`\textit{thrust}"', gieren/drehen "`\textit{yaw}"', nicken "`\textit{pitch}"' und rollen "`\textit{roll}"').
@@ -75,7 +78,7 @@ Die Steuerung erfolgt üblicherweise aus relativer Sicht der Drohne und erforder
 
 
 \subsection{Bereits bestehende Arbeiten}
-
+%todo
 \subsubsection{Steuermöglichkeiten}
 
 \subsubsection{Sensoren Integration auf bestehende Steuerungen}
@@ -101,7 +104,7 @@ Dieser erkennt Hände (inkl. einzelne Finger) und stellt Daten deren Position, G
 Die Erkennung erfolgt via optische Sensoren und Infrarot Licht.
 Der Leap Motion wird per USB 2.0 angeschlossen und erkennt Gesten innerhalb eines 150\textdegree-Winkels zwischen 25\,mm und 600\,mm Höhe.
 Am besten funktioniert der Sensor, wenn die Silhouette der Hand mit hohem Kontrast zur Umgebung unterschieden werden kann.
-Die Messdaten werden mit einem internen Handmodell kombiniert, um so immer eine vollständige Hand erkannt zu haben.
+Die Messdaten werden mit einem internen Handmodell kombiniert, so dass immer ein vollständige Hand als Output vorliegt.
 \footcite{API_Overview__Leap_Motion_v2.2_documentation_2015-03-27}
 
 
@@ -126,26 +129,46 @@ Weitere Informationen könne übersichtlich auf der Website des Herstellers\foot
 \begin{wrapfigure}{r}{0.4\textwidth}
 	\includegraphics[width=1.0\linewidth]{images/analysis/leap_vr.png}
 	\caption[Oculus Rift VR]{\gls{vrLabel} Oculus Rift \protect\footcite{Leap_Motion_Developers_2015-03-27}}
+	\label{fig:leap_vr}
 \end{wrapfigure}
 \subsubsection{Anwendungsbereich}
 Der Anwendungsbereich für Gestenerkennung ist beinahe grenzenlos.
 Da der Leap Motion speziell für Entwickler produziert wurde, kann der Sensor für jegliche Programme oder Steuerungen verwendet werden.
 
-Gestensteuerungen sind für "`gewöhnliche"' Steueraufgaben nach wie vor sehr wenig verbreitet, obwohl es theoretisch nichts intuitiveres als Gesten gibt.
+Allerdings sind Gestensteuerungen für "`gewöhnliche"' Steueraufgaben nach wie vor sehr wenig verbreitet, obwohl es theoretisch nichts intuitiveres als Gesten gibt.
 Dies kann unter anderem an fehlenden Anwendungsfällen oder an falsch angesetzten Umsetzungen liegen.
 
-
+Im Gesten-Entwicklungsbereich gibt es nebst den "`klassischen"' Anwendungen (wie Spiele, Scrolling, Musikkontrolle etc.) viele interessante  \gls{vrLabel}-Anwendungen. Der Sensor wird, wie in \figref{fig:leap_vr} ersichtlich ist, vorne auf einer \gls{vrLabel}-Brille befestigt und ermöglicht so eine Simulation der Hände, gesteuert durch die wirklichen Hände.
 
 \subsubsection{Einrichtung}
-
-
+Die Installation des Leap Motion's gemäss der offiziellen Installationsanweisungen\footcite{Getting_Started_Leap_Motion_Developers_2015-03-28} funktionierte auf einem OS X 10.10.2 einwandfrei. 
+Entsprechend sollte  die Installation auch auf einem Windows 7 oder 8 erfolgreich durchgeführt werden.
 
 \subsubsection{API}
 % sprachen
 % Aufbau der Antworten
+Um den Leap Motion anzusteuern werden folgende Sprachen und Frameworks angeboten:
+\begin{itemize}
+	\item \textbf{JavaScript:} für Node.js oder Browser Anwendungen (Beispiele\footcite{Getting_Started_Leap_Motion_Developers_2015-03-28})
+	\item \textbf{Unity / C\#:} 3D Anwendungen
+	\item \textbf{C++:} für hardwarenahe Anwendungen
+	\item \textbf{Java}
+	\item \textbf{Python}
+	\item \textbf{Objective-C}: für Apple Anwendungen
+\end{itemize}
 
+Da die Drohne ebenfalls via Python programmiert werden kann, werden alle Komponenten in Python umgesetzt und es wird nur noch auf die Python-Schnittstelle\footcite{Python_SDK_Documentation__Leap_Motion_Python_SDK_v2.2_documentation_2015-03-28} detaillierter eingegangen. Das Prinzip der verfügbaren Daten ist jedoch bei allen Schnittstellen dasselbe.
 
+Über die \gls{apiLabel} können einzelne Frames mit Infos zu erkennbaren Objekten abgerufen werden.
 
+Folgende \textbf{Objekte} stehen pro Frame zur Verfügung: Hände, Finger, Knochen (Arm- und Fingerknochen) und fingerähnliche Werkzeuge (z.B. Bleistifte).
+Alle Objekte werden genau identifiziert, sprich die Hände werden als rechte und linke Hand erkannt, jeder Finger als richtiger Fingertyp und jeder Fingerknochen als korrekter physikalischer Knochen. Diese Erkennung funktioniert unabhängig der Position des Objektes. Dank dem Handmodell werden nicht messbare Werte geschätzt.
+Jedes Objekt enthält zudem einen Richtungsvektor.
+
+Die Veränderung (Grösse, Drehung, Bewegung), von Objekten zwischen zwei Frames, kann ebenfalls abgerufen werden.
+
+Weiter können fertige Gesten erkannt werden: kneifen, greifen, kreisen, wischen und tippen.\todo{Gross oder klein?}
+Beim Kneifen und Greifen ist ausserdem die Stärke der Geste messbar (eins entspricht dem Maximum der möglichen Geste, z.B. eine Faust).
 
 \subsection{Drohne}
 
