@@ -105,7 +105,7 @@ Dieser erkennt Hände (inkl. einzelne Finger) und stellt Daten deren Position, G
 Die Erkennung erfolgt via optische Sensoren und Infrarot Licht.
 Der Leap Motion wird per USB 2.0 angeschlossen und erkennt Gesten innerhalb eines 150\textdegree-Winkels zwischen 25\,mm und 600\,mm Höhe.
 Am besten funktioniert der Sensor, wenn die Silhouette der Hand mit hohem Kontrast zur Umgebung unterschieden werden kann.
-Die Messdaten werden mit einem internen Handmodell kombiniert, so dass immer ein vollständige Hand als Output vorliegt.
+Die Messdaten werden mit einem internen Handmodell kombiniert, so dass immer eine vollständige Hand als Output vorliegt.
 \footcite{API_Overview__Leap_Motion_v2.2_documentation_2015-03-27}
 
 
@@ -141,34 +141,34 @@ Dies kann unter anderem an fehlenden Anwendungsfällen oder an falsch angesetzte
 Im Gesten-Entwicklungsbereich gibt es nebst den "`klassischen"' Anwendungen (wie Spiele, Scrolling, Musikkontrolle etc.) viele interessante  \gls{vrLabel}-Anwendungen. Der Sensor wird, wie in \figref{fig:leap_vr} ersichtlich ist, vorne auf einer \gls{vrLabel}-Brille befestigt und ermöglicht so eine Simulation der Hände, gesteuert durch die wirklichen Hände.
 
 \subsubsection{Einrichtung}
-Die Installation des Leap Motion's gemäss der offiziellen Installationsanweisungen\footcite{Getting_Started_Leap_Motion_Developers_2015-03-28} funktionierte auf einem OS X 10.10.2 einwandfrei.
-Entsprechend sollte  die Installation auch auf einem Windows 7 oder 8 erfolgreich durchgeführt werden.
+Die Installation des Leap Motion's, gemäss der offiziellen Installationsanweisungen,\footcite{Getting_Started_Leap_Motion_Developers_2015-03-28} funktionierte auf einem OS X 10.10.2 einwandfrei.
+Entsprechend sollte  die Installation auch auf einem Windows 7 oder 8 erfolgreich durchgeführt werden können.
 
 \subsubsection{API}
 % sprachen
 % Aufbau der Antworten
 Um den Leap Motion anzusteuern werden folgende Sprachen und Frameworks angeboten:
 \begin{itemize}
-	\item \textbf{JavaScript:} für Node.js oder Browser Anwendungen (Beispiele\footcite{Getting_Started_Leap_Motion_Developers_2015-03-28})
+	\item \textbf{JavaScript:} für Node.js oder Browser Anwendungen (siehe Beispiele\footcite{Getting_Started_Leap_Motion_Developers_2015-03-28})
 	\item \textbf{Unity / C\#:} 3D Anwendungen
 	\item \textbf{C++:} für hardwarenahe Anwendungen
 	\item \textbf{Java}
 	\item \textbf{Python}
-	\item \textbf{Objective-C}: für Apple Anwendungen
+	\item \textbf{Objective-C}: für Anwendungen auf Apple OS X
 \end{itemize}
 
 Da die Drohne ebenfalls via Python programmiert werden kann, werden alle Komponenten in Python umgesetzt und es wird nur noch auf die Python-Schnittstelle\footcite{Python_SDK_Documentation__Leap_Motion_Python_SDK_v2.2_documentation_2015-03-28} detaillierter eingegangen. Das Prinzip der verfügbaren Daten ist jedoch bei allen Schnittstellen dasselbe.
 
-Über die \gls{apiLabel} können einzelne Frames mit Infos zu erkennbaren Objekten abgerufen werden.
+Über das \gls{apiLabel} können einzelne \glspl{glos:frameLabel} mit Infos zu erkennbaren Objekten abgerufen werden.
 
-Folgende \textbf{Objekte} stehen pro Frame zur Verfügung: Hände, Finger, Knochen (Arm- und Fingerknochen) und fingerähnliche Werkzeuge (z.B. Bleistifte).
-Alle Objekte werden genau identifiziert, sprich die Hände werden als rechte und linke Hand erkannt, jeder Finger als richtiger Fingertyp und jeder Fingerknochen als korrekter physikalischer Knochen. Diese Erkennung funktioniert unabhängig der Position des Objektes. Dank dem Handmodell werden nicht messbare Werte geschätzt.
+Folgende \textbf{Objekte} stehen pro \gls{glos:frameLabel} zur Verfügung: Hände, Finger, Knochen (Arm- und Fingerknochen) und fingerähnliche Werkzeuge (z.B. Bleistifte).
+Alle Objekte werden genau identifiziert, sprich die Hände werden als rechte und linke Hand erkannt, jeder Finger als richtigen Fingertyp und jeder Fingerknochen als korrekten physikalischen Knochen. Diese Erkennung funktioniert unabhängig der Position des Objektes. Dank dem Handmodell werden nicht messbare Werte angenähert.
 Jedes Objekt enthält zudem einen Richtungsvektor.
 
-Die Veränderung (Grösse, Drehung, Bewegung), von Objekten zwischen zwei Frames, kann ebenfalls abgerufen werden.
+Die Veränderung (Grösse, Drehung, Bewegung), von Objekten zwischen zwei \glspl{glos:frameLabel}, kann ebenfalls abgerufen werden.
 
-Weiter können fertige Gesten erkannt werden: kneifen, greifen, kreisen, wischen und tippen.
-Beim Kneifen und Greifen ist ausserdem die Stärke der Geste messbar (eins entspricht dem Maximum der möglichen Geste, z.B. eine Faust).
+Weiter können folgende fertige Gesten erkannt werden: Kneifen, Greifen, Kreisen, Wischen und Tippen.
+Beim Kneifen und Greifen ist ausserdem die Stärke der Geste messbar (eins entspricht dem Maximum der möglichen Geste, z.B. einer Faust).
 
 \subsection{Drohne}
 
