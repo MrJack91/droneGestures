@@ -101,13 +101,13 @@ Die Steuerung erfolgt üblicherweise aus relativer Sicht der Drohne und erforder
 %	\caption[Leap Motion -- Produktbild]{Leap Motion -- Produktbild \protect\cite{Leap_Motion_Motion_Controller_2015-03-27}}
 %\end{wrapfigure}
 
-Für die Erkennung der Gesten wird der \textit{Leap Moption}\footcite{Leap_Motion_Motion_Controller_2015-03-27} Sensor verwendet.
-Dieser erkennt Hände (inkl. einzelne Finger) und stellt Daten deren Position, Gesten und Bewegungen zur Verfügung.
+Für die Erkennung der Gesten wird der Leap Motion Sensor\footcite{Leap_Motion_Motion_Controller_2015-03-27} verwendet.
+Dieser erkennt Hände (inkl. einzelne Finger) und stellt Daten derer Position, Gesten und Bewegungen zur Verfügung.
 
 \subsubsection{Technische Details}
 Die Erkennung erfolgt via optische Sensoren und Infrarot Licht.
 Der Leap Motion wird per USB 2.0 angeschlossen und erkennt Gesten innerhalb eines 150\textdegree-Winkels zwischen 25\,mm und 600\,mm Höhe.
-Am besten funktioniert der Sensor, wenn die Silhouette der Hand mit hohem Kontrast zur Umgebung unterschieden werden kann.
+Am Besten funktioniert der Sensor, wenn die Silhouette der Hand einen hohen Kontrast zur Umgebung aufweist.
 Die Messdaten werden mit einem internen Handmodell kombiniert, so dass immer eine vollständige Hand als Output vorliegt.
 \footcite{API_Overview__Leap_Motion_v2.2_documentation_2015-03-27}
 
@@ -142,7 +142,7 @@ Da der Leap Motion speziell für Entwickler produziert wurde, kann der Sensor f�
 Allerdings sind Gestensteuerungen für "`gewöhnliche"' Steueraufgaben nach wie vor sehr wenig verbreitet, obwohl es theoretisch nichts intuitiveres als Gesten gibt.
 Dies kann unter anderem an fehlenden Anwendungsfällen oder an falsch angesetzten Umsetzungen liegen.
 
-Im Gesten-Entwicklungsbereich gibt es nebst den "`klassischen"' Anwendungen (wie Spiele, Scrolling, Musikkontrolle etc.) viele interessante  \gls{vrLabel}-Anwendungen. Der Sensor wird, wie in \figref{fig:leap_vr} ersichtlich ist, vorne auf einer \gls{vrLabel}-Brille befestigt und ermöglicht so eine Simulation der Hände, gesteuert durch die wirklichen Hände.
+Im Gesten-Entwicklungsbereich gibt es nebst den "`klassischen"' Anwendungen (wie Spiele, Scrolling, Musikkontrolle etc.) viele interessante  \gls{vrLabel}-Anwendungen. Der Sensor wird, wie in \figref{fig:leap_vr} ersichtlich ist, vorne auf einer \gls{vrLabel}-Brille befestigt und ermöglicht so eine Simulation virtueller Hände, durch welche die Steuerung erfolgt.
 
 \subsubsection{Einrichtung}
 Die Installation des Leap Motion's, gemäss der offiziellen Installationsanweisungen,\footcite{Getting_Started_Leap_Motion_Developers_2015-03-28} funktionierte auf einem OS X 10.10.2 einwandfrei.
@@ -169,13 +169,13 @@ Folgende \textbf{Objekte} stehen pro \gls{glos:frameLabel} zur Verfügung: Händ
 Alle Objekte werden genau identifiziert, sprich die Hände werden als rechte und linke Hand erkannt, jeder Finger als richtigen Fingertyp und jeder Fingerknochen als korrekten physikalischen Knochen. Diese Erkennung funktioniert unabhängig der Position des Objektes. Dank dem Handmodell werden nicht messbare Werte angenähert.
 Jedes Objekt enthält zudem einen Richtungsvektor.
 
-Die Veränderung (Grösse, Drehung, Bewegung), von Objekten zwischen zwei \glspl{glos:frameLabel}, kann ebenfalls abgerufen werden.
+Die \textbf{Veränderung} (Grösse, Drehung, Bewegung) von Objekten zwischen zwei \glspl{glos:frameLabel} kann ebenfalls abgerufen werden.
 
-Weiter können folgende fertige Gesten erkannt werden: Kneifen, Greifen, Kreisen, Wischen und Tippen.
-Beim Kneifen und Greifen ist ausserdem die Stärke der Geste messbar (eins entspricht dem Maximum der möglichen Geste, z.B. einer Faust).
+Weiter können folgende \textbf{Gesten} erkannt werden: Kneifen, Greifen, Kreisen, Wischen und Tippen.
+Beim Kneifen und Greifen ist ausserdem die Stärke der Geste messbar (eins entspricht dem Maximum der möglichen Geste [z.B. einer Faust]).
 
 \subsection{Drohne}
-Die \textit{Crazyflie} gibt es momentan in zwei Versionen, als "`\textit{Crazyflie}"' und "`\textit{Crazyflie 2.0}"'. Verständlichkeitshalber wird im vorliegenden Dokument die erste Version "`\textit{Crazyflie}"' als "`\textit{Crazyflie 1.0}"' bezeichnet und mit dem Begriff "`\textit{Crazyflie}"' wird das Produkt allgemein (versionsunabhängig) bezeichnet.
+Die \textit{Crazyflie} gibt es momentan in zwei Versionen: als "`\textit{Crazyflie}"' und "`\textit{Crazyflie 2.0}"'. Verständlichkeitshalber wird im vorliegenden Dokument die erste Version "`\textit{Crazyflie}"' als "`\textit{Crazyflie 1.0}"' bezeichnet und der Begriff "`\textit{Crazyflie}"' wird für das Produkt allgemein (versionsunabhängig) verwendet.
 
 Alle Informationen zur \textit{Crazyflie} sind im Wiki von Bitcraze vorhanden.\footcite{index_Bitcraze_Wiki_2015-03-29}
 
@@ -185,25 +185,25 @@ Versionsspezifische Daten der \textit{Crazyflie 2.0} werden separat aufgeführt.
 
 \subsubsection{Technische Details}
 % Protocol: http://wiki.bitcraze.se/doc:crazyflie:crtp:index
-Hardware spezifische Informationen und Überlegungen zur Architektur sind für die \textit{Crazyflie 1.0} ausführlich dokumentiert.\footcite{projects_crazyflie_hardware_explained_Bitcraze_Wiki_2015-03-29}.
+Hardwarespezifische Informationen und Überlegungen zur Architektur sind für die \textit{Crazyflie 1.0} ausführlich dokumentiert.\footcite{projects_crazyflie_hardware_explained_Bitcraze_Wiki_2015-03-29}
 Während zur \textit{Crazyflie 2.0} die Angaben eher konzentriert und ergänzend zur Verfügung stehen.
 \footcite{projects_crazyflie2_architecture_index_Bitcraze_Wiki_2015-03-29}
 \footcite{projects_crazyflie2_hardware_specification_Bitcraze_Wiki_2015-03-29}
 
-Die Drohne hat zwei Prozessoren. Einen für das Power- und Radiomanagement (nRF51822) und eine für die eigentliche Steuerung (STM32F405).
+Die Drohne hat zwei Prozessoren. Einen für das Power- und Radiomanagement ("`nRF51822"') und eine für die eigentliche Steuerung ("`STM32F405"').
 
-Die Kommunikation zwischen Client und Drohne erfolgt über das \gls{crtpLabel}, ein eigen von Bitcraze entwickeltes Protokoll.\footcite{doc_crazyflie_crtp_index_Bitcraze_Wiki_2015-03-30}
+Die Kommunikation zwischen Client und Drohne erfolgt über das \gls{crtpLabel}, eigen von Bitcraze entwickelt.\footcite{doc_crazyflie_crtp_index_Bitcraze_Wiki_2015-03-30}
 
-Folgende vier Informationen stehen zur Verfügung (durch die zwei Sensoren \textit{MPU-9250}\footcite{MEMS_Gyro-Accel_Gyroscope_Accelerometer_Processing_-_MPU-9250_Nine-Axis_2015-03-30} und \textit{LPS25H}\footcite{Class-Leading_Miniature_Pressure_Sensor_from_STMicroelectronics_Powers_New_Chapter_in_Mobile_Innovation_2015-03-30}):
+Folgende Werte können gemessen werden:
 \begin{itemize}
-	\item \textbf{MPU-9250}: Gyro, Accelerometer, Magentometer\\
+	\item \textbf{"'MPU-9250"'}\footcite{MEMS_Gyro-Accel_Gyroscope_Accelerometer_Processing_-_MPU-9250_Nine-Axis_2015-03-30} (Gyro-, Accelero-, Magentometer)
 	\begin{itemize}
-		\item \textbf{Gyro:} misst die Erdanziehungskraft auf alle drei Seiten. Damit kann die Position und die Abweichung festgestellt werden.
-		\item \textbf{Accelerometer:} misst die Beschleunigung.
-		\item \textbf{Magentometer:} misst die zwei-dimensionale Ausrichtung (Kompass) und stellt auch langsame Abweichungen die der Gyro nicht messen kann fest.
+		\item Der \textbf{Gyrometer} misst die Erdanziehungskraft auf alle drei Seiten. Damit kann die Position und die Abweichung festgestellt werden.
+		\item Der \textbf{Accelerometer} misst die Beschleunigung.
+		\item Der \textbf{Magentometer} misst die zwei-dimensionale Ausrichtung (Kompass) und stellt auch langsame Abweichungen, die der Gyro nicht messen kann, fest.
 	\end{itemize}
-	\item \textbf{LPS25H}: High precision pressure sensor\\
-	Misst den Druck in auf +/- 0.2\,mbar genau, damit kann die Höhe auf ca. 12\,m genau angenähert werden.
+	\item \textbf{"'LPS25H"'}:\footcite{Class-Leading_Miniature_Pressure_Sensor_from_STMicroelectronics_Powers_New_Chapter_in_Mobile_Innovation_2015-03-30} (High precision pressure sensor)\\
+	\textbf{Barometer:} Misst den Druck auf +/- 0.2\,mbar genau, damit kann die Höhe auf ca. 12\,m genau angenähert werden (was hauptsächlich auf die Abhängigkeit von Luftfeuchtigkeit und Temperatur zurückzuführen ist).
 	\footcite{Barometrische_Hoehenformel__Wikipedia_2015-03-30}
 \end{itemize}
 
@@ -212,15 +212,15 @@ Anweisungen und Vorbereitungen für die Entwicklung der \textit{Crazyflie 2.0} f
 
 Bitcraze stellt für die Entwicklung eine vorkonfigurierte \gls{vmLabel} zur Verfügung, auf der wesentliche Programme und Repositories bereits vorhanden sind.
 \footcite{projects_virtualmachine_index_Bitcraze_Wiki_2015-03-30}
-So entfällt die etwas aufwändige Installation. Dafür können Probleme mit den USB-Geräten auftreten. Alternativ können alle benötigten Ressourcen auch direkt auf dem Computer zur Verfügung gestellt werden.
+So entfällt die etwas aufwändige Installation. Dafür können Probleme mit den USB-Geräten auftreten. Alternativ können alle benötigten Ressourcen auch direkt eingerichtet werden.
 
-Auch dabei ist das \textit{Crazyflie Client} Programm für \textit{control}, \textit{log} und \textit{bootload} Aufgaben.
+Auch dabei ist das \textit{Crazyflie Client} Programm für \textit{control-}, \textit{log-} und \textit{bootload-}Aufgaben.
 \footcite{doc_crazyflie_client_pycfclient_index_Bitcraze_Wiki_2015-03-30}
 
 Folgendes Setup wurde für die Entwicklung verwendet:
 \begin{itemize}
-	\item \textbf{STM32F405:} die Firmware "`Crazyflie 2.0 2014.12.0"'\footcite{bitcraze_crazyflie-firmware_2015-03-30}
-	\item \textbf{nRF51822:} die Firmware "`Version 1.1"'\footcite{bitcraze_crazyflie2-nrf-firmware_2015-03-30}
+	\item Chip \textbf{STM32F405:} mit Firmware "`Crazyflie 2.0 2014.12.0"'\footcite{bitcraze_crazyflie-firmware_2015-03-30}
+	\item Chip \textbf{nRF51822:} mit Firmware "`Version 1.1"'\footcite{bitcraze_crazyflie2-nrf-firmware_2015-03-30}
 	\item \textbf{Crazyflie Client:} die Client Software "`Crazyflie PC client 2014.12.3"'\footcite{bitcraze_crazyflie-clients-python_2015-03-30}
 \end{itemize}
 
@@ -229,7 +229,7 @@ Folgendes Setup wurde für die Entwicklung verwendet:
 % doc: http://wiki.bitcraze.se/doc:crazyflie:api:python:index
 % examples: https://github.com/bitcraze/crazyflie-clients-python
 Die Möglichkeiten der Python API sind auf der Seite "`The Crazyflie Python API"' genau beschrieben.\footcite{doc_crazyflie_api_python_index_Bitcraze_Wiki_2015-03-30}
-Fundamentale Beispiele sind auf GitHub vorhanden.\footcite{crazyflie-clients-python_examples_crazyflie-clients-python_2015-03-30}
+Einleitende Beispiele stehen auf GitHub zur Verfügung.\footcite{crazyflie-clients-python_examples_crazyflie-clients-python_2015-03-30}
 
 
 \subsubsection{Sensoren charakterisieren}
