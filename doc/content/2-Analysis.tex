@@ -132,7 +132,8 @@ Weitere Informationen könne übersichtlich auf der Website des Herstellers\foot
 \subsubsection{Anwendungsbereich}
 \begin{wrapfigure}{r}{0.4\textwidth}
 	\includegraphics[width=1.0\linewidth]{images/analysis/leap_vr.png}
-	\caption[Oculus Rift VR]{\gls{vrLabel} Oculus Rift (Quelle: \fullcite{Leap_Motion_Developers_2015-03-27})}
+%	\caption[Oculus Rift VR]{\gls{vrLabel} Oculus Rift (Quelle: \fullcite{Leap_Motion_Developers_2015-03-27})}
+	\caption[Oculus Rift VR]{\acrshort{vrLabel} Oculus Rift (Quelle: \fullcite{Leap_Motion_Developers_2015-03-27})}
 	\label{fig:leap_vr}
 \end{wrapfigure}
 Der Anwendungsbereich für Gestenerkennung ist beinahe grenzenlos.
@@ -178,21 +179,58 @@ Die \textit{Crazyflie} gibt es momentan in zwei Versionen, als "`\textit{Crazyfl
 
 Alle Informationen zur \textit{Crazyflie} sind im Wiki von Bitcraze vorhanden.\footcite{index_Bitcraze_Wiki_2015-03-29}
 
-Versionsunabhängige Informationen zu  \textit{Clients}, \textit{Development}, \textit{Architcture}, \textit{\gls{apiLabel}}, \textit{Protocols} und \textit{Analysis} sind unter "`Crazyflie"' abgelegt.\footcite{doc_crazyflie_index_Bitcraze_Wiki_2015-03-29}
+Versionsunabhängige Informationen zu  \textit{Clients}, \textit{Development}, \textit{Architcture}, \textit{\gls{apiLabel}}, \textit{Protocols} und \textit{Analysis} sind unter "`Crazyflie"' (allgemein) abgelegt.\footcite{doc_crazyflie_index_Bitcraze_Wiki_2015-03-29}
 
 Versionsspezifische Daten der \textit{Crazyflie 2.0} werden separat aufgeführt.\footcite{projects_crazyflie2_index_Bitcraze_Wiki_2015-03-29}
 
+\subsubsection{Technische Details}
+% Protocol: http://wiki.bitcraze.se/doc:crazyflie:crtp:index
 Hardware spezifische Informationen und Überlegungen zur Architektur sind für die \textit{Crazyflie 1.0} ausführlich dokumentiert.\footcite{projects_crazyflie_hardware_explained_Bitcraze_Wiki_2015-03-29}.
 Während zur \textit{Crazyflie 2.0} die Angaben eher konzentriert und ergänzend zur Verfügung stehen.
 \footcite{projects_crazyflie2_architecture_index_Bitcraze_Wiki_2015-03-29}
 \footcite{projects_crazyflie2_hardware_specification_Bitcraze_Wiki_2015-03-29}
 
+Die Drohne hat zwei Prozessoren. Einen für das Power- und Radiomanagement (nRF51822) und eine für die eigentliche Steuerung (STM32F405).
+
+Die Kommunikation zwischen Client und Drohne erfolgt über das \gls{crtpLabel}, ein eigen von Bitcraze entwickeltes Protokoll.\footcite{doc_crazyflie_crtp_index_Bitcraze_Wiki_2015-03-30}
+
+Folgende vier Informationen stehen zur Verfügung (durch die zwei Sensoren \textit{MPU-9250}\footcite{MEMS_Gyro-Accel_Gyroscope_Accelerometer_Processing_-_MPU-9250_Nine-Axis_2015-03-30} und \textit{LPS25H}\footcite{Class-Leading_Miniature_Pressure_Sensor_from_STMicroelectronics_Powers_New_Chapter_in_Mobile_Innovation_2015-03-30}):
+\begin{itemize}
+	\item \textbf{MPU-9250}: Gyro, Accelerometer, Magentometer\\
+	\begin{itemize}
+		\item \textbf{Gyro:} misst die Erdanziehungskraft auf alle drei Seiten. Damit kann die Position und die Abweichung festgestellt werden.
+		\item \textbf{Accelerometer:} misst die Beschleunigung.
+		\item \textbf{Magentometer:} misst die zwei-dimensionale Ausrichtung (Kompass) und stellt auch langsame Abweichungen die der Gyro nicht messen kann fest.
+	\end{itemize}
+	\item \textbf{LPS25H}: High precision pressure sensor\\
+	Misst den Druck in auf +/- 0.2\,mbar genau, damit kann die Höhe auf ca. 12\,m genau angenähert werden.
+	\footcite{Barometrische_Hoehenformel__Wikipedia_2015-03-30}
+\end{itemize}
 
 \subsubsection{Entwicklung}
-\footcite{doc_crazyflie_dev:starting_Bitcraze_Wiki_2015-03-29}
+Anweisungen und Vorbereitungen für die Entwicklung der \textit{Crazyflie 2.0} finden sich im "`Getting started"'.\footcite{doc_crazyflie_dev:starting_Bitcraze_Wiki_2015-03-29}
+
+Bitcraze stellt für die Entwicklung eine vorkonfigurierte \gls{vmLabel} zur Verfügung, auf der wesentliche Programme und Repositories bereits vorhanden sind.
+\footcite{projects_virtualmachine_index_Bitcraze_Wiki_2015-03-30}
+So entfällt die etwas aufwändige Installation. Dafür können Probleme mit den USB-Geräten auftreten. Alternativ können alle benötigten Ressourcen auch direkt auf dem Computer zur Verfügung gestellt werden.
+
+Auch dabei ist das \textit{Crazyflie Client} Programm für \textit{control}, \textit{log} und \textit{bootload} Aufgaben.
+\footcite{doc_crazyflie_client_pycfclient_index_Bitcraze_Wiki_2015-03-30}
+
+Folgendes Setup wurde für die Entwicklung verwendet:
+\begin{itemize}
+	\item \textbf{STM32F405:} die Firmware "`Crazyflie 2.0 2014.12.0"'\footcite{bitcraze_crazyflie-firmware_2015-03-30}
+	\item \textbf{nRF51822:} die Firmware "`Version 1.1"'\footcite{bitcraze_crazyflie2-nrf-firmware_2015-03-30}
+	\item \textbf{Crazyflie Client:} die Client Software "`Crazyflie PC client 2014.12.3"'\footcite{bitcraze_crazyflie-clients-python_2015-03-30}
+\end{itemize}
 
 
 \subsubsection{API}
+% doc: http://wiki.bitcraze.se/doc:crazyflie:api:python:index
+% examples: https://github.com/bitcraze/crazyflie-clients-python
+Die Möglichkeiten der Python API sind auf der Seite "`The Crazyflie Python API"' genau beschrieben.\footcite{doc_crazyflie_api_python_index_Bitcraze_Wiki_2015-03-30}
+Fundamentale Beispiele sind auf GitHub vorhanden.\footcite{crazyflie-clients-python_examples_crazyflie-clients-python_2015-03-30}
+
 
 \subsubsection{Sensoren charakterisieren}
 
