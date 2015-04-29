@@ -21,12 +21,10 @@ Eine der allerersten bekannten \gls{glos:droneLabel} war wohl von den Brüder Mo
 
 \subsubsection{Waffenträger}
 Später wurde das Potenzial von \glspl{glos:droneLabel} besonders für kriegerische Zwecke erforscht und entwickelt.
-
 \begin{wrapfigure}{r}{0.4\textwidth}
 	\includegraphics[width=1.0\linewidth]{images/analysis/balloonbombs1849.jpg}
  	\caption[Bombing by Balloon, 1848]{Bombing by Balloon, 1848 (Quelle: \fullcite{Remote_Piloted_Aerial_Vehicles_2015-03-21})}
 \end{wrapfigure}
-
 So wurden bereits 1849, vom österreichischen Königsreich, unbemannte Heissluftballone mit Bomben im Krieg gegen Venedig losgeschickt.
 Weder die "`\gls{glos:droneLabel}"' selbst, noch das Abwerfen der Bombe konnte aktiv gesteuert werden.
 Die Heissluftballone flogen mit dem Wind und die Bomben wurde per Zeitzünder gezündet. Tatsächlich erreichten einzelne Ballone ihr Ziel und konnten Schaden anrichten, andere jedoch wurden vom Wind zurück geweht und zerstörten das eigene Territorium Österreichs. \footcite{Remote_Piloted_Aerial_Vehicles_2015-03-21}
@@ -78,16 +76,54 @@ Die Steuerung erfolgt üblicherweise aus relativer Sicht der Drohne und erforder
 
 
 \subsection{Bereits bestehende Arbeiten}
-%todo
-% https://www.youtube.com/channel/UCuYdAd53adsu0nyWVg_QGKQ
-% https://www.youtube.com/watch?v=4UnRtn1pgAs
-% https://www.youtube.com/watch?v=XN0fHLgYWy8
+\todo{correct it}
+Da Drohnen während der letzten Zeit sehr aufgekommen und erschwinglich wurden, lassen sich sehr viele Drohnen-Projekte mit jeweils verschiedenster Hardware finden.
+Folgend wird der Fokus besonders auf Projekte mit Gestensteuerung und deren Steuerungsmöglichkeiten gelegt.
+
+
+\subsubsection{Drohnen}
+Für viele der gefundenen Projekte wurde nebst der Crazyflie auch die \textit{AR.drone} von Parrot verwendet.\footcite{AR_Drone_2.0_Parrot_2015-04-29}
+Die AR.drone ist erheblich grösser als die Crazyflie, was viel zur Stabilität im Flug beiträgt. 
+Mit an Board ist eine Kamera.
+Obwohl die AR.drone viele Vorteile mit sich bringt und die Kosten nur wenig höher sind als bei der Crazyflie, hat Parrot eine deutlich kleinere Community und eine weniger ausführliche Entwicklerdokumentation.
+Die Crazyflie richtet sich hauptsächlich an Entwickler, während die AR.drone auch normal Nutzer anspricht.
+Darum wurde in dieser Arbeit die Crazyflie verwendet.
+
 \subsubsection{Steuermöglichkeiten}
+Zusammengefasst können die implementierten Steuerungen in folgende Kategorien eingeteilt werden:
+\begin{itemize}
 
-\subsubsection{Sensoren Integration auf bestehende Steuerungen}
+	\item \textbf{Steuerungen mit der offenen Hand:} Bei einer offenen Handsteuerung basiert die Steuerung auf der Erkennung der offenen Hand. Meist befindet sich der Sensor für die Gestenerkennung unterhalb der Hand und kann so stabil und mobil aufgestellt werden.
+	
+		\begin{itemize}
+			
+			\item \textbf{Handrichtungs-basierte Steuerung:} Diese Steuerung ist an der Benutzung eines gewohnten Hebels oder Joystick angelehnt. Die Drohne bewegt sich analog der Hand. Dabei spielt der Winkel der Hand keine Rolle.
+			Beispielweise bedeutete eine Hand die vor dem Zentrum des Sensores liegt, dass die Drohne nach vorne fliegen soll. Das Pitch Manöver wird oft durch spezielle Gesten wie \textit{Kreisen} umgesetzt.
+			Ein Beispiel wird im Blog von Leapmotion vorgestellt.\footcite{The_Beginning_of_a_Drone_Revolution_Leap_Motion_Blog_2015-04-29}
 
-%%%
-%todo correct
+			\item \textbf{Handpositions-basierte Steuerung:} 
+			Bei der handpositions-basierten Steuerung, dient die Position der Hand, effektiv der Position der Drohne. Der Winkel der Handhaltung, soll des Winkels der Drohne entsprechen.
+			Wo genau sich die Drohne über dem Sensor befindet, ist ausser für die Höhe (Thrust), nicht relevant.
+			Da diese Steuerungsart der Intuitivsten entspricht, wird in dieser Arbeit diese Art Steuerung implementiert.
+			Eine erfolgte Umsetzung ist auf Youtube vorhanden.\footcite{Flying_the_Crazyflie_with_Leap_Motion_YouTube_2015-04-29}
+		\end{itemize}
+
+	\item \textbf{Lenkdrachen-Steuerung:} 
+	Bei dieser Steuerung erfolgen die Kommandos wie bei einem Lenkdrachen, also wie wenn die Drohne an drei Eisenstangen befestigt wäre und man an einer zieht, um die Position der Drohne zu verändern.
+	Um diese Gesten zu erkenne, wird der Sensor oder die Kamera frontal befestigt, z.B. am Bildschirmrand.
+	Bei einer Implementation am Hackathon in München, wird als Startzeichen das heben der Daumen verwendet.\footcite{Drones_Fly_Hands_Free_with_Gestural_Technology_2015-04-29}
+	
+	\item \textbf{Steuerung mit \glspl{glos:wearableLabel}:}
+	Anstatt Gesten wirklich zu erkennen, kann eine Steuerung auch durch ein \gls{glos:wearableLabel} am Handgelenk oder in der Hand erfolgen.
+	Da besonders in jüngster Zeit die \glspl{glos:wearableLabel} sehr oft erwähnt werden, wird sich deren Nutzung in Zukunft bestimmt stark vermehren.
+	Momentan sind \glspl{glos:wearableLabel} den Gestenerkennungssensoren noch unterlegen.
+	Trotzdem ein Beispiel von den Hackdays.\footcite{Wearable_Gesture_Controlled_Drone_Hackaday_2015-04-29}
+\end{itemize}
+
+%\subsubsection{Sensoren Integration auf bestehende Steuerungen}
+
+
+\clearpage
 \section{Ist-Analyse}
 
 \subsection{Gestensensor} \label{subsec:leapmotion}
@@ -136,6 +172,7 @@ Weitere Informationen könne übersichtlich auf der Website des Herstellers\foot
 	\caption[Oculus Rift VR]{\acrshort{vrLabel} Oculus Rift (Quelle: \fullcite{Leap_Motion_Developers_2015-03-27})}
 	\label{fig:leap_vr}
 \end{wrapfigure}
+
 Der Anwendungsbereich für Gestenerkennung ist beinahe grenzenlos.
 Da der Leap Motion speziell für Entwickler produziert wurde, kann der Sensor für jegliche Programme oder Steuerungen verwendet werden.
 
