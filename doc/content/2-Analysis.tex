@@ -249,16 +249,16 @@ Folgende Werte können gemessen werden:
 \end{itemize}
 
 \subsubsection{Entwicklung}
-Anweisungen und Vorbereitungen für die Entwicklung der \textit{Crazyflie 2.0} finden sich im "`Getting started"'.\footcite{doc_crazyflie_dev:starting_Bitcraze_Wiki_2015-03-29}
+Anweisungen und Vorbereitungen für die Entwicklung der \textit{Crazyflie 2.0} finden sich im \textit{Getting started}.\footcite{doc_crazyflie_dev:starting_Bitcraze_Wiki_2015-03-29}
 
 Bitcraze stellt für die Entwicklung eine vorkonfigurierte \gls{vmLabel} zur Verfügung, auf der wesentliche Programme und Repositories bereits vorhanden sind.
 \footcite{projects_virtualmachine_index_Bitcraze_Wiki_2015-03-30}
-So entfällt die etwas aufwändige Installation. Dafür können Probleme mit den USB-Geräten auftreten. Alternativ können alle benötigten Ressourcen auch direkt eingerichtet werden.
+So entfällt die etwas aufwändige Installation, wobei Probleme mit den USB-Geräten auftreten können. Alternativ können alle benötigten Ressourcen direkt eingerichtet werden.
 
 Auch dabei ist das \textit{Crazyflie Client} Programm für \textit{control-}, \textit{log-} und \textit{bootload-}Aufgaben.
 \footcite{doc_crazyflie_client_pycfclient_index_Bitcraze_Wiki_2015-03-30}
 
-Folgendes Setup wurde für die Entwicklung verwendet:
+Da bei Nutzung der \gls{vmLabel} einerseits die USB-Ports nicht korrekt durchgeleitet wurden und zudem das Key-mapping nicht "`angenehm"` eingerichtet werden konnte, wurde folgendes Setup direkt auf OS X eingerichtet:
 \begin{itemize}
 	\item Chip \textbf{STM32F405:} mit Firmware "`Crazyflie 2.0 2014.12.0"'\footcite{bitcraze_crazyflie-firmware_2015-03-30}
 	\item Chip \textbf{nRF51822:} mit Firmware "`Version 1.1"'\footcite{bitcraze_crazyflie2-nrf-firmware_2015-03-30}
@@ -271,6 +271,15 @@ Folgendes Setup wurde für die Entwicklung verwendet:
 % examples: https://github.com/bitcraze/crazyflie-clients-python
 Die Möglichkeiten der Python API sind auf der Seite "`The Crazyflie Python API"' genau beschrieben.\footcite{doc_crazyflie_api_python_index_Bitcraze_Wiki_2015-03-30}
 Einleitende Beispiele stehen auf GitHub zur Verfügung.\footcite{crazyflie-clients-python_examples_crazyflie-clients-python_2015-03-30}
+
+In der Dokumentation wird das Flugverhalten der Drohne, abhängig den Steuerkommandos beschrieben.
+Im normalen Zustand drehen die Rotoren nicht.
+Sie können mit Steuerbefehle angewiesen werden.
+Ein solcher Befehl ist maximal für 500\,ms, oder bis ein nächster Befehl erfolgt, gültig.
+Dies schützt die Drohne bei unerwarteten Verbindungsunterbrüchen, indem die Drohne höchstens für eine halbe Sekunde unkontrolliert fliegt.
+Anschliessend werden die Rotoren wieder heruntergefahren.
+
+Um Einsteigern die Steuerung zu erleichtern, kann die Rotor-Drosselung verzögert werden, so dass die Drohne nie sprunghafte Flugmanöver ausführt.
 
 
 \subsubsection{Sensoren charakterisieren}

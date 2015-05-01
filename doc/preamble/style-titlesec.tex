@@ -28,12 +28,12 @@
 \titleformat{\chapter}[display]               % {command}[shape]
   {\usekomafont{chapter}\Large \color{black}} % format
   {\LARGE\MakeUppercase{\chaptertitlename}%   % label
-   \Huge~\thechapter \filright}%  
+   \Huge~\thechapter \filright}%
   {1pt}										  % sep (from chapternumber)
   {%
-   \titlerule \vspace{0.9pc} % 
-   \filright 
-   \IfColorDefined{sectioncolor}{\color{sectioncolor}}{}   
+   \titlerule \vspace{0.9pc} %
+   \filright
+   \IfColorDefined{sectioncolor}{\color{sectioncolor}}{}
   }                                           % (before chaptertitle and after)
   [\color{black} \vspace{0.9pc} \filright {\titlerule}] %
 % --------------------------------
@@ -43,13 +43,19 @@
 \titleformat{\part}[frame]
   {\usekomafont{part}\Large\color{black}\centering}    % format
   % label: PART I
-  {\enspace \LARGE\MakeUppercase{\partname}%           
-     \centering \Huge~\thepart \enspace }%  
+  {\enspace \LARGE\MakeUppercase{\partname}%
+     \centering \Huge~\thepart \enspace }%
   % sep (from partnumber)
   {1.5\baselineskip}
   % (before chaptertitle and after)
   {\IfColorDefined{sectioncolor}{\color{sectioncolor}}{}%
-  \filcenter}          
+  \filcenter}
+
+%\titleformat{\subsubsection}
+%	{\bfseries}
+%	{}
+%	{}
+%	{}
 
 % --------------------------------
 

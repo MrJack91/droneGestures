@@ -35,7 +35,7 @@ Dieser Prozess vom Finden der initialen Position wird folgend als \textit{Init-P
 	\item Die Hand wird auf idealer Höhe platziert (ca. 10 -- 20\,cm über dem Sensor).
 	\item Die Position gilt als eingenommen, sobald nach einer Faust wiederum die offene Hand erkannt wird. (Faust-Gesten in nicht idealen Höhen werden ignoriert.)
 	\item Die Drohne befindet sich nun im \textit{flugbereiten Zustand (Z2)} (die Rotoren drehen nicht).
-	\item Die Hand bleibt geöffnet (erneute Erkennung einer Faust-Geste löst einen Zustandswechsel vom \textit{flugbereiten Zustand (Z2)} zurück in den \textit{Init-Zustand (Z1)}) aus.
+	\item Die Hand bleibt geöffnet. Eine erneute Erkennung einer Faust-Geste löst einen Zustandswechsel vom \textit{flugbereiten Zustand (Z2)} zurück in den \textit{Init-Zustand (Z1)} aus.
 \end{itemize}
 
 \subsubsection{Start / Thrust (Höhe)}
@@ -56,7 +56,7 @@ Sprich es ist kein Zustandswechsel nötig, um die Drohne zu landen.
 Eine mögliche Optimierung ist, dass die Drohne-Position immer exakt der Hand-Position angepasst wird.
 Dazu muss die Steuerung die Position der Drohne mit der Hand-Position vergleichen und falls nötig die Position der Drohne korrigieren.
 Der Unterschied zur Basis-Steuerung besteht darin, dass sich das Fliegen noch intuitiver anfühlt, da die Drohne sich wirklich an der Hand orientiert und nicht nur wie mit einer klassischen Fernsteuerung ein Steuerkommando erhält und ausführt.
-%todo remove remark
+\todo{remove remark}
 Ob dies so umzusetzen ist bleibt abzuklären und ist stark abhängig von der API der Drohne.
 
 \subsubsection{Yaw (Drehung / Gieren)}
