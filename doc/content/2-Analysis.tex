@@ -216,6 +216,7 @@ Weiter können folgende \textbf{Gesten} erkannt werden: Kneifen, Greifen, Kreise
 Beim Kneifen und Greifen ist ausserdem die Stärke der Geste messbar (eins entspricht dem Maximum der möglichen Geste [z.B. einer Faust]).
 
 \subsection{Drohne}
+\label{subsec:isAnalyseDrone}
 Die \textit{Crazyflie} gibt es momentan in zwei Versionen: als "`\textit{Crazyflie}"' und "`\textit{Crazyflie 2.0}"'. Verständlichkeitshalber wird im vorliegenden Dokument die erste Version "`\textit{Crazyflie}"' als "`\textit{Crazyflie 1.0}"' bezeichnet und der Begriff "`\textit{Crazyflie}"' wird für das Produkt allgemein (versionsunabhängig) verwendet.
 
 Alle Informationen zur \textit{Crazyflie} sind im Wiki von Bitcraze vorhanden.\footcite{index_Bitcraze_Wiki_2015-03-29}
@@ -267,6 +268,7 @@ Da bei Nutzung der \gls{vmLabel} einerseits die USB-Ports nicht korrekt durchgel
 
 
 \subsubsection{API}
+\label{subsubsec:droneApi}
 % doc: http://wiki.bitcraze.se/doc:crazyflie:api:python:index
 % examples: https://github.com/bitcraze/crazyflie-clients-python
 Die Möglichkeiten der Python API sind auf der Seite "`The Crazyflie Python API"' genau beschrieben.\footcite{doc_crazyflie_api_python_index_Bitcraze_Wiki_2015-03-30}
@@ -294,5 +296,20 @@ Die Umsetzung soll in Python erfolgen.
 Die Lösung soll in zwei Teilen umgesetzt werden: in einer Gestenerkennung und einer Drohnensteuerung.
 
 Die detaillierte Definition der Steuerung wird im \secref{sec:gestureControll} beschrieben.
+
+Die Umsetzung kann in drei logische Komponenten eingeteilt werden: die Gestenerkennung, der Commander und die Drohne.
+
+\subsection{Gestenerkennung}
+Die Kompenente der Gestenerkennung, erkennt die Gesten vom Leap Motion Sensor. Die Daten werden analysiert und ausgewertet.
+Eine allgemeine Gestenerkennung wird von Leap Motion zur Verfügung gestellt, die muss jedoch auf die zu erkennenden Gesten der Steuerung angepasst werden.
+
+\subsection{Drohne}
+Die Drohne wird als alleinstehendes System betrachtet, das durch ein \gls{apiLabel} gesteuert werden kann. Zudem können Messdaten abgerufen werden. An diesem System sollten keine Änderungen anfallen.
+
+\subsection{Commander}
+Der Commander verbindet die Gestenerkennung mit der Drohne.
+Dazu gehören hauptsächlich zwei wiederholende Aufgaben.
+Einerseits müssen die erkannten Gesten in eine gültige Steueroperation umgeformt werden, woraus der Steuerprozess zur Drohne entsteht.
+Der Steuerprozess steuert die Drohne gemäss den Daten, die aus den Gesten gewonnen wurden, besonders für die Position wird eine aktive Steuerung benötigt, das heisst, dass die Position der Drohne auf die Zielposition der Hand angepasst werden muss. Dazu ist eine anhaltende Überprüfung und Korrektur notwendig.
 
 

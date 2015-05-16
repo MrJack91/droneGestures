@@ -1,0 +1,8 @@
+Notes:
+
+To run leap with homebrew python:
+install_name_tool -change /Library/Frameworks/Python.framework/Versions/2.7/Python /usr/local/Cellar/python/2.7.9/Frameworks/Python.framework/Versions/Current/lib/libpython2.7.dylib lib/leap/LeapPython.so
+
+
+Crazyflie Doc
+- Protocol: https://wiki.bitcraze.io/projects:crazyflie:firmware:comm_protocol

@@ -146,6 +146,27 @@ Während den verschiedenen Zustände können verschiedene Fehler auftreten:
 
 
 \subsubsection{Flug-Zustand (Z3)}
+
+\begin{table}[H]
+	\centering
+	\small\renewcommand{\arraystretch}{1.4}
+	\rowcolors{1}{tablerowcolor}{tablebodycolor}
+	%
+	\captionabove{Problem: \textit{Flug-Zustand (Z3)} -- Verbindungsunterbruch}
+	%
+	\begin{tabularx}{0.9\textwidth}{ L{0.121\linewidth} | X  }%
+		\hline
+		Problem: & Die Verbindung zwischen Drohne und Steuerung wird unerwartet unterbrochen.\\
+		Risiko: & \textit{gering}\\
+		Verhalten: & 
+		Wie im \secref{subsec:isAnalyseDrone} unter API beschrieben, gilt ein Steuerbefehl für 500\,ms.
+		Wird die Verbindung unterbrochen, fliegt die Drohne daher maximal eine halbe Sekunde unkontrolliert, bevor die Rotoren ausgeschaltet werden und die Drohne abstürzt. Da die Zustände nur aus der Steuerungssicht existieren, muss die Drohne erneut verbunden und initialisiert werden.\\
+		Folge: & Die Drohne wird nach max. 500\,ms unkontrolliert notgelandet.\\
+		\hline
+	\end{tabularx}
+\end{table}
+
+
 \begin{table}[H]
 	\centering
 	\small\renewcommand{\arraystretch}{1.4}
@@ -157,7 +178,7 @@ Während den verschiedenen Zustände können verschiedene Fehler auftreten:
 		\hline
 		Problem: & Die Hand wird nicht mehr erkannt oder mehrere Hände werden erkannt.\\
 		Risiko: & \textit{sehr gross}\\
-		Verhalten: & Der Thrust wird sofort auf mässiges Level getrimmt. Falls länger als $t$ Sekunden keine Hand erkannt wird, werden die Rotoren ausgeschaltet. Die Drohne wechselt in den Init-Zustand  (Z1).\\
+		Verhalten: & Der Thrust wird sofort auf mässiges Level getrimmt. Falls länger als $t$ Sekunden keine Hand erkannt wird, werden die Rotoren ausgeschaltet. Die Drohne wechselt in den Init-Zustand (Z1).\\
 		Folge: & Die Drohne befindet sich ungesteuert in der Luft oder wird notgelandet (resp. stürzt ab).\\
 		\hline
 	\end{tabularx}
@@ -183,6 +204,12 @@ Während den verschiedenen Zustände können verschiedene Fehler auftreten:
 %
 
 \section{Tests}
+Um die Funktionsweise des ganzen Projekt zu überprüfen, ergeben sich aus logischer Sicht drei einzelne, testbare Komponenten: die Gestenerkennung, der Commander und die Drohne.
+
+\subsection{Faust-Erkennung}
+
+\subsection{Faust Erkennung}
+
 
 
 %%%

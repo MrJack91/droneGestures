@@ -111,7 +111,7 @@ __pycache__/
 *.py[cod]
 
 # C extensions
-*.so
+# *.so
 
 # Distribution / packaging
 .Python
@@ -121,7 +121,7 @@ develop-eggs/
 dist/
 downloads/
 eggs/
-lib/
+# lib/
 lib64/
 parts/
 sdist/
@@ -160,3 +160,10 @@ docs/_build/
 
 # PyBuilder
 target/
+
+__init__.py
+code/lib/crazyflie/cflib/cache/*
+
+
+#custom
+code/unused_drone_libs.zip
