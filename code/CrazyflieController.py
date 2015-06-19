@@ -26,10 +26,9 @@
 #  MA  02110-1301, USA.
 
 
-import time, sys
+import time, sys, atexit
 from threading import Thread
 
-#FIXME: Has to be launched from within the example folder
 sys.path.append("lib/crazyflie")
 import cflib
 from cflib.crazyflie import Crazyflie
@@ -44,17 +43,19 @@ from cflib.crazyflie import Crazyflie
 '''
 
 
-class ControlCrazyflie:
-    """Example that connects to a Crazyflie and ramps the motors up/down and
-    the disconnects"""
+class CrazyflieController:
+
     def __init__(self):
-        # silence is golden
         print 'init crazyflie'
+        atexit.register(self.cleanup)
+
+    def cleanup(self):
+        """cleanup code..."""
 
     def connect(self):
         # Initialize the low-level drivers (don't list the debug drivers)
         cflib.crtp.init_drivers(enable_debug_driver=False)
-        # Scan for Crazyflies and use the first one found
+        # Scan for Crazyflies
         print "Scanning interfaces for Crazyflies..."
         available = cflib.crtp.scan_interfaces()
 
@@ -63,13 +64,14 @@ class ControlCrazyflie:
             print i[0]
 
         if len(available) > 0:
-            #le = ControlCrazyflie(available[0][0])
-            # link_uri = available[0][0]
+            #le = CrazyflieController(available[0][0])
+            #link_uri = available[0][0]
+            # hard code to correct one, because there are sometimes disturbing signals
             link_uri = 'radio://0/80/250K'
 
         else:
-            print "No Crazyflies found, cannot run"
-            # exit();
+            print "No Crazyflies found, cannot connect"
+            return False
 
         self._cf = Crazyflie()
 
@@ -139,13 +141,11 @@ class ControlCrazyflie:
 
 
     def _connection_failed(self, link_uri, msg):
-        """Callback when connection initial connection fails (i.e no Crazyflie
-        at the speficied address)"""
+        """Callback when connection initial connection fails (i.e no Crazyflie at the speficied address)"""
         print "Connection to %s failed: %s" % (link_uri, msg)
 
     def _connection_lost(self, link_uri, msg):
-        """Callback when disconnected after a connection has been made (i.e
-        Crazyflie moves out of range)"""
+        """Callback when disconnected after a connection has been made (i.e Crazyflie moves out of range)"""
         print "Connection to %s lost: %s" % (link_uri, msg)
 
     def _disconnected(self, link_uri):

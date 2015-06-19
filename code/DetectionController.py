@@ -2,7 +2,7 @@
 # https://developer.leapmotion.com/documentation/python/devguide/Leap_Frames.html
 
 
-import os, sys, inspect, thread, time
+import os, sys, inspect, thread, time, atexit
 
 '''
 # import for all kind of devices (win, osx, linux)
@@ -19,24 +19,22 @@ sys.path.insert(0, lib_dir)
 import Leap, LeapListener
 
 
-class ControlDetection:
+class DetectionController:
 
     def __init__(self, cf):
 
-        controller = Leap.Controller()
+        atexit.register(self.cleanup)
 
-        # Have the sample listener receive events from the controller
-        listener = LeapListener.LeapListener()
-        listener.setCf(cf)
-        controller.add_listener(listener)
+        self.controller = Leap.Controller()
 
-        # Keep this process running until Enter is pressed
-        print "Press Enter to quit..."
+        # Init leap listener, for receiving events
+        self.listener = LeapListener.LeapListener()
+        self.listener.cf = cf
+        self.controller.add_listener(self.listener)
+
+    def cleanup(self):
         try:
-            sys.stdin.readline()
-        except KeyboardInterrupt:
+            self.controller.remove_listener(self.listener)
+        except NameError:
             pass
-        finally:
-            # Remove the sample listener when done
-            controller.remove_listener(listener)
 
