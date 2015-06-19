@@ -6,3 +6,9 @@ install_name_tool -change /Library/Frameworks/Python.framework/Versions/2.7/Pyth
 
 Crazyflie Doc
 - Protocol: https://wiki.bitcraze.io/projects:crazyflie:firmware:comm_protocol
+
+Restart LeapMotion service:
+sudo launchctl unload /Library/LaunchDaemons/com.leapmotion.leapd.plist
+sudo launchctl load /Library/LaunchDaemons/com.leapmotion.leapd.plist
+Source: https://support.leapmotion.com/entries/39980446-How-to-Manually-Restart-Leap-Core-Services
+

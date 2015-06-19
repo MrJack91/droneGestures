@@ -26,7 +26,8 @@
 #  MA  02110-1301, USA.
 
 
-import time, sys, atexit
+import time
+import sys
 from threading import Thread
 
 sys.path.append("lib/crazyflie")
@@ -42,35 +43,43 @@ from cfclient.utils.logconfigreader import LogConfig
 from cflib.crazyflie import Crazyflie
 '''
 
-
 class CrazyflieController:
 
     def __init__(self):
-        print 'init crazyflie'
-        atexit.register(self.cleanup)
+        print 'CrazyflieController: init'
+        self._cf = None
+        # atexit.register(self.cleanup)
 
     def cleanup(self):
-        """cleanup code..."""
+        if self._cf is not None:
+            # try to access crazyflie -> will throw NameError if undefined
+            self._cf.commander.send_setpoint(0, 0, 0, 0)
+            # wait to send signal
+            time.sleep(0.1)
+            self._cf.close_link()
+
+        print 'CrazyflieController: shut down'
 
     def connect(self):
         # Initialize the low-level drivers (don't list the debug drivers)
         cflib.crtp.init_drivers(enable_debug_driver=False)
         # Scan for Crazyflies
-        print "Scanning interfaces for Crazyflies..."
+        print "CrazyflieController: scanning interfaces for crazyflies..."
         available = cflib.crtp.scan_interfaces()
 
-        print "Crazyflies found:"
-        for i in available:
-            print i[0]
-
         if len(available) > 0:
+            print "CrazyflieController: crazyflies found:"
+            for i in available:
+                print i[0]
+
             #le = CrazyflieController(available[0][0])
             #link_uri = available[0][0]
+
             # hard code to correct one, because there are sometimes disturbing signals
             link_uri = 'radio://0/80/250K'
 
         else:
-            print "No Crazyflies found, cannot connect"
+            print "CrazyflieController: no crazyflies found, cannot connect"
             return False
 
         self._cf = Crazyflie()
@@ -80,13 +89,14 @@ class CrazyflieController:
         self._cf.connection_failed.add_callback(self._connection_failed)
         self._cf.connection_lost.add_callback(self._connection_lost)
 
-        # self._cf.open_link(link_uri)
+        # connect to drone
+        self._cf.open_link(link_uri)
 
     def _connected(self, link_uri):
         """ This callback is called form the Crazyflie API when a Crazyflie
         has been connected and the TOCs have been downloaded."""
 
-        print "Connected to %s" % link_uri
+        print "CrazyflieController: connected to %s" % link_uri
 
         '''
         # The definition of the logconfig can be made before connecting
@@ -142,15 +152,15 @@ class CrazyflieController:
 
     def _connection_failed(self, link_uri, msg):
         """Callback when connection initial connection fails (i.e no Crazyflie at the speficied address)"""
-        print "Connection to %s failed: %s" % (link_uri, msg)
+        print "CrazyflieController: connection to %s failed: %s" % (link_uri, msg)
 
     def _connection_lost(self, link_uri, msg):
         """Callback when disconnected after a connection has been made (i.e Crazyflie moves out of range)"""
-        print "Connection to %s lost: %s" % (link_uri, msg)
+        print "CrazyflieController: connection to %s lost: %s" % (link_uri, msg)
 
     def _disconnected(self, link_uri):
         """Callback when the Crazyflie is disconnected (called in all cases)"""
-        print "Disconnected from %s" % link_uri
+        print "CrazyflieController: disconnected from %s" % link_uri
 
 '''
     def _ramp_motors(self):

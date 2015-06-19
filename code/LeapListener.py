@@ -2,7 +2,11 @@
 # https://developer.leapmotion.com/documentation/python/devguide/Leap_Frames.html
 
 
-import os, sys, inspect, thread, time
+import os
+import sys
+import inspect
+import thread
+import time
 
 '''
 # import for all kind of devices (win, osx, linux)
@@ -36,26 +40,24 @@ class LeapListener(Leap.Listener):
     relative_no_power = 0
     relative_no_power_security = 20     # additional space for no powering (2cm)
 
-    # reference to crazyflie (for commands)
-    cf = None
+    def set_cf(self, cf):
+        self.cf = cf
 
     def on_init(self, controller):
-        print "Initialized"
+        print "LeapListener: init"
 
     def on_connect(self, controller):
-        print "Connected"
+        print "LeapListener: connected"
         #controller.enable_gesture(Leap.Gesture.TYPE_SWIPE)
 
     def on_disconnect(self, controller):
         # Note: not dispatched when running in a debugger.
-        print "Disconnected"
+        print "LeapListener: disconnected"
 
     def on_exit(self, controller):
-        print "Exited"
+        print "LeapListener: shut down"
 
     def on_frame(self, controller):
-        # global current_state, relative_no_power, relative_no_power_security,\
-        #        STATE_1_INIT, STATE_2_FLIGHTREADY, STATE_3_FLIGHT, STATE_4_UNCONTROLLED, MAX_THRUST
 
         # first frame activate init state
         if self.current_state == self.STATE_0_OFF:
@@ -76,6 +78,7 @@ class LeapListener(Leap.Listener):
                 if hand.grab_strength == 1 and self.current_state == self.STATE_1_INIT:
                     # find fist
 
+                    # todo add timer -> fist must be for 2 seconds
                     self.current_state = self.STATE_2_FLIGHTREADY
                     print 'fist dedected! drone will fly, if you open your hand...'
 
@@ -84,8 +87,8 @@ class LeapListener(Leap.Listener):
 
                     if hand.palm_position.y > 100 or hand.palm_position.y < 350:
                         # connect to crazyflie
-                        link_uri = 'radio://0/80/250K'
-                        self.cf._cf.open_link(link_uri)
+                        #link_uri = 'radio://0/80/250K'
+                        #self.cf._cf.open_link(link_uri)
 
                         self.current_state = self.STATE_3_FLIGHT
                         print 'hand position initialized! drone control is activated'
@@ -95,8 +98,9 @@ class LeapListener(Leap.Listener):
 
                 elif self.current_state == self.STATE_3_FLIGHT and hand.grab_strength == 1:
                     # stop flight mode, disconnect drone and change to init
-                    time.sleep(0.1)
-                    self.cf._cf.close_link()
+                    #self.cf._cf.commander.send_setpoint(0, 0, 0, 0)
+                    #time.sleep(0.1)
+                    #self.cf._cf.close_link()
 
                     self.current_state = self.STATE_1_INIT
 
@@ -111,7 +115,7 @@ class LeapListener(Leap.Listener):
                     direction = hand.direction
 
                     # set flight command values
-                    thrust = ((hand.palm_position.y - relative_no_power) * 50000 / 200) + 10000 # 50000 max thrust over 200 mm
+                    thrust = ((hand.palm_position.y - self.relative_no_power) * 50000 / 200) + 10000 # 50000 max thrust over 200 mm
                     if thrust > self.MAX_THRUST:
                         thrust = self.MAX_THRUST
                     elif thrust < 10000:
@@ -121,13 +125,32 @@ class LeapListener(Leap.Listener):
                     roll = -1 * normal.roll * Leap.RAD_TO_DEG
                     yaw = direction.yaw * Leap.RAD_TO_DEG
 
+                    '''
                     print " COMMAND thrust: %f, pitch: %f, roll: %f, yaw: %f" % (
                         thrust,
                         pitch,
                         roll,
                         yaw)
+                    '''
 
-                    self.cf._cf.commander.send_setpoint(roll, pitch, yaw, thrust)
+                    if self.check_cf():
+                        self.cf._cf.commander.send_setpoint(roll, pitch, yaw, thrust)
 
         elif len(frame.hands) > 1:
             print 'More than one hand detected! Pls, only use one hand.'
+
+    def check_cf(self):
+        if self.cf._cf is not None:
+            return True
+        else:
+            return False
+
+    '''
+    def liaise_cf(self):
+        if self.cf._cf is not None:
+            return self.cf._cf
+        else:
+            #return empty object to avoid error
+            e = type('empty', (object,), {})()
+            return e
+    '''

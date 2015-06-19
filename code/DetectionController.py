@@ -2,7 +2,11 @@
 # https://developer.leapmotion.com/documentation/python/devguide/Leap_Frames.html
 
 
-import os, sys, inspect, thread, time, atexit
+import os
+import sys
+import inspect
+import thread
+import time
 
 '''
 # import for all kind of devices (win, osx, linux)
@@ -16,20 +20,21 @@ src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
 lib_dir = os.path.abspath(os.path.join(src_dir, 'lib/leap'))
 sys.path.insert(0, lib_dir)
 
-import Leap, LeapListener
-
+import Leap
+import LeapListener
 
 class DetectionController:
 
     def __init__(self, cf):
 
-        atexit.register(self.cleanup)
+        # atexit.register(self.cleanup)
 
         self.controller = Leap.Controller()
 
         # Init leap listener, for receiving events
         self.listener = LeapListener.LeapListener()
-        self.listener.cf = cf
+        self.listener.set_cf(cf)
+
         self.controller.add_listener(self.listener)
 
     def cleanup(self):
@@ -37,4 +42,6 @@ class DetectionController:
             self.controller.remove_listener(self.listener)
         except NameError:
             pass
+        finally:
+            print 'DetectionController: shut down'
 
