@@ -7,15 +7,15 @@ def main():
 
     print '************'
     print 'main: connect to crazyflie'
-    cf = CrazyflieController.CrazyflieController()
-    cf.connect()
+    cfc = CrazyflieController.CrazyflieController()
+    cfc.connect()
 
     print '************'
     print 'main: connect to leap'
-    dc = DetectionController.DetectionController(cf)
+    dc = DetectionController.DetectionController(cfc)
 
     # Keep this process running until Enter is pressed
-    print "main:: press enter to quit..."
+    print "main: press enter to quit..."
     try:
         sys.stdin.readline()
     except KeyboardInterrupt:
@@ -23,7 +23,7 @@ def main():
     finally:
         print '************'
         print 'main: shut down'
-        cf.cleanup()
+        cfc.cleanup()
         dc.cleanup()
 
 

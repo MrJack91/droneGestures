@@ -25,15 +25,18 @@ import LeapListener
 
 class DetectionController:
 
-    def __init__(self, cf):
-
+    def __init__(self, cfc):
+        """
+        :param cfc: the crazyflie controller object
+        :return:
+        """
         # atexit.register(self.cleanup)
 
         self.controller = Leap.Controller()
 
         # Init leap listener, for receiving events
         self.listener = LeapListener.LeapListener()
-        self.listener.set_cf(cf)
+        self.listener.set_cfc(cfc)
 
         self.controller.add_listener(self.listener)
 

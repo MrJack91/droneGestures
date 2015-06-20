@@ -47,16 +47,16 @@ class CrazyflieController:
 
     def __init__(self):
         print 'CrazyflieController: init'
-        self._cf = None
+        self.cf = None
         # atexit.register(self.cleanup)
 
     def cleanup(self):
-        if self._cf is not None:
+        if self.cf is not None:
             # try to access crazyflie -> will throw NameError if undefined
-            self._cf.commander.send_setpoint(0, 0, 0, 0)
+            self.cf.commander.send_setpoint(0, 0, 0, 0)
             # wait to send signal
             time.sleep(0.1)
-            self._cf.close_link()
+            self.cf.close_link()
 
         print 'CrazyflieController: shut down'
 
@@ -82,15 +82,15 @@ class CrazyflieController:
             print "CrazyflieController: no crazyflies found, cannot connect"
             return False
 
-        self._cf = Crazyflie()
+        self.cf = Crazyflie()
 
-        self._cf.connected.add_callback(self._connected)
-        self._cf.disconnected.add_callback(self._disconnected)
-        self._cf.connection_failed.add_callback(self._connection_failed)
-        self._cf.connection_lost.add_callback(self._connection_lost)
+        self.cf.connected.add_callback(self._connected)
+        self.cf.disconnected.add_callback(self._disconnected)
+        self.cf.connection_failed.add_callback(self._connection_failed)
+        self.cf.connection_lost.add_callback(self._connection_lost)
 
         # connect to drone
-        self._cf.open_link(link_uri)
+        self.cf.open_link(link_uri)
 
     def _connected(self, link_uri):
         """ This callback is called form the Crazyflie API when a Crazyflie
