@@ -161,8 +161,9 @@ docs/_build/
 # PyBuilder
 target/
 
-__init__.py
+code/examples/*
 code/lib/crazyflie/cflib/cache/*
+
 
 
 #custom

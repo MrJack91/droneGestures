@@ -1,7 +1,6 @@
-
 import sys
-import CrazyflieController
-import DetectionController
+
+from Controller import CrazyflieController, DetectionController
 
 def main():
 
