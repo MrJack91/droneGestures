@@ -48,13 +48,13 @@ class CrazyflieController:
     def __init__(self):
         print 'CrazyflieController: init'
         self.cf = None
+        self.is_connected = False
         # atexit.register(self.cleanup)
 
     def cleanup(self):
         if self.cf is not None:
             # try to access crazyflie -> will throw NameError if undefined
             self.cf.commander.send_setpoint(0, 0, 0, 0)
-            # wait to send signal
             time.sleep(0.1)
             self.cf.close_link()
 
@@ -90,6 +90,7 @@ class CrazyflieController:
         self.cf.connection_lost.add_callback(self._connection_lost)
 
         # connect to drone
+        print "CrazyflieController: waiting to connect to: ", link_uri
         self.cf.open_link(link_uri)
 
     def _connected(self, link_uri):
@@ -97,6 +98,7 @@ class CrazyflieController:
         has been connected and the TOCs have been downloaded."""
 
         print "CrazyflieController: connected to %s" % link_uri
+        self.is_connected = True
 
         '''
         # The definition of the logconfig can be made before connecting
@@ -161,6 +163,7 @@ class CrazyflieController:
     def _disconnected(self, link_uri):
         """Callback when the Crazyflie is disconnected (called in all cases)"""
         print "CrazyflieController: disconnected from %s" % link_uri
+        self.is_connected = False
 
 '''
     def _ramp_motors(self):

@@ -5,8 +5,6 @@
 import os
 import sys
 import inspect
-import thread
-import time
 
 '''
 # import for all kind of devices (win, osx, linux)
@@ -21,7 +19,8 @@ lib_dir = os.path.abspath(os.path.join(src_dir, 'lib/leap'))
 sys.path.insert(0, lib_dir)
 
 import Leap
-import LeapListener
+from Piloting import LeapListener
+
 
 class DetectionController:
 
