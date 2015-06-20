@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(src_dir, arch_dir)))
 
 # lib only for os x
 src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
-lib_dir = os.path.abspath(os.path.join(src_dir, 'lib/leap'))
+lib_dir = os.path.abspath(os.path.join(src_dir, '../lib/leap'))
 sys.path.insert(0, lib_dir)
 
 import Leap
