@@ -297,7 +297,7 @@ Die Lösung soll in zwei Teilen umgesetzt werden: in einer Gestenerkennung und e
 
 Die detaillierte Definition der Steuerung wird im \secref{sec:gestureControll} beschrieben.
 
-Die Umsetzung kann in drei logische Komponenten eingeteilt werden: die Gestenerkennung, der Commander und die Drohne.
+Die Umsetzung kann in drei logische Komponenten eingeteilt werden: die Gestenerkennung, die Drohne und der Commander.
 
 \subsection{Gestenerkennung}
 Die Kompenente der Gestenerkennung, erkennt die Gesten vom Leap Motion Sensor. Die Daten werden analysiert und ausgewertet.
@@ -306,8 +306,8 @@ Eine allgemeine Gestenerkennung wird von Leap Motion zur Verfügung gestellt, di
 \subsection{Drohne}
 Die Drohne wird als alleinstehendes System betrachtet, das durch ein \gls{apiLabel} gesteuert werden kann. Zudem können Messdaten abgerufen werden. An diesem System sollten keine Änderungen anfallen.
 
-\subsection{Commander}
-Der Commander verbindet die Gestenerkennung mit der Drohne.
+\subsection{Controller}
+Der Controller verbindet die Gestenerkennung mit der Drohne.
 Dazu gehören hauptsächlich zwei wiederholende Aufgaben.
 Einerseits müssen die erkannten Gesten in eine gültige Steueroperation umgeformt werden, woraus der Steuerprozess zur Drohne entsteht.
 Der Steuerprozess steuert die Drohne gemäss den Daten, die aus den Gesten gewonnen wurden, besonders für die Position wird eine aktive Steuerung benötigt, das heisst, dass die Position der Drohne auf die Zielposition der Hand angepasst werden muss. Dazu ist eine anhaltende Überprüfung und Korrektur notwendig.

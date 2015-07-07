@@ -12,3 +12,4 @@ sudo launchctl unload /Library/LaunchDaemons/com.leapmotion.leapd.plist
 sudo launchctl load /Library/LaunchDaemons/com.leapmotion.leapd.plist
 Source: https://support.leapmotion.com/entries/39980446-How-to-Manually-Restart-Leap-Core-Services
 
+lunchy restart leapd

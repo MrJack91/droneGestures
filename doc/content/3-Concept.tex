@@ -19,13 +19,19 @@ Detailliertere Informationen finden Sie im \secref{subsec:leapmotion}.
 % Es folgen grobe Informationen zum Gestenerkennungs-Sensor \textit{Leap Motion}.
 
 Der Sensor erkennt Gesten innerhalb eines 150\textdegree-Winkels zwischen 25\,mm und 600\,mm Höhe.
-Sprich auf ca. 30\,cm Höhe funktioniert die Erkennung bestens und wir haben genügend vertikale Spatzung um Höhenunterschiede festzustellen.
+Sprich auf ca. 20 -- 30\,cm Höhe funktioniert die Erkennung bestens und wir haben genügend vertikale Spatzung um Höhenunterschiede festzustellen.
 Folgend wird auf die grundlegenden Flugmanöver eingegangen.
 
 
 \subsection{Flugmanöver}
 
+\begin{framed}
+	\textit{Bemerkung: }\textbf{Optimierungen an der Steuerung}\\
+	Die hier im Konzept beschriebene und ursprünglich geplante Steuerung wurde während der Umsetzung optimiert. Die Änderungen werden im \secref{sec:poc:conceptChanges} beschrieben und begründet. Die hier beschriebene Steuerung gilt aber trotzdem als Grund- und Ausgangslage und wird daher detailliert beschrieben.
+\end{framed}
+
 \subsubsection{Init}
+\label{sec:concept:init}
 
 Da die Hand die Drohne repräsentieren soll, muss eine initiale Position eingenommen werden, aus dieser die Drohne anschliessend (relativ gemessen) gesteuert werden kann.
 
@@ -34,7 +40,7 @@ Dieser Prozess vom Finden der initialen Position wird folgend als \textit{Init-P
 \begin{itemize}
 	\item Die Drohne befindet sich im \textit{Init-Zustand (Z1)}.
 	\item Die Hand wird auf idealer Höhe platziert (ca. 10 -- 20\,cm über dem Sensor).
-	\item Die Position gilt als eingenommen, sobald nach einer Faust wiederum die offene Hand erkannt wird. (Faust-Gesten in nicht idealen Höhen werden ignoriert.)
+	\item Die Position gilt als eingenommen, sobald nach einer Faust wiederum die offene Hand erkannt wird. (offene Hände in nicht idealen Höhen werden ignoriert.)
 	\item Die Drohne befindet sich nun im \textit{flugbereiten Zustand (Z2)} (die Rotoren drehen nicht).
 	\item Die Hand bleibt geöffnet. Eine erneute Erkennung einer Faust-Geste löst einen Zustandswechsel vom \textit{flugbereiten Zustand (Z2)} zurück in den \textit{Init-Zustand (Z1)} aus.
 \end{itemize}
@@ -53,12 +59,12 @@ Die Drohne ist solange im \textit{Flug-Zustand (Z3)} bis sie wieder auf festem U
 Bezüglich der Steuermöglichkeiten ändert sich weder im \textit{Flug- (Z3)} noch im \textit{flugbereiten Zustand (Z2)} etwas.
 Sprich es ist kein Zustandswechsel nötig, um die Drohne zu landen.
 
-\textbf{Bemerkung zur Steuerung:} Grundsätzlich wird der Level (Power) einer Steueranweisung, gemäss der Abweichung der natürlichen, rechtwinkligen, vertikalen Achsen gesetzt, wobei eine ca. 60\textdegree-Abweichung dem Maximum entspricht.\\
-Eine mögliche Optimierung ist, dass die Drohne-Position immer exakt der Hand-Position angepasst wird.
-Dazu muss die Steuerung die Position der Drohne mit der Hand-Position vergleichen und falls nötig die Position der Drohne korrigieren.
-Der Unterschied zur Basis-Steuerung besteht darin, dass sich das Fliegen noch intuitiver anfühlt, da die Drohne sich wirklich an der Hand orientiert und nicht nur wie mit einer klassischen Fernsteuerung ein Steuerkommando erhält und ausführt.
-\todo{remove remark}
-Ob dies so umzusetzen ist bleibt abzuklären und ist stark abhängig von der API der Drohne.
+%\textbf{Bemerkung zur Steuerung:} Grundsätzlich wird der Level (Power) einer Steueranweisung, gemäss der Abweichung der natürlichen, rechtwinkligen, vertikalen Achsen gesetzt, wobei eine ca. 60\textdegree-Abweichung dem Maximum entspricht.\\
+%Eine mögliche Optimierung ist, dass die Drohne-Position immer exakt der Hand-Position angepasst wird.
+%Dazu muss die Steuerung die Position der Drohne mit der Hand-Position vergleichen und falls nötig die Position der Drohne korrigieren.
+%Der Unterschied zur Basis-Steuerung besteht darin, dass sich das Fliegen noch intuitiver anfühlt, da die Drohne sich wirklich an der Hand orientiert und nicht nur wie mit einer klassischen Fernsteuerung ein Steuerkommando erhält und ausführt.
+%\todo{remove remark}
+%Ob dies so umzusetzen ist bleibt abzuklären und ist stark abhängig von der API der Drohne.
 
 \subsubsection{Yaw (Drehung / Gieren)}
 \begin{wrapfigure}{r}{0.4\textwidth}
@@ -75,12 +81,13 @@ Befindet sich die Drohne im \textit{flugbereiten Zustand (Z2)}, kann via eine Fa
 Die Drohne reagiert bis zum nächsten \textit{Init-Prozess} nicht mehr.
 
 \subsection{Zustands Übersicht}
+\label{sec:concept:stateoverview}
 Die Drohne kann aus Sicht der Steuerung, insofern sie eingeschaltet ist, vier Zustände einnehmen:
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{figures/concept/state-diagram.pdf}
-	\caption[Zustand-Diagramm: Drohne mit Gestensteuerung]{Zustand-Diagramm: Drohne mit Gestensteuerung}
+	\includegraphics[width=1.0\textwidth]{figures/concept/state-diagram-1.pdf}
+	\caption[Zustands-Diagramm: Drohne mit Gestensteuerung]{Zustands-Diagramm: Drohne mit Gestensteuerung}
 \end{figure}
 
 \subsubsection{Off-Zustand (Z0)}
@@ -97,8 +104,9 @@ Die Drohne befindet sich in der Luft.
 
 \subsubsection{Unkontrollierten Zustand (Z4)}
 %todo correct
-Die Hand wird während dem Flug nicht mehr erkannt.
-Wenn keine Hand innerhalb einer bestimmten Zeit erfasst wird, wird die Drohne Not gelandet (stürzt sie ab).
+Die Hand wird während dem Flug nicht mehr erkannt oder die Verbindung zur Drohne ist temporär unterbrochen.
+Falls das Problem nicht innerhalb einer bestimmten Zeit behoben wird, soll die Drohne notgelandet werden (stürzt sie ab).
+%Wenn keine Hand innerhalb einer bestimmten Zeit erfasst wird, wird die Drohne Not gelandet (stürzt sie ab).
 
 %%%
 

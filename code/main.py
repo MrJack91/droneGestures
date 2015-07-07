@@ -4,7 +4,7 @@ from Controller import CrazyflieController, DetectionController
 
 def main():
 
-    debug = False
+    debug = True
 
     print '************'
     print 'main: connect to crazyflie'
