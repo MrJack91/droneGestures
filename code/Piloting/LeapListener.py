@@ -41,7 +41,6 @@ class LeapListener(Leap.Listener):
 
     def on_connect(self, controller):
         print "LeapListener: connected (mostly need to wait on crazyflie...)"
-        #controller.enable_gesture(Leap.Gesture.TYPE_SWIPE)
 
     def on_disconnect(self, controller):
         # Note: not dispatched when running in a debugger.
@@ -70,6 +69,7 @@ class LeapListener(Leap.Listener):
         )
         '''
 
+        # flight control
         if len(frame.hands) == 1:
             # for hand in frame.hands:
             hand = frame.hands[0]

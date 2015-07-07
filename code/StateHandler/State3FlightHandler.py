@@ -37,7 +37,7 @@ class State3FlightHandler(BaseStateHandler):
 
             pitch = -1 * direction.pitch * Leap.RAD_TO_DEG
             roll = -1 * normal.roll * Leap.RAD_TO_DEG
-            yaw = direction.yaw * Leap.RAD_TO_DEG
+            yaw = -1 * direction.yaw * Leap.RAD_TO_DEG
 
             '''
             print " COMMAND thrust: %f, pitch: %f, roll: %f, yaw: %f" % (

@@ -8,7 +8,7 @@ class PilotingConfiguration():
     """
 
     def __init__(self, cfc):
-        self.MAX_THRUST = 30000                     # max possible 60000
+        self.MAX_THRUST = 60000                     # max possible 60000
 
         # runtime params
         self.relative_no_power = 0

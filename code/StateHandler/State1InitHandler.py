@@ -40,7 +40,8 @@ class State1InitHandler(BaseStateHandler):
         :return:
         """
         # stop flight without delay
-        self.cfc.cf.commander.send_setpoint(0, 0, 0, 0)
-        time.sleep(0.1)
+        if self.check_cf():
+            self.cfc.cf.commander.send_setpoint(0, 0, 0, 0)
+            time.sleep(0.1)
         self.time_ref = None
         self.next_state = PilotingStates.PilotingStates.STATE___RESET

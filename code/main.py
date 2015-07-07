@@ -4,10 +4,16 @@ from Controller import CrazyflieController, DetectionController
 
 def main():
 
+    debug = False
+
     print '************'
     print 'main: connect to crazyflie'
     cfc = CrazyflieController.CrazyflieController()
-    cfc.connect()
+
+    if debug:
+        cfc.is_connected = True
+    else:
+        cfc.connect()
 
     print '************'
     print 'main: connect to leap'
