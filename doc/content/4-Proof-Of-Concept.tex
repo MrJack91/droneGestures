@@ -3,22 +3,60 @@
 \section{Systemübersicht}
 Das Proof-Of-Concept als Umsetzung beinhaltet die Logik und Kommunikation zwischen dem Gestensensor und der Drohne über die jeweils bestehenden \gls{apiLabel}'s.
 
-Folglich sind die zwei Hauptkomponenten der Umsetzung der \textit{Crazyflie Controller} und der \textit{Detection Controller}.
+Folglich sind die zwei Hauptkomponenten der Umsetzung der \textit{Crazyflie Controller} (\secref{sec:poc:controllerCrazyflie}) und der \textit{Detection Controller} (\secref{sec:poc:controllerDetection}).
 
 \subsection{Crazyflie Controller}
+\label{sec:poc:controllerCrazyflie}
 Der Crazyflie Controller stellt die Verbindung zur Drohne her, durch die Steuerkommandos übermittelt werden können.
 Dabei stellt das Management der Verbindung den Hauptteil des Codes dieses Controlles dar.
 Beim Verbindungsaufbau, sowie bei erfolgreicher Verbindung müssen mögliche Fehler-Events abgefangen werden und der Zustand der Verbindung muss gegen aussen abrufbar sein.
 Ansonsten hat der Crazyflie Controller keine Aufgabe.
 
 \subsection{Detection Controller}
+\label{sec:poc:controllerDetection}
 Der Detection Controller bildet den Kern der Applikation. Er kommuniziert mit dem Leap Motion, erhält die Gesten Informationen, wertet diese abhängig des Zustandes der Steuerung aus und definiert daraus die Kommandos die via den Crazyflie Controller der Drohne übermitteln werden sollen.
 Die ganze Logik der Steuerung findet sich dementsprechend in diesem Teil.
 
 Um die Auswertung der Gesten abhängig des Zustandes angemessen aufzuteilen, gibt es für jeden Zustand einen eigenen \textit{State Handler}.
 
+\clearpage
+
 \subsection{Datei Struktur}
-\todo{add File structure}
+\begin{wrapfigure}{l}{0.4\textwidth}
+	\includegraphics[width=1.0\linewidth]{figures/poc/filestructure.png}
+	\caption[Dateistruktur]{Dateistruktur der Umsetzung}
+\end{wrapfigure}
+Die gesamte Umsetzung im Verzeichnis \textit{code} besteht aus drei Modulen und ist wie folgt aufgegliedert:
+
+\subsubsection{Controller}
+Die Controllers wurden bereits oben erwähnt. Jeder Controller trägt die Verantwortung einer Komponenten (Detection via Leap Motion oder Crazyflie).
+Nach dem Aufruf eines Controllers, übernimmt ein Controller die Kommunikation und Verwaltung der zugeordneten Komponente.
+
+Um die Controller schlank zu halten, greifen die Controller auf Code aus weiteren Modulen (\textit{Piloting} und \textit{StateHandler}) zu.
+Um eine Komponente via \gls{apiLabel} zu verwenden, sind werden oft folgende Schritte benötigt.
+Die Verbindung zur Komponente muss aufgebaut werden, und kann über verschiedene Parameter konfiguriert werden.
+Zudem können diverse Callback-Events registriert werden, die von der Komponente bei bestimmten Ereignissen aufgerufen werden können (Beispiele sind: erfolgreiche Verbindung, Verbindungsunterbruch, sowie auch konkrete Daten die zur Verfügung stehen wie erkannte Gesten vom LeapMotion).
+
+\subsubsection{StateHandler}
+Jeder Status in den die Drohne versetzt werden kann, wird durch einen eigenen \textit{StateHandler} abgebildet.
+Ein \textit{StateHandler} hat Zugriff auf die Gesteninformationen und wertet diese gemäss den statusabhängigen Möglichkeiten aus.
+Wird der Status (\textit{next\_state}) geändert, wird beim nächsten verfügbaren Frame jener \textit{StatusHandler} aufgerufen.
+
+In der vorliegenden Umsetzung gibt es die folgenden \textit{StateHandlers}:
+\begin{itemize}
+	\item State1InitHandler
+	\item State2FlightreadyHandler
+	\item State3FlightHandler
+	\item State\_ResetHandler
+\end{itemize}
+Alle \textit{StateHandler} erben von der \textit{BaseStateHandler}-Klasse, welche die grundsätzlich verfügbaren Variablen (erkannte Gesten, Crazyflie, und den eigenen sowie den nächsten Status) definiert.
+
+\subsubsection{Piloting}
+Das Modul Piloting beinhaltet allgemeine steuerspezifische Konfigurationen.
+Dazu gehört die Verknüpfung zwischen Status Nummer, Status Bezeichnung und dem jeweiligen StateHandler, so wie auch verschiedne Flugparameter (z.B.: maximaler Power).
+
+Nebst der Konfiguration beinhaltet das \textit{Piloting} Modul einen \textit{LeapListener} der die notwendigen Callbacks für den Leap Motion Sensor registriert. Darunter die Funktion \textit{on\_frame()} die bei jedem erkannten Frame aufgerufen wird.
+Es befindet sich aber keinen Status spezifischen Code im \textit{Piloting}.
 
 \section{Anpassungen am Konzept}
 \label{sec:poc:conceptChanges}

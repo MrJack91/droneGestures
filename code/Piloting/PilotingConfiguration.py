@@ -9,10 +9,12 @@ class PilotingConfiguration():
 
     def __init__(self, cfc):
         self.MAX_THRUST = 60000                     # max possible 60000
-
-        # runtime params
-        self.relative_no_power = 0
         self.relative_no_power_security = 20        # additional space for no powering (2cm)
+
+
+        ### ************************
+        # runtime params - don't change
+        self.relative_no_power = 0
 
         #: :type dict of (StateHandler.BaseStateHandler)
         self.state_handler = {

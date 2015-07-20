@@ -13,3 +13,8 @@ sudo launchctl load /Library/LaunchDaemons/com.leapmotion.leapd.plist
 Source: https://support.leapmotion.com/entries/39980446-How-to-Manually-Restart-Leap-Core-Services
 
 lunchy restart leapd
+
+
+#seqdiag
+http://blockdiag.com/en/seqdiag/introduction.html#setup
+seqdiag -Tsvg sequenceDiagramm.diag

@@ -1,0 +1,32 @@
+seqdiag {
+  # order of elements
+  main; CrazyflieController; DetectionController
+
+  main  ->  CrazyflieController
+  main  ->  CrazyflieController [label = "connect()"];
+            CrazyflieController ->  Crazyflie [rightnote = "initiate Crazyflie API"];
+            CrazyflieController <--  Crazyflie
+  main  <-- CrazyflieController
+
+  // Separator
+  === Separator line ===
+
+  main  ->  DetectionController [label = "init()"];
+            DetectionController ->  Leap  [label = "Controller()"];
+            DetectionController ->  LeapListener
+                                    LeapListener  ->  PilotingConfiguration
+            DetectionController ->  LeapListener [label = "set_cfc()"];
+            DetectionController ->  Leap  [label = "add_listener(LeapListener)"];
+
+            Leap  ->  LeapListener  [label = "on_frame()"]
+
+            self.piloting_configuration.state_handler[self.current_state].handle(hand)
+
+
+  main  <-- DetectionController
+
+
+
+
+
+}
