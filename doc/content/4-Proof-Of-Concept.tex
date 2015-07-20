@@ -21,14 +21,14 @@ Um die Auswertung der Gesten abhängig des Zustandes angemessen aufzuteilen, gib
 
 \clearpage
 
-\subsection{Datei Struktur}
+\section{Datei Struktur}
 \begin{wrapfigure}{l}{0.4\textwidth}
 	\includegraphics[width=1.0\linewidth]{figures/poc/filestructure.png}
 	\caption[Dateistruktur]{Dateistruktur der Umsetzung}
 \end{wrapfigure}
 Die gesamte Umsetzung im Verzeichnis \textit{code} besteht aus drei Modulen und ist wie folgt aufgegliedert:
 
-\subsubsection{Controller}
+\subsection{Controller}
 Die Controllers wurden bereits oben erwähnt. Jeder Controller trägt die Verantwortung einer Komponenten (Detection via Leap Motion oder Crazyflie).
 Nach dem Aufruf eines Controllers, übernimmt ein Controller die Kommunikation und Verwaltung der zugeordneten Komponente.
 
@@ -37,7 +37,7 @@ Um eine Komponente via \gls{apiLabel} zu verwenden, sind werden oft folgende Sch
 Die Verbindung zur Komponente muss aufgebaut werden, und kann über verschiedene Parameter konfiguriert werden.
 Zudem können diverse Callback-Events registriert werden, die von der Komponente bei bestimmten Ereignissen aufgerufen werden können (Beispiele sind: erfolgreiche Verbindung, Verbindungsunterbruch, sowie auch konkrete Daten die zur Verfügung stehen wie erkannte Gesten vom Leap Motion).
 
-\subsubsection{StateHandler}
+\subsection{StateHandler}
 Jeder Status in den die Drohne versetzt werden kann, wird durch einen eigenen \textit{StateHandler} abgebildet.
 Ein \textit{StateHandler} hat Zugriff auf die Gesteninformationen und wertet diese gemäss den statusabhängigen Möglichkeiten aus.
 Wird der Status (\textit{next\_state}) geändert, wird beim nächsten verfügbaren Frame jener \textit{StatusHandler} aufgerufen.
@@ -51,12 +51,43 @@ In der vorliegenden Umsetzung gibt es die folgenden \textit{StateHandlers}:
 \end{itemize}
 Alle \textit{StateHandler} erben von der \textit{BaseStateHandler}-Klasse, welche die grundsätzlich verfügbaren Variablen (erkannte Gesten, Crazyflie, und den eigenen sowie den nächsten Status) definiert.
 
-\subsubsection{Piloting}
+\subsection{Piloting}
 Das Modul Piloting beinhaltet allgemeine steuerspezifische Konfigurationen.
 Dazu gehört die Verknüpfung zwischen Status Nummer, Status Bezeichnung und dem jeweiligen StateHandler, so wie auch verschiedne Flugparameter (z.B.: maximaler Power).
 
 Nebst der Konfiguration beinhaltet das \textit{Piloting} Modul einen \textit{LeapListener} der die notwendigen Callbacks für den Leap Motion Sensor registriert. Darunter die Funktion \textit{on\_frame()} die bei jedem erkannten Frame aufgerufen wird.
 Es befindet sich aber keinen Status spezifischen Code im \textit{Piloting}.
+
+\subsection{main.py}
+Das \textit{main.py} File dient zum Start des Programmes. Es erstellt die Controllers und überprüft auf eine gewünschte Programm Beendung. Somit entspricht das \textit{main} File dem Root File.
+
+\section{Ablauf - Sequenz-Diagramme}
+Folgend werden einzelne Sequenzen mit Hilfe eines Sequenz-Diagrammes genauer aufgezeigt.
+
+\subsection{Programmstart}
+Die ersten zwei Diagramme zeigen den Ablauf der Initialisierung der Controller bis hin zur Abarbeitung des Frames des Leap Motion auf.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/poc/seq_dia_crazyflie.png}
+	\caption{Sequenz-Diagramm: Initialisierung der Crazyflie}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/poc/seq_dia_detection.png}
+	\caption{Sequenz-Diagramm: Initialisierung und Ablauf des Leap Motions}
+\end{figure}
+
+\clearpage
+\subsection{Programmbeendung}
+Dieses Diagramm zeigt die korrekte Beendigung des Programmes auf.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/poc/seq_dia_shutdown.png}
+	\caption{Sequenz-Diagramm: Shutdown}
+\end{figure}
+
 
 \section{Anpassungen am Konzept}
 \label{sec:poc:conceptChanges}
@@ -67,7 +98,6 @@ Das Zustands-Diagramm wurde wie folgt angepasst:
 	\centering
 	\includegraphics[width=1.0\textwidth]{figures/concept/state-diagram-2.pdf}
 	\caption[Zustands-Diagramm: Drohne mit optimierter Gestensteuerung optimiert]{Zustands-Diagramm: Drohne mit optimierter Gestensteuerung}
-	\label{key}
 \end{figure}
 
 Folgend werden die durchgeführten Änderungen erläutert und begründet.
