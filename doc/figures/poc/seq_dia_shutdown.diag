@@ -1,0 +1,11 @@
+seqdiag {
+  # shutdown process (by keypress)
+
+  main -> main [label = "sys.stdin.readline()"];
+  main -> DetectionController [label = "DetectionController.cleanup()"];
+  main  <-- DetectionController;
+
+  main -> CrazyflieController [label = "CrazyflieController.cleanup()"];
+  main  <--  CrazyflieController;
+
+}

@@ -1,0 +1,34 @@
+seqdiag {
+  main  ->  DetectionController [label = "init()"];
+            DetectionController ->  Leap [label = "Leap.Controller()"];
+            DetectionController <--  Leap;
+
+            DetectionController ->  LeapListener [label = "LeapListener()"];
+            DetectionController <--  LeapListener;
+
+            DetectionController ->  LeapListener [label = "LeapListener.set_cfc()"];
+                                    LeapListener -> PilotingConfiguration [label = "PilotingConfiguration(cfc)"];
+                                                    PilotingConfiguration -> StateXYHandler [label = "StateXYHandler.StateXYHandler()"];
+                                                    PilotingConfiguration <-- StateXYHandler [label = "all state handlers initialized"];
+                                    LeapListener <-- PilotingConfiguration [label = "initialized"];
+            DetectionController <--  LeapListener;
+
+            DetectionController ->  Leap  [label = "Leap.add_listener(LeapListener)"];
+
+            === START - Guesture controlling ===
+
+                                    Leap  ->  LeapListener  [label = "on_frame()"];
+                                              LeapListener -> PilotingConfiguration [label = "PilotingConfiguration.state_handler[current_state]"];
+                                              LeapListener <- PilotingConfiguration [label = "StateXYHandler"];
+                                              LeapListener -> StateXYHandler [label = "StateXYHandler.handle(hand)"];
+                                              LeapListener <- StateXYHandler [label = "next_state"];
+            === END - Guesture controlling ===
+
+
+  main  <-- DetectionController
+
+
+
+
+
+}

@@ -1,0 +1,8 @@
+seqdiag {
+  main  ->  CrazyflieController
+  main  <--  CrazyflieController
+  main  ->  CrazyflieController [label = "connect()"];
+            CrazyflieController ->  Crazyflie [rightnote = "initiate Crazyflie API"];
+            CrazyflieController <--  Crazyflie
+  main  <-- CrazyflieController
+}
