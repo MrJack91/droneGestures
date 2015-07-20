@@ -35,7 +35,7 @@ Nach dem Aufruf eines Controllers, übernimmt ein Controller die Kommunikation u
 Um die Controller schlank zu halten, greifen die Controller auf Code aus weiteren Modulen (\textit{Piloting} und \textit{StateHandler}) zu.
 Um eine Komponente via \gls{apiLabel} zu verwenden, sind werden oft folgende Schritte benötigt.
 Die Verbindung zur Komponente muss aufgebaut werden, und kann über verschiedene Parameter konfiguriert werden.
-Zudem können diverse Callback-Events registriert werden, die von der Komponente bei bestimmten Ereignissen aufgerufen werden können (Beispiele sind: erfolgreiche Verbindung, Verbindungsunterbruch, sowie auch konkrete Daten die zur Verfügung stehen wie erkannte Gesten vom LeapMotion).
+Zudem können diverse Callback-Events registriert werden, die von der Komponente bei bestimmten Ereignissen aufgerufen werden können (Beispiele sind: erfolgreiche Verbindung, Verbindungsunterbruch, sowie auch konkrete Daten die zur Verfügung stehen wie erkannte Gesten vom Leap Motion).
 
 \subsubsection{StateHandler}
 Jeder Status in den die Drohne versetzt werden kann, wird durch einen eigenen \textit{StateHandler} abgebildet.
@@ -44,10 +44,10 @@ Wird der Status (\textit{next\_state}) geändert, wird beim nächsten verfügbar
 
 In der vorliegenden Umsetzung gibt es die folgenden \textit{StateHandlers}:
 \begin{itemize}
-	\item State1InitHandler
-	\item State2FlightreadyHandler
-	\item State3FlightHandler
-	\item State\_ResetHandler
+	\item \textit{State1InitHandler}
+	\item \textit{State2FlightreadyHandler}
+	\item \textit{State3FlightHandler}
+	\item \textit{State\_ResetHandler}
 \end{itemize}
 Alle \textit{StateHandler} erben von der \textit{BaseStateHandler}-Klasse, welche die grundsätzlich verfügbaren Variablen (erkannte Gesten, Crazyflie, und den eigenen sowie den nächsten Status) definiert.
 
@@ -104,7 +104,7 @@ Bei jedem Not-Abbruch (egal aus welchem Zustand), wird die Steuerung wiederum in
 \subsection{Anpassung vom Zustand Z2: "`flugbereit"'}
 Ursprünglich war eine Zustandsänderung zwischen "`Drohne befindet sich auf dem Boden"' und "`Drohne fliegt"' geplant. Dies ist jedoch schwierig zu erkennen.
 
-Daher wurde der Wechsel vom \textit{flugbereiten Zustand (Z2)} in den \textit{Flug Zustand (Z3)} neu definiert. 
+Daher wurde der Wechsel vom \textit{flugbereiten Zustand (Z2)} in den \textit{Flug Zustand (Z3)} neu definiert.
 Der Wechsel erfolgt, sobald die offene Hand (innerhalb akzeptierter Höhe) erkannt wird.
 Somit erzwingt der neue \textit{Flug Zustand (Z3)} nicht explizit, dass die Drohne sich in der Luft befindet, jedoch die Steuerung entspricht den Möglichkeiten, die der Pilot in der Luft zur Verfügung hat.
 

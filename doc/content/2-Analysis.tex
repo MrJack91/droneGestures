@@ -82,7 +82,7 @@ Folgend wird der Fokus besonders auf Projekte mit einer Gestensteuerung und dere
 
 \subsubsection{Drohnen}
 Für viele der gefundenen Projekte wurden, nebst der Crazyflie, die \textit{AR.drone} von Parrot verwendet.\footcite{AR_Drone_2.0_Parrot_2015-04-29}
-Die AR.drone ist erheblich grösser als die Crazyflie, was zur Flug-Stabilität beiträgt. 
+Die AR.drone ist erheblich grösser als die Crazyflie, was zur Flug-Stabilität beiträgt.
 Mit an Board ist eine Kamera.
 Obwohl die AR.drone viele Vorteile mit sich bringt und die Kosten nur wenig höher sind als bei der Crazyflie, hat Parrot eine deutlich kleinere Community und eine weniger ausführliche Entwicklerdokumentation.
 Die Crazyflie richtet sich hauptsächlich an Entwickler, während die AR.drone auch normale Nutzer anspricht.
@@ -95,26 +95,26 @@ Zusammengefasst können die Steuerungsmöglichkeiten in folgende Kategorien eing
 	\item \textbf{Steuerung mit offener Hand:}
 	Eine solche Steuerung basiert auf der Erkennung der offenen Hand.
 	Meist befindet sich der Sensor für die Gestenerkennung unterhalb der Hand und kann so stabil aufgestellt werden.
-	
+
 		\begin{itemize}
-			
+
 			\item \textbf{Handrichtungs-basierte Steuerung:}
 			Diese Steuerung ist an der Benutzung eines gewohnten Hebels oder Joysticks angelehnt. Die Drohne bewegt sich analog der Hand. Dabei spielt der Winkel der Hand keine Rolle.
 			Beispielsweise bedeutet eine Hand die vor dem Zentrum des Sensores liegt, dass die Drohne nach vorne fliegen soll. Das Pitch-Manöver wird oft durch spezielle Gesten wie \textit{Kreisen} umgesetzt.
-			Ein Beispiel wird im Blog von Leapmotion vorgestellt.\footcite{The_Beginning_of_a_Drone_Revolution_Leap_Motion_Blog_2015-04-29}
+			Ein Beispiel wird im Blog von Leap Motion vorgestellt.\footcite{The_Beginning_of_a_Drone_Revolution_Leap_Motion_Blog_2015-04-29}
 
-			\item \textbf{Handpositions-basierte Steuerung:} 
+			\item \textbf{Handpositions-basierte Steuerung:}
 			Bei der handpositions-basierten Steuerung, stellt die Position der Hand, effektiv die Position der Drohne dar. Der Winkel der Handhaltung, soll des Winkels der Drohne entsprechen.
 			Wo genau sich die Drohne über dem Sensor befindet, ist ausser für den Thrust, nicht relevant.
 			Eine erfolgte Umsetzung ist auf Youtube vorhanden.\footcite{Flying_the_Crazyflie_with_Leap_Motion_YouTube_2015-04-29}
 		\end{itemize}
 
-	\item \textbf{Lenkdrachen-Steuerung:} 
+	\item \textbf{Lenkdrachen-Steuerung:}
 	Bei dieser Steuerung erfolgen die Kommandos ähnlich wie bei einem Lenkdrachen.
 	Am Besten stellt man sich zwei unsichtbare Eisenstangen vor, die seitlich an der Drohne befestigt sind und von dort zu den Händen führen. Durch bewegen der imaginären Stangen kann die Drohne in verschiedene Positionen bewegt werden.
 	Um diese Gesten zu erkenne, wird der Sensor oder die Kamera meist frontal, z.B. am Bildschirmrand, befestigt.
 	Bei einer Implementation am \textit{Hackathon} in München, wird als Startzeichen das Heben der Daumen verwendet.\footcite{Drones_Fly_Hands_Free_with_Gestural_Technology_2015-04-29}
-	
+
 	\item \textbf{Steuerung mit \glspl{glos:wearableLabel}:}
 	Anstatt Gesten wirklich zu erkennen, kann eine Steuerung auch durch ein \gls{glos:wearableLabel} am Handgelenk oder in der Hand erfolgen.
 	Da aktuell den \glspl{glos:wearableLabel} eine grosse Aufmerksamkeit der Medien geschenkt wird, ist in absehbarer Zeit eine starke Entwicklung von \glspl{glos:wearableLabel} zu erwarten.
@@ -126,8 +126,39 @@ Da die handpositions-basierte Steuerung der intuitivsten Steuerung entspricht, w
 
 %\subsubsection{Sensoren Integration auf bestehende Steuerungen}
 
+\section{Kosten}
+Es folgt eine Kostenzusammenstellung der verwendeten Ressourcen.
 
-\clearpage
+\begin{table}[H]
+	\centering
+	\small\renewcommand{\arraystretch}{1.4}
+	\rowcolors{1}{tablerowcolor}{tablebodycolor}
+	%
+	\captionabove{Kostenzusammestellung / Ausgaben}
+	%
+	\begin{tabularx}{0.9\textwidth}{ L{0.18\linewidth} | X | R{0.2\linewidth} }%
+		Artikel & Details & Preis\\
+		\hline
+		\textbf{Leap Motion} & VR Developer Bundle & \euro{ 96.99 } \\
+		& Shipping & \euro{ 9.99 }\\
+		& \multicolumn{1}{r|}{\textit{Subtotal}} & \euro{ 106.98 }\\
+		& \multicolumn{1}{r|}{\textit{Subtotal in CHF}} & CHF 132.65 \footnotemark\\
+		\hline
+		\textbf{Crazyflie 2.0} &  inkl. Crazyradio PA - long range 2.4 GHz USB radio dongle with antenna (110990440 - \textit{preorder}) & \textdollar{ 200.00 }\\
+		& 4 x CW+CCW spare propellers (BC-CWP-01-A and BC-CCWP-01-A) (ACC01311M) & \textdollar{ 5.00 }\\
+		& 1 x Spare 240mAh LiPo battery (313020007) & \textdollar{ 5.50 }\\
+		& 4 x spare 7 mm motor mounts (110990444) & \textdollar{ 10.00 }\\
+		& Battery holder expansion board (114990121) & \textdollar{ 4.00 }\\
+		& \multicolumn{1}{r|}{\textit{Subtotal}} & \textdollar{ 224.50 }\\
+		& \multicolumn{1}{r|}{\textit{Subtotal in CHF}} & CHF 222.65 \footnotemark[\value{footnote}]\\
+		\hline
+		\hline
+		\textbf{TOTAL} & & \textbf{CHF 355.30 \footnotemark[\value{footnote}]}
+	\end{tabularx}
+\end{table}
+\footnotetext{Die Umrechnung in CHF entspricht dem verrechneten Betrag (Kurs Ende November 2014 inkl. 1.5 \% Bearbeitungsgebühr).}
+
+\clearpage % because floating doesn't work correctly
 \section{Ist-Analyse}
 
 \subsection{Gestensensor} \label{subsec:leapmotion}
@@ -311,5 +342,3 @@ Der Controller verbindet die Gestenerkennung mit der Drohne.
 Dazu gehören hauptsächlich zwei wiederholende Aufgaben.
 Einerseits müssen die erkannten Gesten in eine gültige Steueroperation umgeformt werden, woraus der Steuerprozess zur Drohne entsteht.
 Der Steuerprozess steuert die Drohne gemäss den Daten, die aus den Gesten gewonnen wurden, besonders für die Position wird eine aktive Steuerung benötigt, das heisst, dass die Position der Drohne auf die Zielposition der Hand angepasst werden muss. Dazu ist eine anhaltende Überprüfung und Korrektur notwendig.
-
-
