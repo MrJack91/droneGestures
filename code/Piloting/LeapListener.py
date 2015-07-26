@@ -80,7 +80,11 @@ class LeapListener(Leap.Listener):
                 self.current_state = self.piloting_configuration.state_handler[self.current_state].next_state
 
         elif len(frame.hands) > 1:
-            print 'More than one hand detected! Pls, only use one hand.'
+            # print 'More than one hand detected! Pls, only use one hand.'
+
+            # does reset of detection controll -> don't fly with multiple hands
+            self.piloting_configuration.state_handler[PilotingStates.PilotingStates.STATE_1_INIT].reset_control()
+            self.current_state = self.piloting_configuration.state_handler[PilotingStates.PilotingStates.STATE_1_INIT].next_state
 
         else:
             # stay in off state until drone was connected

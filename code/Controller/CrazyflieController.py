@@ -37,12 +37,6 @@ from cflib.crazyflie import Crazyflie
 import logging
 logging.basicConfig(level=logging.ERROR)
 
-'''
-import cflib.crtp
-from cfclient.utils.logconfigreader import LogConfig
-from cflib.crazyflie import Crazyflie
-'''
-
 class CrazyflieController:
 
     def __init__(self):

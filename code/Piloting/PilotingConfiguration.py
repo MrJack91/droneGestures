@@ -10,7 +10,7 @@ class PilotingConfiguration():
     def __init__(self, cfc, debug):
         self.MAX_THRUST = 60000                     # max possible 60000
         self.relative_no_power_security = 20        # additional space for no powering (2cm)
-        self.debug = None                           # debug mode (show data)
+        self.debug = debug                          # debug mode (show data)
 
 
         ### ************************

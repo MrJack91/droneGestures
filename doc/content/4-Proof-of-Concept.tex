@@ -163,16 +163,103 @@ Folgende \gls{umlLabel}'s zeigen die wichtigen Klassen pro Modul auf. Dies soll 
 
 % \label{sec:cloud:definition}
 \section{Gestenerkennung}
-\todo{Gestenerkennung}
+Wie in \secref{subsec:leapmotion:api} beschrieben, kann der Leap Motion sehr viele Daten zurückliefern.
+Für die vorliegende Gestensteuerung reicht es jedoch aus, wenn wir nur Richtungsvektoren der einzelner Frames auswerten und keine Gesten über mehrere Frames erkenne müssen.
+(Sogar die Erkennung von grundlegenden Gesten unterstützt der Leap Motion. So können Callbacks auf bestimmte Gesten definiert werden, in denen bereits die Aktion ausgeführt werden kann.)
 
-% Referenz auf \secref{subsec:leapmotion}
-% und \secref{subsec:leapmotion:api}
+\subsection{Leap anbinden}
+Die Leap Motion Library wird auf OS X folgendermassen eingebunden:
+\begin{lstlisting}[style=lstStyleCpp]
+	# lib only for os x
+	src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
+	lib_dir = os.path.abspath(os.path.join(src_dir, '../lib/leap'))
+	sys.path.insert(0, lib_dir)
+\end{lstlisting}
 
-% \subsection{Leap anbinden}
-% \subsection{benötige Gesten erkennen}
+Anschliessend kann ein Leap-Controller erstellt werden, welchem ein Listener Objekt hinzugefügt werden kann.
+\begin{lstlisting}[style=lstStyleCpp]
+	# register callback object -> contains the on_frame() method
+	controller = Leap.Controller()
+	controller.add_listener(LeapListener.LeapListener())
+\end{lstlisting}
 
-\section{Steuerübermittlung an die Drohne}
-\todo{Steuerübermittlung an die Drohne}
+Der vollständige Code kann unter \href{https://github.com/MrJack91/droneGestures/blob/master/code/Controller/DetectionController.py}{/code/Controller/DetectionController.py} eingesehen werden.
+
+\subsection{benötige Gesten erkennen}
+Grundsätzlich wird jedes Frame auf beinhaltende Hand-Objekte geprüft, falls genau ein Hand-Objekt vorhanden ist, werden diese Daten ausgewertet. Wenn mehrere Hände erkannt werden, wird die Steuerung zurückgesetzt und die Initialisierung beginnt von vorne.
+
+Für die Logik des Init Prozesses, vom \textit{Reset-} bis zum \textit{Flug-Zustand (Z3)}, muss lediglich die Faust erkannt werden.
+Der Wert \textit{grab\_strength} enthält einen Wert zwischen null und eins, wobei null einer offenen Hand und eins einer Faust entspricht.
+Dieser Wert kann wie folgt abgerufen werden:
+
+\begin{lstlisting}[style=lstStyleCpp]
+	frame.hand[0].grab_strength
+\end{lstlisting}
+
+Im \textit{Flug-Zustand (Z3)} werden verschiedene Richtungsvektoren der erkannten Hand abgerufen.
+
+\begin{lstlisting}[style=lstStyleCpp]
+	# Thrust (Drehanzahl / Höhe): absolute Höhe der Handballe
+	thrust = frame.hand[0].palm_position.y
+	
+	# Richtung der Hand (pitch -> Neigung; yaw -> Drehung / Gieren)
+	pitch = frame.hand[0].direction.pitch
+	yaw = frame.hand[0].direction.yaw
+	
+	# Richtung des Handballen Vektors um den Roll (Rolle) zu messen
+	roll = frame.hand[0].palm_normal.roll
+\end{lstlisting}
+
+\begin{itemize}
+	\item \textit{Zeile 2:}
+	Mit \textit{palm\_position} kann der Richtungsvektor der Handballe gelesen werden. Der Y-Wert entspricht der Höhe.
+	
+	\item \textit{Zeile 5 \& 6:}
+	\textit{Direction} liefert Richtungsvektore ausgehen aus der Handballe Richtung Finger. So wird die Pitch (Neigung) und der Yaw (Drehung / Gieren) gelesen.
+	
+	\item \textit{Zeile 9:}
+	Der \textit{palm\_normal} Vektor steht rechtwinklig zur Handballe. Daraus kann der Roll (Rolle) definiert werden.
+\end{itemize}
+
+Alle Winkel werden in Radian gemessen und müssen für die Crazyflie in Grad umgewandelt werden.
+Der effektive Thrust muss abhängig der Ausgangsposition der Hand berechnet werden.
+
+
+\section{Drohne}
+\subsection{Verbindung zur Drohne herstellen}
+Die Crazyflie Library wird wie folgt eingebunden:
+\begin{lstlisting}[style=lstStyleCpp]
+	sys.path.append("lib/crazyflie")
+	import cflib
+	from cflib.crazyflie import Crazyflie
+\end{lstlisting}
+
+Anschliessend kann nach verfügbare Drohnen gescannt werden und eine Verbindung hergestellt werden.
+
+\begin{lstlisting}[style=lstStyleCpp]
+	available = cflib.crtp.scan_interfaces()
+	link_uri = available[0][0]
+	
+	cf = Crazyflie()
+	
+	self.cf.connected.add_callback(self._connected)
+	self.cf.disconnected.add_callback(self._disconnected)
+	self.cf.connection_failed.add_callback(self._connection_failed)
+	self.cf.connection_lost.add_callback(self._connection_lost)
+	
+	# connect to drone
+	self.cf.open_link(link_uri)
+\end{lstlisting}
+
+Der vollständige Code kann unter \href{https://github.com/MrJack91/droneGestures/blob/master/code/Controller/CrazyflieController.py}{/code/Controller/DetectionController.py} eingesehen werden.
+
+\subsection{Steuerkommando übermitteln}
+
+Vorausgesetzt die Drohne wurde erfolgreich verbunden, kann ein Steuerbefehl folgendermassen abgesetzt werden:
+
+\begin{lstlisting}[style=lstStyleCpp]
+	cf.commander.send_setpoint(roll, pitch, yaw, thrust)
+\end{lstlisting}
 
 
 \section{Mögliche Erweiterungen}
