@@ -24,7 +24,7 @@ from Piloting import LeapListener
 
 class DetectionController:
 
-    def __init__(self, cfc):
+    def __init__(self, cfc, debug):
         """
         :param cfc: the crazyflie controller object
         :return:
@@ -35,7 +35,7 @@ class DetectionController:
 
         # Init leap listener, for receiving events
         self.listener = LeapListener.LeapListener()
-        self.listener.set_cfc(cfc)
+        self.listener.set_cfc(cfc, debug)
 
         self.controller.add_listener(self.listener)
 

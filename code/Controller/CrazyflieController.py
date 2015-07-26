@@ -100,6 +100,8 @@ class CrazyflieController:
         print "CrazyflieController: connected to %s" % link_uri
         self.is_connected = True
 
+        # self.cf.commander.set_client_xmode(True);
+
         '''
         # The definition of the logconfig can be made before connecting
         self._lg_stab = LogConfig(name="debug", period_in_ms=50)

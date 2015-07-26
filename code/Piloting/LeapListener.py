@@ -32,9 +32,9 @@ class LeapListener(Leap.Listener):
 
         self.piloting_configuration = None
 
-    def set_cfc(self, cfc):
+    def set_cfc(self, cfc, debug):
         self.cfc = cfc
-        self.piloting_configuration = PilotingConfiguration.PilotingConfiguration(self.cfc)
+        self.piloting_configuration = PilotingConfiguration.PilotingConfiguration(self.cfc, debug)
 
     def on_init(self, controller):
         print "LeapListener: init"

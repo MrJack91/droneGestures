@@ -7,16 +7,17 @@ class PilotingConfiguration():
     Contains information to current piloting configuration (controll settings)
     """
 
-    def __init__(self, cfc):
+    def __init__(self, cfc, debug):
         self.MAX_THRUST = 60000                     # max possible 60000
         self.relative_no_power_security = 20        # additional space for no powering (2cm)
+        self.debug = None                           # debug mode (show data)
 
 
         ### ************************
         # runtime params - don't change
         self.relative_no_power = 0
 
-        #: :type dict of (StateHandler.BaseStateHandler)
+        #type dict of (StateHandler.BaseStateHandler)
         self.state_handler = {
             PilotingStates.PilotingStates.STATE___RESET:         State_ResetHandler.State_ResetHandler(self, cfc, PilotingStates.PilotingStates.STATE___RESET),
             PilotingStates.PilotingStates.STATE_1_INIT:          State1InitHandler.State1InitHandler(self, cfc, PilotingStates.PilotingStates.STATE_1_INIT),
