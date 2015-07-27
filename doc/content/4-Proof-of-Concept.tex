@@ -111,6 +111,13 @@ Im \textit{Flug-Zustand (Z3)} werden verschiedene Richtungsvektoren der erkannte
 
 Alle Winkel werden in Radian gemessen und müssen für die Crazyflie in Grad umgewandelt werden.
 
+\subsection{Testen der Gestensteuerung}
+Gemäss der Aufgabenstellung soll ein Testen der Gestensteuerung ohne fliegende Drohne möglich sein.
+Dazu wurde ein Debug-Parameter eingeführt.
+Ist der gesetzt, wird die Drohne nicht verbunden, sondern die Gestensteuerung kann eigenständig getestet werden.
+
+Jener Debug-Parameter findet sich im Main-File (\href{https://github.com/MrJack91/droneGestures/blob/master/code/main.py}{/code/main.py}) und kann dort gesetzt werden.
+
 
 \section{Drohne}
 \subsection{Verbindung zur Drohne herstellen}

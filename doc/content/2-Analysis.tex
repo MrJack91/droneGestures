@@ -127,7 +127,7 @@ Da die handpositions-basierte Steuerung der intuitivsten Steuerung entspricht, w
 %\subsubsection{Sensoren Integration auf bestehende Steuerungen}
 
 \section{Kosten}
-Es folgt eine Kostenzusammenstellung der verwendeten Ressourcen.
+Es folgt eine Kostenzusammenstellung der verwendeten Ressourcen:
 
 \begin{table}[H]
 	\centering
@@ -329,17 +329,25 @@ Die Lösung soll in zwei Teilen umgesetzt werden: in einer Gestenerkennung und e
 
 Die detaillierte Definition der Steuerung wird im \secref{sec:gestureControll} beschrieben.
 
-Die Umsetzung kann in drei logische Komponenten eingeteilt werden: die Gestenerkennung, die Drohne und der Commander.
+Die Umsetzung kann in drei logische Komponenten eingeteilt werden: die Gestenerkennung, die Drohne und die Steuerlogik.
 
 \subsection{Gestenerkennung}
 Die Kompenente der Gestenerkennung, erkennt die Gesten vom Leap Motion Sensor. Die Daten werden analysiert und ausgewertet.
 Eine allgemeine Gestenerkennung wird von Leap Motion zur Verfügung gestellt, die muss jedoch auf die zu erkennenden Gesten der Steuerung angepasst werden.
 
-\subsection{Drohne}
-Die Drohne wird als alleinstehendes System betrachtet, das durch ein \gls{apiLabel} gesteuert werden kann. Zudem können Messdaten abgerufen werden. An diesem System sollten keine Änderungen anfallen.
+Die Gestenerkennung soll unabhängig der Drohne entwickelt und getestet werden können.
 
-\subsection{Controller}
-Der Controller verbindet die Gestenerkennung mit der Drohne.
-Dazu gehören hauptsächlich zwei wiederholende Aufgaben.
-Einerseits müssen die erkannten Gesten in eine gültige Steueroperation umgeformt werden, woraus der Steuerprozess zur Drohne entsteht.
-Der Steuerprozess steuert die Drohne gemäss den Daten, die aus den Gesten gewonnen wurden, besonders für die Position wird eine aktive Steuerung benötigt, das heisst, dass die Position der Drohne auf die Zielposition der Hand angepasst werden muss. Dazu ist eine anhaltende Überprüfung und Korrektur notwendig.
+\subsection{Drohne}
+Die Drohne wird als alleinstehendes System betrachtet, das durch ein \gls{apiLabel} gesteuert werden kann. Zudem können Messdaten abgerufen werden. Nebst der Nutzung der \gls{apiLabel} sollten an der Drohne keine Veränderungen notwendig sein.
+
+\subsection{Steuerlogik}
+Die Steuerlogik beinhaltet das korrekte bilden der Steuerbefehle aus den verfügbaren Gesteninformationen.
+Er verbindet die Gestenerkennung mit der Drohne.
+
+Hier befindet sich der Hauptteil des umzusetzenden Codes. Abhängig vom Zustand der Drohne, werden andere Gesten erkannt und andere Befehle generiert.
+
+%\subsection{Controller}
+%Der Controller verbindet die Gestenerkennung mit der Drohne.
+%Dazu gehören hauptsächlich zwei wiederholende Aufgaben.
+%Einerseits müssen die erkannten Gesten in eine gültige Steueroperation umgeformt werden, woraus der Steuerprozess zur Drohne entsteht.
+%Der Steuerprozess steuert die Drohne gemäss den Daten, die aus den Gesten gewonnen wurden, besonders für die Position wird eine aktive Steuerung benötigt, das heisst, dass die Position der Drohne auf die Zielposition der Hand angepasst werden muss. Dazu ist eine anhaltende Überprüfung und Korrektur notwendig.
