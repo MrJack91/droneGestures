@@ -15,16 +15,14 @@ Im Folgenden ist mit dem Begriff \textit{Position} jeweils die dreidimensionale 
 \subsection{Leap Motion}
 %todo correct
 Es folgt eine grobe Übersicht des Gestenerkennungs-Sensores \textit{Leap Motion}.
-Detailliertere Informationen finden Sie im \secref{subsec:leapmotion}.
+Detailliertere Informationen sind im \secref{subsec:leapmotion} zu finden.
 % Es folgen grobe Informationen zum Gestenerkennungs-Sensor \textit{Leap Motion}.
 
 Der Sensor erkennt Gesten innerhalb eines 150\textdegree-Winkels zwischen 25\,mm und 600\,mm Höhe.
-Sprich auf ca. 20 -- 30\,cm Höhe funktioniert die Erkennung bestens und wir haben genügend vertikale Spatzung um Höhenunterschiede festzustellen.
+Um genügend vertikale Spatzung für den Höhenunterschied zu bewahren, soll die Steuerung auf 10 --  35\,cm Höhe initialisiert werden.
 Folgend wird auf die grundlegenden Flugmanöver eingegangen.
 
-
 \subsection{Flugmanöver}
-
 \begin{framed}
 	\textit{Bemerkung: }\textbf{Optimierungen an der Steuerung}\\
 	Die hier im Konzept beschriebene und ursprünglich geplante Steuerung wurde während der Umsetzung optimiert. Die Änderungen werden im \secref{sec:poc:conceptChanges} beschrieben und begründet. Die hier beschriebene Steuerung gilt aber trotzdem als Grund- und Ausgangslage und wird daher detailliert beschrieben.

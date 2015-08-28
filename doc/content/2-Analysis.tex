@@ -47,14 +47,15 @@ Nebst den erwähnten Waffenträger gibt es auch diverse weitere Aufgaben für \g
 Obschon viele Aufgabenbereiche gewaltfrei sind, dienen \glspl{glos:droneLabel} trotzdem mehrheitlich polizeilichen oder militärischen Organisationen.\footcite{Die_Geschichte_der_Drohnen_DiePresse.com_2015-03-21}
 
 \subsubsection{Heutige Einsätze von Drohnen}
-Seit 2013 werden, in Grand Forks County im US-Bundesstaat North Dakota, \glspl{glos:droneLabel} zur Verbrecherjagd eingesetzt, resp. zur Personensuche.
+Seit 2013 werden, in Grand Forks County im US-Bundesstaat North Dakota, \glspl{glos:droneLabel} zur Verbrecherjagd eingesetzt, resp. zur Personensuche.\footcite{Grand_Forks_Drone_Assisted_Policing_2015-08-28}
+Zudem darf in Grand Forks County seit August 2015 eine Drohnen sogar mit einem Taser bestückt werden. \footcite{First_State_Legalizes_Taser_Drones_for_Cops_Thanks_to_a_Lobbyist_The_Daily_Beast_2015-08-28}
 
-Auch Amazon kündet ihren "`\textit{Prime Air}"'-Service an, der Pakete direkt vor die Haustür liefert.
+Auch Amazon kündet ihren "`\textit{Prime Air}"'-Service an, der Pakete direkt vor die Haustür liefert.\footcite{Amazon_Prime_Air_2015-08-28}
 
 Im Jahr 2014 wurde der Einsatz für landwirtschaftliche Zwecke erprobt und auch die \gls{glos:dhlLabel} führte Testlieferungen mit \glspl{glos:droneLabel} aus. \footcite{Kleine_Geschichte_der_Drohnen_-_Nachrichten_Print_-_WELT_KOMPAKT_-_Lifestyle_-_DIE_WELT_2015-03-21}
 
 
-\section{Quadrocopter}
+\section{Quadrocopter Steuerung}
 \begin{wrapfigure}{r}{0.4\textwidth}
 	\includegraphics[width=1.0\linewidth]{images/analysis/crazyflize.jpg}
 	\caption[Crazyflie 2.0]{Crazyflie 2.0 (Quelle: \fullcite{Crazyflie_2.0_Seeedstudio_2015-03-22})}
@@ -85,9 +86,9 @@ Folgend wird der Fokus besonders auf Projekte mit einer Gestensteuerung und dere
 Für viele der gefundenen Projekte wurden, nebst der Crazyflie, die \textit{AR.drone} von Parrot verwendet.\footcite{AR_Drone_2.0_Parrot_2015-04-29}
 Die AR.drone ist erheblich grösser als die Crazyflie, was zur Flug-Stabilität beiträgt.
 Mit an Board ist eine Kamera.
-Obwohl die AR.drone viele Vorteile mit sich bringt und die Kosten nur wenig höher sind als bei der Crazyflie, hat Parrot eine deutlich kleinere Community und eine weniger ausführliche Entwicklerdokumentation.
+Obwohl die AR.drone einige Vorteile mit sich bringt und die Kosten nur wenig höher sind als bei der Crazyflie, hat Parrot eine deutlich kleinere Community und eine weniger ausführliche Entwicklerdokumentation.
 Die Crazyflie richtet sich hauptsächlich an Entwickler, während die AR.drone auch normale Nutzer anspricht.
-Darum wurde in dieser Arbeit die Crazyflie verwendet.
+Aufgrund der grösseren Community und der ausführlicheren Entwicklerdokumentation wurde für diese Arbeit die Crazyflie verwendet.
 
 \subsubsection{Steuermöglichkeiten}
 Zusammengefasst können die Steuerungsmöglichkeiten in folgende Kategorien eingeteilt werden:
@@ -118,47 +119,15 @@ Zusammengefasst können die Steuerungsmöglichkeiten in folgende Kategorien eing
 
 	\item \textbf{Steuerung mit \glspl{glos:wearableLabel}:}
 	Anstatt Gesten wirklich zu erkennen, kann eine Steuerung auch durch ein \gls{glos:wearableLabel} am Handgelenk oder in der Hand erfolgen.
-	Da aktuell den \glspl{glos:wearableLabel} eine grosse Aufmerksamkeit der Medien geschenkt wird, ist in absehbarer Zeit eine starke Entwicklung von \glspl{glos:wearableLabel} zu erwarten.
+	Da aktuell den \glspl{glos:wearableLabel} eine grosse Aufmerksamkeit der Medien geschenkt wird, ist in absehbarer Zeit eine starke Entwicklung von \glspl{glos:wearableLabel} zu erwarten (z.B. das Myo Armband\footcite{Myo_Gesture_Control_Armband_-_Wearable_Technology_by_Thalmic_Labs_2015-08-28}).
 	Momentan sind \glspl{glos:wearableLabel} den Gestenerkennungssensoren noch unterlegen.
 	Trotzdem wird auf Hackday eine Drohne mit einer \gls{glos:wearableLabel}-Steuerung vorgestellt.\footcite{Wearable_Gesture_Controlled_Drone_Hackaday_2015-04-29}
 \end{itemize}
 
 Da die handpositions-basierte Steuerung der intuitivsten Steuerung entspricht, wird in vorliegender Arbeit diese implementiert.
+Dazu wird der Gestensensor von Leap Motion verwendet (weitere Informationen zum Sensor sind im \secref{subsec:leapmotion} beschrieben).
 
 %\subsubsection{Sensoren Integration auf bestehende Steuerungen}
-
-\newpage
-\section{Kosten}
-Es folgt eine Kostenzusammenstellung der verwendeten Ressourcen:
-
-\begin{table}[H]
-	\centering
-	\small\renewcommand{\arraystretch}{1.4}
-	\rowcolors{1}{tablerowcolor}{tablebodycolor}
-	%
-	\captionabove{Kostenzusammestellung / Ausgaben}
-	%
-	\begin{tabularx}{0.9\textwidth}{ L{0.18\linewidth} | X | R{0.2\linewidth} }%
-		Artikel & Details & Preis\\
-		\hline
-		\textbf{Leap Motion} & VR Developer Bundle & \euro{ 96.99 } \\
-		& Shipping & \euro{ 9.99 }\\
-		& \multicolumn{1}{r|}{\textit{Subtotal}} & \euro{ 106.98 }\\
-		& \multicolumn{1}{r|}{\textit{Subtotal in CHF}} & CHF 132.65 \footnotemark\\
-		\hline
-		\textbf{Crazyflie 2.0} &  inkl. Crazyradio PA - long range 2.4 GHz USB radio dongle with antenna (110990440 - \textit{preorder}) & \textdollar{ 200.00 }\\
-		& 4 x CW+CCW spare propellers (BC-CWP-01-A and BC-CCWP-01-A) (ACC01311M) & \textdollar{ 5.00 }\\
-		& 1 x Spare 240mAh LiPo battery (313020007) & \textdollar{ 5.50 }\\
-		& 4 x spare 7 mm motor mounts (110990444) & \textdollar{ 10.00 }\\
-		& Battery holder expansion board (114990121) & \textdollar{ 4.00 }\\
-		& \multicolumn{1}{r|}{\textit{Subtotal}} & \textdollar{ 224.50 }\\
-		& \multicolumn{1}{r|}{\textit{Subtotal in CHF}} & CHF 222.65 \footnotemark[\value{footnote}]\\
-		\hline
-		\hline
-		\textbf{TOTAL} & & \textbf{CHF 355.30 \footnotemark[\value{footnote}]}
-	\end{tabularx}
-\end{table}
-\footnotetext{Die Umrechnung in CHF entspricht dem verrechneten Betrag (Kurs Ende November 2014 inkl. 1.5 \% Bearbeitungsgebühr).}
 
 \clearpage % because floating doesn't work correctly
 \section{Ist-Analyse}
@@ -242,7 +211,7 @@ Da die Drohne ebenfalls via Python programmiert werden kann, werden alle Kompone
 
 Folgende \textbf{Objekte} stehen pro \gls{glos:frameLabel} zur Verfügung: Hände, Finger, Knochen (Arm- und Fingerknochen) und fingerähnliche Werkzeuge (z.B. Bleistifte).
 Alle Objekte werden genau identifiziert, sprich die Hände werden als rechte und linke Hand erkannt, jeder Finger als richtigen Fingertyp und jeder Fingerknochen als korrekten physikalischen Knochen. Diese Erkennung funktioniert unabhängig der Position des Objektes. Dank dem Handmodell werden nicht messbare Werte angenähert.
-Jedes Objekt enthält zudem einen Richtungsvektor.
+Jedes Objekt enthält nebst der Position einen Richtungsvektor.
 
 Die \textbf{Veränderung} (Grösse, Drehung, Bewegung) von Objekten zwischen zwei \glspl{glos:frameLabel} kann ebenfalls abgerufen werden.
 
@@ -317,9 +286,40 @@ Anschliessend werden die Rotoren wieder heruntergefahren.
 
 Um Einsteigern die Steuerung zu erleichtern, kann die Rotor-Drosselung verzögert werden, so dass die Drohne nie sprunghafte Flugmanöver ausführt.
 
+\newpage
+\subsection{Kosten}
+Es folgt eine Kostenzusammenstellung der verwendeten Ressourcen:
 
-\subsubsection{Sensoren charakterisieren}
-\todo{Sensoren charakterisieren}
+\begin{table}[H]
+	\centering
+	\small\renewcommand{\arraystretch}{1.4}
+	\rowcolors{1}{tablerowcolor}{tablebodycolor}
+	%
+	\captionabove{Kostenzusammestellung / Ausgaben}
+	%
+	\begin{tabularx}{0.9\textwidth}{ L{0.18\linewidth} | X | R{0.2\linewidth} }%
+		Artikel & Details & Preis\\
+		\hline
+		\textbf{Leap Motion} & VR Developer Bundle & \euro{ 96.99 } \\
+		& Shipping & \euro{ 9.99 }\\
+		& \multicolumn{1}{r|}{\textit{Subtotal}} & \euro{ 106.98 }\\
+		& \multicolumn{1}{r|}{\textit{Subtotal in CHF}} & CHF 132.65 \footnotemark\\
+		\hline
+		\textbf{Crazyflie 2.0} &  inkl. Crazyradio PA - long range 2.4 GHz USB radio dongle with antenna (110990440 - \textit{preorder}) & \textdollar{ 200.00 }\\
+		& 4 x CW+CCW spare propellers (BC-CWP-01-A and BC-CCWP-01-A) (ACC01311M) & \textdollar{ 5.00 }\\
+		& 1 x Spare 240mAh LiPo battery (313020007) & \textdollar{ 5.50 }\\
+		& 4 x spare 7 mm motor mounts (110990444) & \textdollar{ 10.00 }\\
+		& Battery holder expansion board (114990121) & \textdollar{ 4.00 }\\
+		& \multicolumn{1}{r|}{\textit{Subtotal}} & \textdollar{ 224.50 }\\
+		& \multicolumn{1}{r|}{\textit{Subtotal in CHF}} & CHF 222.65 \footnotemark[\value{footnote}]\\
+		\hline
+		\hline
+		\textbf{TOTAL} & & \textbf{CHF 355.30 \footnotemark[\value{footnote}]}
+	\end{tabularx}
+\end{table}
+\footnotetext{Die Umrechnung in CHF entspricht dem verrechneten Betrag (Kurs Ende November 2014 inkl. 1.5 \% Bearbeitungsgebühr).}
+
+
 
 %%%
 
