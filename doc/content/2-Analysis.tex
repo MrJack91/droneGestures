@@ -132,7 +132,23 @@ Dazu wird der Gestensensor von Leap Motion verwendet (weitere Informationen zum 
 \clearpage % because floating doesn't work correctly
 \section{Ist-Analyse}
 
-\subsection{Gestensensor} \label{subsec:leapmotion}
+%\subsection{System}
+In der Ausgangslage gibt es zwei Fremdsysteme (blau eingefärbt): der Leap Motion (\secref{subsec:leapmotion}) und die Crazyflie (\secref{subsec:isAnalyseDrone}).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/system_is.pdf}
+	\caption[System-Überblick: Ist-Zustand]{System-Überblick: Ist-Zustand}
+\end{figure}
+
+Beide Systeme sind quelloffen, haben eine aktive Community und funktionieren selbstständig und vollständig.
+Dazu soll eine Steuerung (Controlling) umgesetzt werden, welche die zwei Systeme verbindet, so dass die Drohne schlussendlich via Gesten geflogen werden kann.
+
+Folgend werden die zwei Systeme genauer beschrieben.
+
+\newpage
+\subsection{Gestensensor}
+\label{subsec:leapmotion}
 \begin{wrapfigure}{r}{0.4\textwidth}
 	\includegraphics[width=1.0\linewidth]{images/analysis/leap_simple.png}
 	\caption[Leap Motion Sensor]{Leap Motion Sensor (Quelle: \fullcite{Move_Over_Kinect:_Early_Gestural_Musical_Demos_for_Leap_Motion_Look_Terrific_-_Create_Digital_Music_2015-03-27})}
@@ -323,15 +339,21 @@ Es folgt eine Kostenzusammenstellung der verwendeten Ressourcen:
 
 %%%
 
+\newpage
 \section{Soll-Analyse}
-
 Die Crazyflie soll mit dem Leap Motion, via Gesten, gesteuert werden können.
 Die Umsetzung soll in Python erfolgen.
 Die Lösung soll in zwei Teilen umgesetzt werden: in einer Gestenerkennung und einer Drohnensteuerung.
 
 Die detaillierte Definition der Steuerung wird im \secref{sec:gestureControll} beschrieben.
 
-Die Umsetzung kann in drei logische Komponenten eingeteilt werden: die Gestenerkennung, die Drohne und die Steuerlogik.
+Die Umsetzung der Steuerung (orange eingefärbt) kann in drei logische Komponenten eingeteilt werden: die Gestenerkennung, die Drohne und die Steuerlogik.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/system_full.pdf}
+	\caption[System-Überblick: Soll-Zustand]{System-Überblick: Soll-Zustand}
+\end{figure}
 
 \subsection{Gestenerkennung}
 Die Kompenente der Gestenerkennung, erkennt die Gesten vom Leap Motion Sensor. Die Daten werden analysiert und ausgewertet.

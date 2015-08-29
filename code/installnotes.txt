@@ -17,5 +17,14 @@ python main.py
 
 
 #seqdiag
-http://blockdiag.com/en/seqdiag/introduction.html#setup
+// http://blockdiag.com/en/seqdiag/introduction.html#setup
 seqdiag -Tsvg sequenceDiagramm.diag
+
+// #http://tex.stackexchange.com/questions/2099/how-to-include-svg-diagrams-in-latex
+inkscape -D -z --file=image.svg --export-pdf=image.pdf --export-latex
+
+\begin{figure}
+    \centering
+    \def\svgwidth{\columnwidth}
+    \input{image.pdf_tex}
+\end{figure}

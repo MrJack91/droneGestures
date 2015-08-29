@@ -79,9 +79,11 @@ Beim Pitch und Roll dreht sich die Drohne um eine horizontale Rotations-Achse. B
 Befindet sich die Drohne im \textit{flugbereiten Zustand (Z2)}, kann via eine Faust-Geste, die Steuerung abgebrochen werden.
 Die Drohne reagiert bis zum nächsten \textit{Init-Prozess} nicht mehr.
 
+\newpage
 \subsection{Zustands Übersicht}
 \label{sec:concept:stateoverview}
-Die Drohne kann aus Sicht der Steuerung, insofern sie eingeschaltet ist, vier Zustände einnehmen:
+%Die Drohne kann aus Sicht der Steuerung, insofern sie eingeschaltet ist, vier Zustände einnehmen:
+Die Steuerung kann sich, insofern sie eingeschaltet ist, in vier Zuständen (Z1 -- Z4) befinden:
 
 \begin{figure}[H]
 	\centering
@@ -104,8 +106,8 @@ Die Drohne befindet sich in der Luft.
 \subsubsection{Unkontrollierten Zustand (Z4)}
 %todo correct
 Die Hand wird während dem Flug nicht mehr erkannt oder die Verbindung zur Drohne ist temporär unterbrochen.
-Falls das Problem nicht innerhalb einer bestimmten Zeit behoben wird, soll die Drohne notgelandet werden (stürzt sie ab).
-%Wenn keine Hand innerhalb einer bestimmten Zeit erfasst wird, wird die Drohne Not gelandet (stürzt sie ab).
+Um solche Aussetzer überbrücken zu können, soll sich die Drohne beim Auftreten eines eben genannten Ereignisses, für ca. 2 Sekunden in der Luft halten.
+Falls sich das Problem nicht innerhalb einer bestimmten Zeit auflöst, soll die Drohne notgelandet werden, resp. werden die Rotoren ausgeschaltet).
 
 %%%
 

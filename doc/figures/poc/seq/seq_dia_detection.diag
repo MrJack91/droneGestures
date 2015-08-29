@@ -13,6 +13,8 @@ seqdiag {
                                     LeapListener <-- PilotingConfiguration [label = "initialized"];
             DetectionController <--  LeapListener;
 
+            
+
             DetectionController ->  Leap  [label = "Leap.add_listener(LeapListener)"];
 
             === START - Guesture controlling ===

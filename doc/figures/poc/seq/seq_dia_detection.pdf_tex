@@ -1,0 +1,86 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'seq_dia_detection.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{908.8bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.71583093)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{seq_dia_detection.pdf}}%
+    \put(0.07746479,1.49523937){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{main}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{seq_dia_detection.pdf}}%
+    \put(0.24647887,1.49435909){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{DetectionController}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{seq_dia_detection.pdf}}%
+    \put(0.41549296,1.49347881){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Leap}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{seq_dia_detection.pdf}}%
+    \put(0.58450704,1.49347881){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{LeapListener}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{seq_dia_detection.pdf}}%
+    \put(0.75352113,1.49435909){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{PilotingConfiguration}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{seq_dia_detection.pdf}}%
+    \put(0.92253521,1.49523937){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{StateXYHandler}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{seq_dia_detection.pdf}}%
+    \put(0.09859155,1.43538022){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{init()}}}%
+    \put(0.29753521,1.37728163){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Leap.Controller()}}}%
+    \put(0.29137324,1.27516895){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{LeapListener()}}}%
+    \put(0.30985915,1.17305627){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{LeapListener.set_cfc()}}}%
+    \put(0.65757042,1.11495768){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{PilotingConfiguration(cfc)}}}%
+    \put(0.83626761,1.05861965){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{StateXYHandler.StateXYHandl}}}%
+    \put(0.77200704,1.04717599){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{er()}}}%
+    \put(0.85035211,0.98995768){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{all state handlers initialized}}}%
+    \put(0.72447183,0.93273937){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{initialized}}}%
+    \put(0.33274648,0.82446473){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Leap.add_listener(LeapListener)}}}%
+    \put(0.45246479,0.69154219){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{on_frame()}}}%
+    \put(0.67077465,0.6334436){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{PilotingConfiguration.state_han}}}%
+    \put(0.63908451,0.62111965){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{dler[current_state]}}}%
+    \put(0.70774648,0.56478163){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{StateXYHandler}}}%
+    \put(0.66549296,0.50756332){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{StateXYHandler.handle(hand)}}}%
+    \put(0.89084507,0.44946473){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{next_state}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{seq_dia_detection.pdf}}%
+    \put(0.49911972,0.75052106){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{START - Guesture controlling}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{seq_dia_detection.pdf}}%
+    \put(0.5,0.38080275){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{END - Guesture controlling}}}%
+  \end{picture}%
+\endgroup%

@@ -1,0 +1,18 @@
+seqdiag {
+  main  ->  DetectionController [label = "init()"];
+            DetectionController ->  Leap [label = "Leap.Controller()"];
+            DetectionController <--  Leap;
+
+            DetectionController ->  LeapListener [label = "LeapListener()"];
+            DetectionController <--  LeapListener;
+
+            DetectionController ->  LeapListener [label = "LeapListener.set_cfc()"];
+                                    LeapListener -> PilotingConfiguration [label = "PilotingConfiguration(cfc)"];
+                                                    PilotingConfiguration -> StateXYHandler [label = "StateXYHandler.StateXYHandler()"];
+                                                    PilotingConfiguration <-- StateXYHandler [label = "all state handlers initialized"];
+                                    LeapListener <-- PilotingConfiguration [label = "initialized"];
+            DetectionController <--  LeapListener;
+  main  <-- DetectionController
+
+
+}

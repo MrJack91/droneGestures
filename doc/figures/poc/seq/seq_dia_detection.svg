@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg viewBox="0 0 1216 1459" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc>seqdiag {
+  main  -&gt;  DetectionController [label = "init()"];
+            DetectionController -&gt;  Leap [label = "Leap.Controller()"];
+            DetectionController &lt;--  Leap;
+
+            DetectionController -&gt;  LeapListener [label = "LeapListener()"];
+            DetectionController &lt;--  LeapListener;
+
+            DetectionController -&gt;  LeapListener [label = "LeapListener.set_cfc()"];
+                                    LeapListener -&gt; PilotingConfiguration [label = "PilotingConfiguration(cfc)"];
+                                                    PilotingConfiguration -&gt; StateXYHandler [label = "StateXYHandler.StateXYHandler()"];
+                                                    PilotingConfiguration &lt;-- StateXYHandler [label = "all state handlers initialized"];
+                                    LeapListener &lt;-- PilotingConfiguration [label = "initialized"];
+            DetectionController &lt;--  LeapListener;
+
+            
+
+            DetectionController -&gt;  Leap  [label = "Leap.add_listener(LeapListener)"];
+
+            === START - Guesture controlling ===
+
+                                    Leap  -&gt;  LeapListener  [label = "on_frame()"];
+                                              LeapListener -&gt; PilotingConfiguration [label = "PilotingConfiguration.state_handler[current_state]"];
+                                              LeapListener &lt;- PilotingConfiguration [label = "StateXYHandler"];
+                                              LeapListener -&gt; StateXYHandler [label = "StateXYHandler.handle(hand)"];
+                                              LeapListener &lt;- StateXYHandler [label = "next_state"];
+            === END - Guesture controlling ===
+
+
+  main  &lt;-- DetectionController
+
+
+
+
+
+}
+</desc>
+  <rect fill="rgb(0,0,0)" height="1296" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="127" y="141" />
+  <rect fill="rgb(0,0,0)" height="1250" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="319" y="141" />
+  <rect fill="rgb(0,0,0)" height="50" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="511" y="207" />
+  <rect fill="rgb(0,0,0)" height="596" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="511" y="841" />
+  <rect fill="rgb(0,0,0)" height="50" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="703" y="323" />
+  <rect fill="rgb(0,0,0)" height="323" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="703" y="439" />
+  <rect fill="rgb(0,0,0)" height="451" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="703" y="986" />
+  <rect fill="rgb(0,0,0)" height="207" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="895" y="505" />
+  <rect fill="rgb(0,0,0)" height="64" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="895" y="1066" />
+  <rect fill="rgb(0,0,0)" height="65" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="1087" y="582" />
+  <rect fill="rgb(0,0,0)" height="66" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="1087" y="1195" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="67" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="259" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="451" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="643" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="835" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="1027" y="46" />
+  <path d="M 128 80 L 128 1447" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="1296" stroke="rgb(0,0,0)" width="8" x="124" y="135" />
+  <path d="M 320 80 L 320 1447" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="1250" stroke="rgb(0,0,0)" width="8" x="316" y="135" />
+  <path d="M 512 80 L 512 1447" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="50" stroke="rgb(0,0,0)" width="8" x="508" y="201" />
+  <rect fill="moccasin" height="596" stroke="rgb(0,0,0)" width="8" x="508" y="835" />
+  <path d="M 704 80 L 704 1447" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="50" stroke="rgb(0,0,0)" width="8" x="700" y="317" />
+  <rect fill="moccasin" height="323" stroke="rgb(0,0,0)" width="8" x="700" y="433" />
+  <rect fill="moccasin" height="451" stroke="rgb(0,0,0)" width="8" x="700" y="980" />
+  <path d="M 896 80 L 896 1447" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="207" stroke="rgb(0,0,0)" width="8" x="892" y="499" />
+  <rect fill="moccasin" height="64" stroke="rgb(0,0,0)" width="8" x="892" y="1060" />
+  <path d="M 1088 80 L 1088 1447" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="65" stroke="rgb(0,0,0)" width="8" x="1084" y="576" />
+  <rect fill="moccasin" height="66" stroke="rgb(0,0,0)" width="8" x="1084" y="1189" />
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="64" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="26" x="128" y="65">main</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="256" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="107" x="320" y="66">DetectionController</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="448" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="27" x="512" y="67">Leap</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="640" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="71" x="704" y="67">LeapListener</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="832" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="117" x="896" y="66">PilotingConfiguration</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="1024" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="87" x="1088" y="65">StateXYHandler</text>
+  <path d="M 136 135 L 312 135" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="304,131 312,135 304,139" stroke="rgb(0,0,0)" />
+  <path d="M 328 201 L 504 201" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="496,197 504,201 496,205" stroke="rgb(0,0,0)" />
+  <path d="M 328 251 L 504 251" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="4" />
+  <polygon fill="rgb(0,0,0)" points="336,247 328,251 336,255" stroke="rgb(0,0,0)" />
+  <path d="M 328 317 L 696 317" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="688,313 696,317 688,321" stroke="rgb(0,0,0)" />
+  <path d="M 328 367 L 696 367" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="4" />
+  <polygon fill="rgb(0,0,0)" points="336,363 328,367 336,371" stroke="rgb(0,0,0)" />
+  <path d="M 328 433 L 696 433" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="688,429 696,433 688,437" stroke="rgb(0,0,0)" />
+  <path d="M 712 499 L 888 499" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="880,495 888,499 880,503" stroke="rgb(0,0,0)" />
+  <path d="M 904 576 L 1080 576" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="1072,572 1080,576 1072,580" stroke="rgb(0,0,0)" />
+  <path d="M 904 641 L 1080 641" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="4" />
+  <polygon fill="rgb(0,0,0)" points="912,637 904,641 912,645" stroke="rgb(0,0,0)" />
+  <path d="M 712 706 L 888 706" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="4" />
+  <polygon fill="rgb(0,0,0)" points="720,702 712,706 720,710" stroke="rgb(0,0,0)" />
+  <path d="M 328 756 L 696 756" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="4" />
+  <polygon fill="rgb(0,0,0)" points="336,752 328,756 336,760" stroke="rgb(0,0,0)" />
+  <path d="M 328 835 L 504 835" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="496,831 504,835 496,839" stroke="rgb(0,0,0)" />
+  <path d="M 520 980 L 696 980" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="688,976 696,980 688,984" stroke="rgb(0,0,0)" />
+  <path d="M 712 1060 L 888 1060" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="880,1056 888,1060 880,1064" stroke="rgb(0,0,0)" />
+  <path d="M 712 1124 L 888 1124" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="720,1120 712,1124 720,1128" stroke="rgb(0,0,0)" />
+  <path d="M 712 1189 L 1080 1189" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="1072,1185 1080,1189 1072,1193" stroke="rgb(0,0,0)" />
+  <path d="M 712 1255 L 1080 1255" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="720,1251 712,1255 720,1259" stroke="rgb(0,0,0)" />
+  <path d="M 136 1385 L 312 1385" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="4" />
+  <polygon fill="rgb(0,0,0)" points="144,1381 136,1385 144,1389" stroke="rgb(0,0,0)" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="25" x="152" y="133">init()</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="92" x="378" y="199">Leap.Controller()</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="78" x="371" y="315">LeapListener()</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="120" x="392" y="431">LeapListener.set_cfc()</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="142" x="787" y="497">PilotingConfiguration(cfc)</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="164" x="990" y="561">StateXYHandler.StateXYHandl</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="19" x="917" y="574">er()</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="147" x="1006" y="639">all state handlers initialized</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="50" x="863" y="704">initialized</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="173" x="418" y="827">Leap.add_listener(LeapListener)</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="60" x="554" y="978">on_frame()</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="172" x="802" y="1044">PilotingConfiguration.state_han</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="101" x="766" y="1058">dler[current_state]</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="87" x="844" y="1122">StateXYHandler</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="160" x="796" y="1187">StateXYHandler.handle(hand)</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="56" x="1052" y="1253">next_state</text>
+  <path d="M 40 903 L 517 903" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 40 907 L 517 907" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 698 903 L 1176 903" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 698 907 L 1176 907" fill="none" stroke="rgb(0,0,0)" />
+  <rect fill="rgb(208,208,208)" height="20" stroke="rgb(0,0,0)" width="181" x="517" y="895" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="161" x="607" y="911">START - Guesture controlling</text>
+  <path d="M 40 1323 L 524 1323" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 40 1327 L 524 1327" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 692 1323 L 1176 1323" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 692 1327 L 1176 1327" fill="none" stroke="rgb(0,0,0)" />
+  <rect fill="rgb(208,208,208)" height="20" stroke="rgb(0,0,0)" width="168" x="524" y="1315" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="148" x="608" y="1331">END - Guesture controlling</text>
+</svg>

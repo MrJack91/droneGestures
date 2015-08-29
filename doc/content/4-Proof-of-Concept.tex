@@ -1,173 +1,15 @@
 \chapter{Proof-of-Concept}
 
-\section{Anpassungen am Konzept}
-\label{sec:poc:conceptChanges}
-Die ursprüngliche Steuerung (gemäss \secref{sec:concept:stateoverview}) wurde während der Umsetzung optimiert.\\
-Das Zustands-Diagramm wurde wie folgt angepasst:
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1.0\textwidth]{figures/concept/state-diagram-2.pdf}
-	\caption[Zustands-Diagramm: Drohne mit optimierter Gestensteuerung optimiert]{Zustands-Diagramm: Drohne mit optimierter Gestensteuerung}
-\end{figure}
-
-Folgend werden die durchgeführten Änderungen erläutert und begründet.
-
-\subsection{"'Z4: unkontrolliert"' entfernt}
-Ein neues Bedürfnis aus Perspektive des Piloten wurde erkannt: die Drohne soll bei kritischen Flugsituationen möglich rasch gestoppt werden können, resp. die Rotoren ausschalten.
-So kann Schaden an den Rotoren vermieden werden, welche gewöhnlich am häufigsten ersetzt werde müssen.
-Zudem wird auch die Möglichkeit von Schäden durch drehende Rotoren gehemmt, was aber bei dieser Grösse von Drohne eher ein theoretisches Risiko darstellt.
-
-Gleichzeitig zeigten diverse Testflüge auf, dass die Verbindung zur Drohne, so wie auch zum Leap Motion sehr stabil läuft und daher keine unerwartete Unterbrüche zu überbrücken sind.
-
-Weil in kritischen Flugsituationen meist die Reaktionszeit eine grosse Rolle spielt, muss ein Rotorenstop möglichst intuitiv erfolgen.
-Daher wurde die Steuerung so angepasst, dass die Rotoren stoppen, sobald eine Faust erkannt wird oder die Hand nicht mehr erkannt wird.
-Der Zustand \textit{Z4: unkontrolliert} wurde entfernt.
-
-Diese Anpassung hat sich bereits bei mehreren Testflügen gelohnt.
-
-\subsection{Init-Prozess: "'Reset" hinzugefügt}
-Ein eher kleines, aber bereits im Konzept vernachlässigtes Problem einer Gestensteuerung, stellt die zwar korrekte Erkennung von Gesten, aber nicht beabsichtigte Ausführung davon dar.
-Also wenn die Applikation initialisiert wurde, soll keine nicht gewollte  Geste die Drohne in die Luft bringen können.
-Denn ansonsten wird entweder direkt anschliessend keine Hand mehr erkannt, was zum Absturz führt, oder es folgen weitere nicht bewusste Kommandos, die gefährlich für die Drohne und das Umfeld sein können.
-
-Auf Grund dieser Gefahr wurde die Sicherheit des Init-Prozesses mit einem weiteren Pseudo-Zustand erweitert: dem \textit{Reset-Zustand}.
-
-Vor dem \textit{Init-Zustand (Z1)} befindet sich die Drohne im \textit{Reset-Zustand}. Der Zustandswechsel kann erst erfolgen, wenn nacheinander eine Faust und eine offene Hand erkannt werden.
-Damit wird vermieden, dass nach der Landung ein Öffnen der Hand bereits als neue Initialisierung des nächsten Fluges ausgeführt wird und die Drohne beim unvorsichtigen Entfernen der Hand bereits los fliegt.
-Zudem hilft dies, generell nicht gewollte Gesten, die ein Steuerkommando zur Folge hätten, zu ignorieren.
-
-Da trotz der erwähnten Vorsichtsmassnahme noch nicht genügend gewährleistet werden kann, dass die Geste wirklich einen Start auslösen soll, wird erst in den \textit{flugbereiten Zustand (Z2)} gewechselt, wenn mindestens 2 Sekunden lang eine Faust-Geste erkannt wird.
-
-Bei jedem Not-Abbruch (egal aus welchem Zustand), wird die Steuerung wiederum in den Reset-Zustand versetzt.
-
-Mit Hilfe dieser Anpassungen hat sich bis jetzt der gesamte Init-Prozess als sicher erwiesen und unabsichtliche Steuerungen wurden anschliessend vollständig vermieden.
-
-\subsection{Anpassung vom Zustand "`Z2: flugbereit"'}
-Ursprünglich war geplant, dass der Zustandswechsel zwischen \textit{flugbereitem Zustand (Z2)} und \textit{Flug-Zustand (Z3)} abhängig davon ist, ob sich die Drohne in der Luft oder auf dem Bode befindet.
-Dies ist jedoch schwierig zu erkennen.
-
-Daher wurde der Wechsel vom \textit{flugbereiten Zustand (Z2)} in den \textit{Flug-Zustand (Z3)} neu definiert.
-Der Wechsel erfolgt sobald eine offene Hand (innerhalb akzeptierter Höhe) erkannt wird.
-Somit erzwingt der neue \textit{Flug-Zustand (Z3)} nicht explizit, dass sich die Drohne in der Luft befindet, jedoch die Steuerung (Gestenerkennung inklusiv Befehlsübermittlung) entspricht den Möglichkeiten, die der Pilot in der Luft zur Verfügung hat.
-
-
-\section{Gestenerkennung}
-Wie in \secref{subsec:leapmotion:api} beschrieben, kann der Leap Motion sehr viele Informationen erkennen und zurückliefern.
-Für die geplante Gestensteuerung reicht es jedoch aus, wenn wir die Richtungsvektoren von Hand-Objekten innerhalb einzelner Frames auswerten.
-Es müssen keine Gesten über mehrere Frames erkannt werden. (Der Leap Motion unterstützt auch die Erkennung von grundlegenden Gesten über mehrere Frames. Es können Callbacks auf bestimmte Gesten definiert werden, in denen bereits die Aktion ausgeführt werden kann. Dies wird für die vorliegende Umsetzung wie erwähnt nicht benötigt.)
-
-\subsection{Leap anbinden}
-Die Leap Motion Library wird auf OS X folgendermassen eingebunden:
-\begin{lstlisting}[style=lstStyleCpp]
-	# lib (for os x)
-	src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
-	lib_dir = os.path.abspath(os.path.join(src_dir, '../lib/leap'))
-	sys.path.insert(0, lib_dir)
-\end{lstlisting}
-
-Anschliessend kann ein Leap-Controller erstellt werden, welchem ein Listener-Objekt hinzugefügt werden kann:
-\begin{lstlisting}[style=lstStyleCpp]
-	# register callback object who contains the on_frame() method
-	controller = Leap.Controller()
-	controller.add_listener(LeapListener.LeapListener())
-\end{lstlisting}
-
-Der vollständige Code kann unter \href{https://github.com/MrJack91/droneGestures/blob/master/code/Controller/DetectionController.py}{/code/Controller/DetectionController.py} eingesehen werden.
-
-\subsection{Benötigte Gesten erkennen}
-Grundsätzlich wird jedes Frame auf beinhaltende Hand-Objekte geprüft.
-Falls genau ein Hand-Objekt vorhanden ist, werden diese Daten ausgewertet. Wenn mehrere Hände erkannt werden, wird die Steuerung in den Reset-Zustand zurückgesetzt und die Initialisierung beginnt von vorne.
-
-Für die Logik des Init-Prozesses, vom \textit{Reset-} bis zum \textit{Flug-Zustand (Z3)}, muss lediglich die Faust erkannt werden.
-Der Wert \textit{grab\_strength} enthält einen Wert zwischen null und eins, wobei null einer offenen Hand und eins einer Faust entspricht.
-Dieser Wert kann wie folgt abgerufen werden:
-
-\begin{lstlisting}[style=lstStyleCpp]
-	frame.hand[0].grab_strength
-\end{lstlisting}
-
-Im \textit{Flug-Zustand (Z3)} werden verschiedene Richtungsvektoren der erkannten Hand abgerufen:
-
-\begin{lstlisting}[style=lstStyleCpp]
-	# Thrust (Drehanzahl / Höhe): absolut height of the hand palm
-	thrust = frame.hand[0].palm_position.y
-	
-	# Direction vector of the hand: from hand palm to finger (pitch -> Neigung; yaw -> Drehung / Gieren)
-	pitch = frame.hand[0].direction.pitch
-	yaw = frame.hand[0].direction.yaw
-	
-	# Direction of the normal vector, to measure the roll (Rolle)
-	roll = frame.hand[0].palm_normal.roll
-\end{lstlisting}
-
-\begin{itemize}
-	\item \textit{Zeile 2:}
-	Mit \textit{palm\_position} kann die Position des Handballen gelesen werden.
-	Der Y-Wert entspricht der Höhe, welche für den Thrust verwendet wird.
-	Der effektive Thrust muss abhängig von der Ausgangsposition der Hand berechnet werden.
-	
-	\item \textit{Zeile 5 \& 6:}
-	\textit{Direction} liefert Richtungsvektoren ausgehend aus der Handballe in Richtung der Finger. So wird die Pitch (Neigung) und der Yaw (Drehung / Gieren) gelesen.
-	
-	\item \textit{Zeile 9:}
-	Der \textit{palm\_normal} Vektor steht rechtwinklig zum Handballen. Daraus kann der Roll (Rolle) definiert werden.
-\end{itemize}
-
-Alle Winkel werden in Radian gemessen und müssen für die Crazyflie in Grad umgewandelt werden.
-
-\subsection{Testen der Gestensteuerung}
-Gemäss der Aufgabenstellung soll ein Testen der Gestensteuerung ohne fliegende Drohne möglich sein.
-Dazu wurde ein Debug-Parameter eingeführt.
-Ist der gesetzt, wird die Drohne nicht verbunden, sondern die Gestensteuerung kann eigenständig getestet werden.
-
-Jener Debug-Parameter findet sich im Main-File (\href{https://github.com/MrJack91/droneGestures/blob/master/code/main.py}{/code/main.py}) und kann dort gesetzt werden.
-
-
-\section{Drohne}
-\subsection{Verbindung zur Drohne herstellen}
-Die Crazyflie Library wird wie folgt eingebunden:
-\begin{lstlisting}[style=lstStyleCpp]
-	sys.path.append("lib/crazyflie")
-	import cflib
-	from cflib.crazyflie import Crazyflie
-\end{lstlisting}
-
-Mit dem \textit{Scannen} wird der Link der Drohne gefunden und die Verbindung kann hergestellt werden:
-\begin{lstlisting}[style=lstStyleCpp]
-	available = cflib.crtp.scan_interfaces()
-	#link_uri = available[0][0]
-	link_uri = 'radio://0/80/250K'
-	
-	cf = Crazyflie()
-	
-	self.cf.connected.add_callback(self._connected)
-	self.cf.disconnected.add_callback(self._disconnected)
-	self.cf.connection_failed.add_callback(self._connection_failed)
-	self.cf.connection_lost.add_callback(self._connection_lost)
-	
-	# connect to drone
-	self.cf.open_link(link_uri)
-\end{lstlisting}
-
-Da \textit{scan\_interfaces} oft auch Störsignale zurückliefert, wurde der Kommunikationslink hart auf "`radio://0/80/250K"' codiert.
-
-Der vollständige Code kann unter \href{https://github.com/MrJack91/droneGestures/blob/master/code/Controller/CrazyflieController.py}{/code/Controller/DetectionController.py} eingesehen werden.
-
-\subsection{Steuerkommando übermitteln}
-Wenn die Drohne erfolgreich verbunden wurde, kann ein Steuerbefehl folgendermassen abgesetzt werden:
-
-\begin{lstlisting}[style=lstStyleCpp]
-	cf.commander.send_setpoint(roll, pitch, yaw, thrust)
-\end{lstlisting}
-
-Dabei müssen die Vorzeichen sorgfältig gesetzt werden, sonst erfolgen Teile der Steuerung spiegelverkehrt.
-
-
-
 \section{Systemübersicht}
-Das Proof-of-Concept beinhaltet die Logik und Kommunikation zwischen dem Gestensensor und der Drohne über die jeweils bestehenden \gls{apiLabel}'s.
+Das Proof-of-Concept beinhaltet die Logik und Kommunikation zwischen dem Gestensensor und der Drohne über die jeweils bestehenden \gls{apiLabel}'s (orange eingefärbter Teil).
 
 Folglich sind die zwei Hauptkomponenten der Umsetzung der \textit{Crazyflie Controller} (\secref{sec:poc:controllerCrazyflie}) und der \textit{Detection Controller} (\secref{sec:poc:controllerDetection}).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/system_poc.pdf}
+	\caption[System-Überblick: Proof-of-Concept]{System-Überblick: Proof-of-Concept}
+\end{figure}
 
 \subsection{Crazyflie Controller}
 \label{sec:poc:controllerCrazyflie}
@@ -225,6 +67,186 @@ Es befindet sich aber kein Status spezifischer Code im \textit{Piloting}.
 \subsubsection{main.py}
 Das \textit{main.py} File dient zum Start des Programmes. Es erstellt die Controllers und überprüft auf eine gewünschte Programm Beendung. Somit entspricht das \textit{main} File dem Root File.
 
+
+\section{Drohne}
+\subsection{Verbindung zur Drohne herstellen}
+Die Crazyflie Library wird wie folgt eingebunden:
+\begin{lstlisting}[style=lstStyleCpp]
+sys.path.append("lib/crazyflie")
+import cflib
+from cflib.crazyflie import Crazyflie
+\end{lstlisting}
+
+Mit dem \textit{Scannen} wird der Link der Drohne gefunden und die Verbindung kann hergestellt werden:
+\begin{lstlisting}[style=lstStyleCpp]
+available = cflib.crtp.scan_interfaces()
+#link_uri = available[0][0]
+link_uri = 'radio://0/80/250K'
+
+cf = Crazyflie()
+
+self.cf.connected.add_callback(self._connected)
+self.cf.disconnected.add_callback(self._disconnected)
+self.cf.connection_failed.add_callback(self._connection_failed)
+self.cf.connection_lost.add_callback(self._connection_lost)
+
+# connect to drone
+self.cf.open_link(link_uri)
+\end{lstlisting}
+
+Da \textit{scan\_interfaces} oft auch Störsignale zurückliefert, wurde der Kommunikationslink hart auf "`radio://0/80/250K"' codiert.
+
+Der vollständige Code kann unter \href{https://github.com/MrJack91/droneGestures/blob/master/code/Controller/CrazyflieController.py}{/code/Controller/DetectionController.py} eingesehen werden.
+
+\subsection{Steuerkommando übermitteln}
+Wenn die Drohne erfolgreich verbunden wurde, kann ein Steuerbefehl folgendermassen abgesetzt werden:
+
+\begin{lstlisting}[style=lstStyleCpp]
+cf.commander.send_setpoint(roll, pitch, yaw, thrust)
+\end{lstlisting}
+
+Dabei müssen die Vorzeichen sorgfältig gesetzt werden, sonst erfolgen Teile der Steuerung spiegelverkehrt.
+
+
+\section{Gestenerkennung}
+Wie in \secref{subsec:leapmotion:api} beschrieben, kann der Leap Motion sehr viele Informationen erkennen und zurückliefern.
+Für die geplante Gestensteuerung reicht es jedoch aus, wenn wir die Richtungsvektoren von Hand-Objekten innerhalb einzelner Frames auswerten.
+Es müssen keine Gesten über mehrere Frames erkannt werden. (Der Leap Motion unterstützt auch die Erkennung von grundlegenden Gesten über mehrere Frames. Es können Callbacks auf bestimmte Gesten definiert werden, in denen bereits die Aktion ausgeführt werden kann. Dies wird für die vorliegende Umsetzung wie erwähnt nicht benötigt.)
+
+\subsection{Leap anbinden}
+Die Leap Motion Library wird auf OS X folgendermassen eingebunden:
+\begin{lstlisting}[style=lstStyleCpp]
+# lib (for os x)
+src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
+lib_dir = os.path.abspath(os.path.join(src_dir, '../lib/leap'))
+sys.path.insert(0, lib_dir)
+\end{lstlisting}
+
+Anschliessend kann ein Leap-Controller erstellt werden, welchem ein Listener-Objekt hinzugefügt werden kann:
+\begin{lstlisting}[style=lstStyleCpp]
+# register callback object who contains the on_frame() method
+controller = Leap.Controller()
+controller.add_listener(LeapListener.LeapListener())
+\end{lstlisting}
+
+Der vollständige Code kann unter \href{https://github.com/MrJack91/droneGestures/blob/master/code/Controller/DetectionController.py}{/code/Controller/DetectionController.py} eingesehen werden.
+
+\subsection{Benötigte Gesten erkennen}
+Grundsätzlich wird jedes Frame auf beinhaltende Hand-Objekte geprüft.
+Falls genau ein Hand-Objekt vorhanden ist, werden diese Daten ausgewertet. Wenn mehrere Hände erkannt werden, wird die Steuerung in den Reset-Zustand zurückgesetzt und die Initialisierung beginnt von vorne.
+
+Für die Logik des Init-Prozesses, vom \textit{Reset-} bis zum \textit{Flug-Zustand (Z3)}, muss lediglich die Faust erkannt werden.
+Der Wert \textit{grab\_strength} enthält einen Wert zwischen null und eins, wobei null einer offenen Hand und eins einer Faust entspricht.
+Dieser Wert kann wie folgt abgerufen werden:
+
+\begin{lstlisting}[style=lstStyleCpp]
+frame.hand[0].grab_strength
+\end{lstlisting}
+
+Im \textit{Flug-Zustand (Z3)} werden verschiedene Richtungsvektoren der erkannten Hand abgerufen:
+
+\begin{lstlisting}[style=lstStyleCpp]
+# Thrust (Drehanzahl / Höhe): absolut height of the hand palm
+thrust = frame.hand[0].palm_position.y
+
+# Direction vector of the hand: from hand palm to finger (pitch -> Neigung; yaw -> Drehung / Gieren)
+pitch = frame.hand[0].direction.pitch
+yaw = frame.hand[0].direction.yaw
+
+# Direction of the normal vector, to measure the roll (Rolle)
+roll = frame.hand[0].palm_normal.roll
+\end{lstlisting}
+
+\begin{itemize}
+	\item \textit{Zeile 2:}
+	Mit \textit{palm\_position} kann die Position des Handballen gelesen werden.
+	Der Y-Wert entspricht der Höhe, welche für den Thrust verwendet wird.
+	Der effektive Thrust muss abhängig von der Ausgangsposition der Hand berechnet werden.
+	
+	\item \textit{Zeile 5 \& 6:}
+	\textit{Direction} liefert Richtungsvektoren ausgehend aus der Handballe in Richtung der Finger. So wird die Pitch (Neigung) und der Yaw (Drehung / Gieren) gelesen.
+	
+	\item \textit{Zeile 9:}
+	Der \textit{palm\_normal} Vektor steht rechtwinklig zum Handballen. Daraus kann der Roll (Rolle) definiert werden.
+\end{itemize}
+
+Alle Winkel werden in Radian gemessen und müssen für die Crazyflie in Grad umgewandelt werden.
+
+\subsection{Testen der Gestensteuerung}
+Gemäss der Aufgabenstellung soll ein Testen der Gestensteuerung ohne fliegende Drohne möglich sein.
+Dazu wurde ein Debug-Parameter eingeführt.
+Ist der gesetzt, wird die Drohne nicht verbunden, sondern die Gestensteuerung kann eigenständig getestet werden.
+
+Jener Debug-Parameter findet sich im Main-File (\href{https://github.com/MrJack91/droneGestures/blob/master/code/main.py}{/code/main.py}) und kann dort gesetzt werden.
+
+
+
+\section{Anpassungen am Konzept}
+\label{sec:poc:conceptChanges}
+Die ursprüngliche Steuerung (gemäss \secref{sec:concept:stateoverview}) wurde während der Umsetzung optimiert.\\
+Das Zustands-Diagramm wurde wie folgt angepasst:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/concept/state-diagram-2.pdf}
+	\caption[Zustands-Diagramm: Drohne mit optimierter Gestensteuerung optimiert]{Zustands-Diagramm: Drohne mit optimierter Gestensteuerung}
+\end{figure}
+
+Folgend werden die durchgeführten Änderungen erläutert und begründet.
+
+\subsection{"'Z4: unkontrolliert"' entfernt}
+Ein neues Bedürfnis aus Perspektive des Piloten wurde erkannt: die Drohne soll bei kritischen Flugsituationen in der Lage sein möglichst rasch gestoppt zu werden, resp. die Rotoren auszuschalten.
+So kann Schaden an den Rotoren vermieden werden, welche am häufigsten ersetzt werden müssen, da sich diese selbst in Bewegung befinden und sich bei einer Kollision so eine grössere Kraft darauf auswirkt.
+Zudem wird auch die Möglichkeit von Schäden durch drehende Rotoren gehemmt, was aber bei dieser Grösse von Drohne eher ein theoretisches Risiko darstellt.
+Daher wird in diesem Fall ein unkontrollierter Absturz in Kauf genommen.
+
+Gleichzeitig zeigten diverse Testflüge auf, dass die Verbindung zur Drohne, so wie auch zum Leap Motion sehr stabil läuft und daher keine unerwartete Unterbrüche zu überbrücken sind.
+
+Weil in kritischen Flugsituationen meist die Reaktionszeit eine grosse Rolle spielt, muss ein Rotorenstop möglichst intuitiv erfolgen.
+Daher wurde die Steuerung so angepasst, dass die Rotoren stoppen, sobald eine Faust erkannt wird oder die Hand nicht mehr erkannt wird.
+Der Zustand \textit{Z4: unkontrolliert} wurde entfernt.
+
+Diese Anpassung hat sich bereits bei mehreren Testflügen bewährt.
+
+\subsection{Init-Prozess: "'Reset" hinzugefügt}
+Ein eher kleines, aber bereits im Konzept vernachlässigtes Problem einer Gestensteuerung, stellt die zwar korrekte Erkennung von Gesten, aber nicht beabsichtigte Ausführung davon dar.
+Wenn die Applikation initialisiert wurde, soll keine nicht gewollte  Geste die Drohne in die Luft bringen können.
+Denn ansonsten wird entweder direkt anschliessend keine Hand mehr erkannt, was zum Absturz führt, oder es folgen weitere nicht bewusste Kommandos, die gefährlich für die Drohne und das Umfeld sein können.
+
+Auf Grund dieser Gefahr wurde die Sicherheit des Init-Prozesses mit einem weiteren Pseudo-Zustand erweitert: dem \textit{Reset-Zustand}.
+
+Vor dem \textit{Init-Zustand (Z1)} befindet sich die Drohne im \textit{Reset-Zustand}. Der Zustandswechsel in den \textit{Init-Zustand (Z1)} kann erst erfolgen, wenn nacheinander eine Faust und eine offene Hand erkannt werden.
+Damit wird vermieden, dass nach der Landung ein Öffnen der Hand bereits als neue Initialisierung des nächsten Fluges ausgeführt wird und die Drohne beim unvorsichtigen Entfernen der Hand bereits los fliegt.
+Zudem hilft dies generell nicht gewollte Gesten, die ein Steuerkommando zur Folge hätten, zu ignorieren.
+
+Da trotz der erwähnten Vorsichtsmassnahme noch nicht genügend gewährleistet werden kann, dass die Geste wirklich einen Start auslösen soll, wird erst in den \textit{flugbereiten Zustand (Z2)} gewechselt, wenn mindestens 2 Sekunden lang eine Faust-Geste erkannt wird.
+
+Bei jedem Not-Abbruch, egal in welchem Zustand sich die Steuerung befindet, wird die Steuerung wiederum in den Reset-Zustand versetzt.
+
+Mit Hilfe dieser Anpassungen hat sich bis jetzt der gesamte Init-Prozess, aus eigener Erfahrung, als sicher erwiesen.
+Unabsichtliche Steuerungen wurden seither konsequent vermieden.
+
+\subsection{Anpassung vom Zustand "`Z2: flugbereit"'}
+Ursprünglich war geplant, dass der Zustandswechsel zwischen \textit{flugbereitem Zustand (Z2)} und \textit{Flug-Zustand (Z3)} abhängig davon ist, ob sich die Drohne in der Luft oder auf dem Bode befindet.
+Dies ist jedoch schwierig zu erkennen.
+
+Daher wurde der Wechsel vom \textit{flugbereiten Zustand (Z2)} in den \textit{Flug-Zustand (Z3)} neu definiert.
+Der Wechsel erfolgt sobald eine offene Hand (innerhalb akzeptierter Höhe) erkannt wird.
+Somit erzwingt der neue \textit{Flug-Zustand (Z3)} nicht explizit, dass sich die Drohne in der Luft befindet, jedoch die Steuerung (Gestenerkennung inklusiv Befehlsübermittlung) entspricht den Möglichkeiten, die der Pilot in der Luft zur Verfügung hat.
+
+
+
+\section{Mögliche Erweiterungen}
+\todo{wird noch ausformuliert...}
+\begin{itemize}
+	\item Hilfstexte für Bedienung in Konsolen Output
+	\item Statuswechsel mit Sound anzeigen
+	\item GUI mit Informationen (Debug, Akku)
+	\item 
+\end{itemize}
+
+
+\section{Diagramme}
+
 \subsection{Ablauf - Sequenz-Diagramme}
 Folgend werden einzelne Sequenzen mit Hilfe eines Sequenz-Diagrammes genauer aufgezeigt.
 
@@ -236,11 +258,28 @@ Die ersten zwei Diagramme zeigen den Ablauf der Initialisierung der Controller b
 	\caption{Sequenz-Diagramm - Initialisierung der Crazyflie}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1.0\textwidth]{figures/poc/seq_dia_detection.png}
-	\caption{Sequenz-Diagramm - Initialisierung und Ablauf des Leap Motions}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\def\svgwidth{\columnwidth}
+%	\input{figures/poc/seq_dia_detection.pdf}
+%\end{figure}
+
+
+\begin{sidewaysfigure}[ht]
+	\includegraphics[width=1.0\textwidth]{figures/poc/seq_dia_detection_part1.png}
+	\caption{Sequenz-Diagramm - Initialisierung des Leap Motions}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[ht]
+	\includegraphics[width=1.0\textwidth]{figures/poc/seq_dia_detection_part2.png}
+	\caption{Sequenz-Diagramm - Gestenerkennung und Ausführung der allgemeinen Steuerung}
+\end{sidewaysfigure}
+
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=1.0\textwidth]{figures/poc/seq_dia_detection.png}
+%	\caption{Sequenz-Diagramm - Initialisierung und Ablauf des Leap Motions}
+%\end{figure}
 
 \clearpage
 \subsection{Programmbeendung}
@@ -264,7 +303,7 @@ Folgende \gls{umlLabel}'s zeigen die wichtigen Klassen pro Modul auf. Dies soll 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{figures/poc/uml/piloting.png}
+	\includegraphics[width=0.81\textwidth]{figures/poc/uml/piloting.png}
 	\caption{UML - \textit{Piloting} Modul}
 \end{figure}
 
@@ -273,13 +312,3 @@ Folgende \gls{umlLabel}'s zeigen die wichtigen Klassen pro Modul auf. Dies soll 
 	\includegraphics[width=1.0\textwidth]{figures/poc/uml/stateHandler.png}
 	\caption{UML - \textit{StateHandler} Modul}
 \end{figure}
-
-
-\section{Mögliche Erweiterungen}
-\todo{wird noch ausformuliert...}
-\begin{itemize}
-	\item Hilfstexte für Bedienung in Konsolen Output
-	\item Statuswechsel mit Sound anzeigen
-	\item GUI mit Informationen (Debug, Akku)
-	\item 
-\end{itemize}

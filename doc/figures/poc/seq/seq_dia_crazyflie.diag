@@ -1,8 +1,8 @@
 seqdiag {
-  main  ->  CrazyflieController
+  main  ->  CrazyflieController [label = "CrazyflieController()"]
   main  <--  CrazyflieController
   main  ->  CrazyflieController [label = "connect()"];
-            CrazyflieController ->  Crazyflie [rightnote = "initiate Crazyflie API"];
+            CrazyflieController ->  Crazyflie [label = "cf.open_link()", rightnote = "initiate Crazyflie API"];
             CrazyflieController <--  Crazyflie
   main  <-- CrazyflieController
 }

@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg viewBox="0 0 1216 852" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc>seqdiag {
+  main  -&gt;  DetectionController -&gt;  Leap  [label = "Leap.add_listener(LeapListener)"];
+
+            === START - Guesture controlling ===
+
+                                    Leap  -&gt;  LeapListener  [label = "on_frame()"];
+                                              LeapListener -&gt; PilotingConfiguration [label = "PilotingConfiguration.state_handler[current_state]"];
+                                              LeapListener &lt;- PilotingConfiguration [label = "StateXYHandler"];
+                                              LeapListener -&gt; StateXYHandler [label = "StateXYHandler.handle(hand)"];
+                                              LeapListener &lt;- StateXYHandler [label = "next_state"];
+            === END - Guesture controlling ===
+
+
+  main  &lt;-- DetectionController
+
+
+
+
+
+}
+</desc>
+  <rect fill="rgb(0,0,0)" height="675" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="127" y="155" />
+  <rect fill="rgb(0,0,0)" height="629" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="319" y="155" />
+  <rect fill="rgb(0,0,0)" height="596" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="511" y="234" />
+  <rect fill="rgb(0,0,0)" height="451" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="703" y="379" />
+  <rect fill="rgb(0,0,0)" height="64" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="895" y="459" />
+  <rect fill="rgb(0,0,0)" height="66" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="1087" y="588" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="67" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="259" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="451" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="643" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="835" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="1027" y="46" />
+  <path d="M 128 80 L 128 840" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="675" stroke="rgb(0,0,0)" width="8" x="124" y="149" />
+  <path d="M 320 80 L 320 840" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="629" stroke="rgb(0,0,0)" width="8" x="316" y="149" />
+  <path d="M 512 80 L 512 840" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="596" stroke="rgb(0,0,0)" width="8" x="508" y="228" />
+  <path d="M 704 80 L 704 840" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="451" stroke="rgb(0,0,0)" width="8" x="700" y="373" />
+  <path d="M 896 80 L 896 840" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="64" stroke="rgb(0,0,0)" width="8" x="892" y="453" />
+  <path d="M 1088 80 L 1088 840" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="66" stroke="rgb(0,0,0)" width="8" x="1084" y="582" />
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="64" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="26" x="128" y="65">main</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="256" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="107" x="320" y="66">DetectionController</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="448" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="27" x="512" y="67">Leap</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="640" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="71" x="704" y="67">LeapListener</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="832" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="117" x="896" y="66">PilotingConfiguration</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="1024" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="87" x="1088" y="65">StateXYHandler</text>
+  <path d="M 136 149 L 312 149" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="304,145 312,149 304,153" stroke="rgb(0,0,0)" />
+  <path d="M 328 228 L 504 228" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="496,224 504,228 496,232" stroke="rgb(0,0,0)" />
+  <path d="M 520 373 L 696 373" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="688,369 696,373 688,377" stroke="rgb(0,0,0)" />
+  <path d="M 712 453 L 888 453" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="880,449 888,453 880,457" stroke="rgb(0,0,0)" />
+  <path d="M 712 517 L 888 517" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="720,513 712,517 720,521" stroke="rgb(0,0,0)" />
+  <path d="M 712 582 L 1080 582" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="1072,578 1080,582 1072,586" stroke="rgb(0,0,0)" />
+  <path d="M 712 648 L 1080 648" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="720,644 712,648 720,652" stroke="rgb(0,0,0)" />
+  <path d="M 136 778 L 312 778" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="4" />
+  <polygon fill="rgb(0,0,0)" points="144,774 136,778 144,782" stroke="rgb(0,0,0)" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="173" x="226" y="141">Leap.add_listener(LeapListener)</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="173" x="418" y="220">Leap.add_listener(LeapListener)</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="60" x="554" y="371">on_frame()</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="172" x="802" y="437">PilotingConfiguration.state_han</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="101" x="766" y="451">dler[current_state]</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="87" x="844" y="515">StateXYHandler</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="160" x="796" y="580">StateXYHandler.handle(hand)</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="56" x="1052" y="646">next_state</text>
+  <path d="M 40 296 L 517 296" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 40 300 L 517 300" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 698 296 L 1176 296" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 698 300 L 1176 300" fill="none" stroke="rgb(0,0,0)" />
+  <rect fill="rgb(208,208,208)" height="20" stroke="rgb(0,0,0)" width="181" x="517" y="288" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="161" x="607" y="304">START - Guesture controlling</text>
+  <path d="M 40 716 L 524 716" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 40 720 L 524 720" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 692 716 L 1176 716" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 692 720 L 1176 720" fill="none" stroke="rgb(0,0,0)" />
+  <rect fill="rgb(208,208,208)" height="20" stroke="rgb(0,0,0)" width="168" x="524" y="708" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="148" x="608" y="724">END - Guesture controlling</text>
+</svg>
