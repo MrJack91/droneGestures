@@ -29,9 +29,9 @@ def main():
         pass
     finally:
         print '************'
-        print 'main: shut down'
         cfc.cleanup()
         dc.cleanup()
+        print 'main: shut down'
 
 
 if __name__ == "__main__":

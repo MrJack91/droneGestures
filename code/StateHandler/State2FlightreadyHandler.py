@@ -14,12 +14,12 @@ class State2FlightreadyHandler(BaseStateHandler):
 
             if self.hand.palm_position.y > 100 and self.hand.palm_position.y < 350:
                 self.next_state = PilotingStates.PilotingStates.STATE_3_FLIGHT
-                print 'hand position initialized! drone control is activated.'
+                print "hand position initialized! drone control is activated. (null-ref: " + str(self.hand.palm_position.y) + " mm)"
                 self.piloting_configuration.relative_no_power = self.hand.palm_position.y + self.piloting_configuration.relative_no_power_security
             else:
                 # change state to init -> renew fist gesture
-                self.next_state = PilotingStates.PilotingStates.STATE_1_INIT
-                print "your hand position is to low. " \
+                self.next_state = PilotingStates.PilotingStates.STATE___RESET
+                print "your hand position (" + str(self.hand.palm_position.y) + " mm)) is to low. " \
                       "use space between 100 and 350 mm over the leap motion sensor. " \
                       "do fist again."
 

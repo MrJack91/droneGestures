@@ -54,7 +54,7 @@ class LeapListener(Leap.Listener):
         # check on connection loss of crazyflie -> stop system (STATE_0_OFF is dead)
         if self.current_state != PilotingStates.PilotingStates.STATE_0_OFF and self.cfc.is_connected is False:
             self.current_state = PilotingStates.PilotingStates.STATE_0_OFF
-            print "Controller was stopped, because connection to crazyflie was lost"
+            print "Controller was stopped, because connection to crazyflie was lost."
 
         # log state change
         if self.current_state != self.last_state:

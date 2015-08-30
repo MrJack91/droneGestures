@@ -8,7 +8,7 @@ Folglich sind die zwei Hauptkomponenten der Umsetzung der \textit{Crazyflie Cont
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{figures/system_poc.pdf}
-	\caption[System-Überblick: Proof-of-Concept]{System-Überblick: Proof-of-Concept}
+	\caption{System-Überblick: Proof-of-Concept}
 \end{figure}
 
 \subsection{Crazyflie Controller}
@@ -30,7 +30,7 @@ Um die Auswertung der Gesten abhängig des Zustandes angemessen aufzuteilen, gib
 \subsection{Datei Struktur}
 \begin{wrapfigure}{l}{0.4\textwidth}
 	\includegraphics[width=1.0\linewidth]{figures/poc/filestructure.png}
-	\caption[Dateistruktur]{Dateistruktur der Umsetzung}
+	\caption{Dateistruktur der Umsetzung}
 \end{wrapfigure}
 Die gesamte Umsetzung im Verzeichnis \textit{code} besteht aus drei Modulen und ist wie folgt aufgegliedert:
 
@@ -162,10 +162,10 @@ roll = frame.hand[0].palm_normal.roll
 	Mit \textit{palm\_position} kann die Position des Handballen gelesen werden.
 	Der Y-Wert entspricht der Höhe, welche für den Thrust verwendet wird.
 	Der effektive Thrust muss abhängig von der Ausgangsposition der Hand berechnet werden.
-	
+
 	\item \textit{Zeile 5 \& 6:}
 	\textit{Direction} liefert Richtungsvektoren ausgehend aus der Handballe in Richtung der Finger. So wird die Pitch (Neigung) und der Yaw (Drehung / Gieren) gelesen.
-	
+
 	\item \textit{Zeile 9:}
 	Der \textit{palm\_normal} Vektor steht rechtwinklig zum Handballen. Daraus kann der Roll (Rolle) definiert werden.
 \end{itemize}
@@ -188,7 +188,7 @@ Das Zustands-Diagramm wurde wie folgt angepasst:
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\textwidth]{figures/concept/state-diagram-2.pdf}
-	\caption[Zustands-Diagramm: Drohne mit optimierter Gestensteuerung optimiert]{Zustands-Diagramm: Drohne mit optimierter Gestensteuerung}
+	\caption{Zustands-Diagramm: optimierte Steuerlogik}
 \end{figure}
 
 Folgend werden die durchgeführten Änderungen erläutert und begründet.
@@ -241,7 +241,7 @@ Somit erzwingt der neue \textit{Flug-Zustand (Z3)} nicht explizit, dass sich die
 	\item Hilfstexte für Bedienung in Konsolen Output
 	\item Statuswechsel mit Sound anzeigen
 	\item GUI mit Informationen (Debug, Akku)
-	\item 
+	\item
 \end{itemize}
 
 

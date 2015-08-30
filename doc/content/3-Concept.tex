@@ -88,7 +88,7 @@ Die Steuerung kann sich, insofern sie eingeschaltet ist, in vier Zuständen (Z1 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\textwidth]{figures/concept/state-diagram-1.pdf}
-	\caption[Zustands-Diagramm: Drohne mit Gestensteuerung]{Zustands-Diagramm: Drohne mit Gestensteuerung}
+	\caption{Zustands-Diagramm: Steuerlogik}
 \end{figure}
 
 \subsubsection{Off-Zustand (Z0)}
@@ -167,7 +167,7 @@ Während den verschiedenen Zustände können verschiedene Fehler auftreten:
 		\hline
 		Problem: & Die Verbindung zwischen Drohne und Steuerung wird unerwartet unterbrochen.\\
 		Risiko: & \textit{gering}\\
-		Verhalten: & 
+		Verhalten: &
 		Wie im \secref{subsec:isAnalyseDrone} unter API beschrieben, gilt ein Steuerbefehl für 500\,ms.
 		Wird die Verbindung unterbrochen, fliegt die Drohne daher maximal eine halbe Sekunde unkontrolliert, bevor die Rotoren ausgeschaltet werden und die Drohne abstürzt. Da die Zustände nur aus der Steuerungssicht existieren, muss die Drohne erneut verbunden und initialisiert werden.\\
 		Folge: & Die Drohne wird nach max. 500\,ms unkontrolliert notgelandet.\\

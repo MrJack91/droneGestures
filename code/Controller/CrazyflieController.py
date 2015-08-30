@@ -46,7 +46,8 @@ class CrazyflieController:
         # atexit.register(self.cleanup)
 
     def cleanup(self):
-        if self.cf is not None:
+        # if self.cf is not None:
+        if self.is_connected is True and self.cf is not None:
             # try to access crazyflie -> will throw NameError if undefined
             self.cf.commander.send_setpoint(0, 0, 0, 0)
             time.sleep(0.1)
