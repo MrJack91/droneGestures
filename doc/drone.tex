@@ -196,18 +196,13 @@
 % --- Main Document --- --- --- --- --- --- ---
 \mainmatter
 %
-% (files loaded with include must not have the prefix .tex)
-%
-% \include{content/0-Introduction}
-\include{content/1-WorkDefinition}
-\include{content/2-Analysis}
-\include{content/3-Concept}
-\include{content/4-Proof-of-Concept}
-\include{content/5-Testing}
-% \include{content/5-Contribution}
-\include{content/6-Summary}
-
-% \include{content/2-Experiments}
+% (files loaded with include must not have the suffix .tex)
+\input{content/1-WorkDefinition}
+\input{content/2-Analysis}
+\input{content/3-Concept}
+\input{content/4-Proof-of-Concept}
+\input{content/5-Testing}
+\input{content/6-Summary}
 
 %%% -- end of main content
 
@@ -221,7 +216,7 @@
 % -- bibliography --
 % (must be placed _before_ appendix)
 \IfPackageLoaded{biblatex}{
-  \cleardoublepage
+  %\cleardoublepage  
   \IfDefined{phantomsection}{\phantomsection}\label{sec:bibliography}
   \printbibliography[%
     heading=bibintoc, % (bibintoc, bibnumbered)
@@ -249,10 +244,10 @@
 %% -- Index --
 % _Remove_ Index unless you really want to invest a large amount
 % of time and effort to create a good index!
-\IfDefined{printindex}{%
-  \cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:index}%
-  \printindex%
-}% end of index
+%\IfDefined{printindex}{%
+%  \cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:index}%
+%  \printindex%
+%}% end of index
 
 % add todo list (remove for final document!)
 % \input{content/Z-Todo.tex}
