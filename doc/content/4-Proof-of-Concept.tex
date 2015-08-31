@@ -26,7 +26,19 @@ Die ganze Logik der Steuerung findet sich dementsprechend in diesem Teil.
 Um die Auswertung der Gesten abhängig des Zustandes angemessen aufzuteilen, gibt es für jeden Zustand einen eigenen \textit{State Handler}.
 
 \newpage
+\subsection{Programm Ablauf}
+Folgendes Ablauf Diagramm soll der systematische Ablauf des Programmes aufzeigen.
+Im Teil \textit{Init} werden die verschiedenen Komponenten verbunden.
+Im \textit{Controlling} befindet sich die Steuerung.
+Im \textit{Shut down} wird das Programm beendet.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/poc/flowchart_controll.png}
+	\caption{Ablaufdiagramm: Steuerung}
+\end{figure}
 
+
+\newpage
 \subsection{Datei Struktur}
 \begin{wrapfigure}{l}{0.4\textwidth}
 	\includegraphics[width=1.0\linewidth]{figures/poc/filestructure.png}
@@ -241,7 +253,8 @@ Somit erzwingt der neue \textit{Flug-Zustand (Z3)} nicht explizit, dass sich die
 	\item Hilfstexte für Bedienung in Konsolen Output
 	\item Statuswechsel mit Sound anzeigen
 	\item GUI mit Informationen (Debug, Akku)
-	\item
+	\item Flug Improvements z.B. mit Faktor auf Steuerung (evt. nicht lineare Steuerung)
+	*** 
 \end{itemize}
 
 
