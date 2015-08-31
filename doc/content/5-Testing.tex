@@ -13,7 +13,7 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 \section{Zustandsspezifische Tests}
 \label{sec:stateSpecificTest}
 \subsection{Off-Zustand (Z0)}
-\subsubsection{T0.1 - Übergang zum Reset-Zustand (Z1)}
+\subsubsection{T0.1 - Übergang zum Reset-Zustand}
 \begin{table}[H]
 	\centering
 	\small\renewcommand{\arraystretch}{1.4}
@@ -23,11 +23,11 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 	%
 	\begin{tabularx}{0.9\textwidth}{ L{0.15\linewidth} | X  }%
 		\hline
-		Titel: & T0.3 - erfolgreiche Programm Initialisierung (Verbindung zu Leap Motion und Crazyflie)\\
+		Titel: & T0.1 - Übergang zum Reset-Zustand (Verbindung zu Leap Motion und Crazyflie)\\
 		Status: & \textit{ok}\\
-		Beschreibung: & Das System kann erfolgreich gestartet werden. Die Steuerung befindet sich anschliessend im \textit{Reset Zustand}.\\
+		Beschreibung: & Das System kann erfolgreich gestartet werden. Die Steuerung befindet sich anschliessend im \textit{Reset-Zustand}.\\
 		Ausgangslage: & Der Leap Motion und die Crazyflie sind korrekt verbunden, die notwendigen Services laufen und die Hardware ist eingeschaltet.\\
-		Ergebnisse: & 30. August 2015: 
+		Ergebnisse: & \textit{30. August 2015:}
 		Der Test war erfolgreich. Nach dem Verbinden der externen Geräten, wurde die Steuerung in den \textit{Reset-Zustand} versetzt.
 		\\
 		Massnahmen: & -\\
@@ -53,9 +53,9 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 		\hline
 		Titel: & T0.2 - Verbindung zur Drohne ist fehlgeschlagen\\
 		Status: & \textit{ok}\\
-		Beschreibung: & Wenn bei der Initialisierung des Programmes, die Drohne nicht korrekt verbunden werden kann, soll die Steuerung nicht beginnen (ausser der Debug-Mode ist aktiv). Zudem soll eine Fehlermeldung ausgegeben werden. Beim abbrechen des Programmes, sollen alle Komponenten erfolgreich heruntergefahren werden.\\
+		Beschreibung: & Wenn bei der Initialisierung des Programmes, die Drohne nicht korrekt verbunden werden kann, soll die Steuerung nicht beginnen (ausser der Debug-Mode ist aktiv). Zudem soll eine Fehlermeldung ausgegeben werden. Beim Abbrechen des Programmes, sollen alle Komponenten heruntergefahren werden.\\
 		Ausgangslage: & -\\
-		Ergebnisse: & 30. August 2015: 
+		Ergebnisse: & \textit{30. August 2015:}
 		Der Test war erfolgreich. Die Steuerung wurde nicht gestartet. Die Fehlermeldung wurde ausgegeben. Beim Abbruch, wurden alle Komponenten heruntergefahren.
 		\\
 		Massnahmen: & -\\
@@ -84,7 +84,7 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 		Beschreibung: & Wenn bei der Initialisierung des Programmes, der Leap Motion nicht korrekt verbunden werden kann, soll die Steuerung nicht beginnen.
 		Beim Abbrechen des Programmes, sollen alle Komponenten erfolgreich heruntergefahren werden.\\
 		Ausgangslage: & -\\
-		Ergebnisse: & 30. August 2015: 
+		Ergebnisse: & \textit{30. August 2015:}
 		Der Test war erfolgreich. Beim Abbruch, wurden alle Komponenten heruntergefahren.
 		\\
 		Massnahmen: & -\\
@@ -112,12 +112,12 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 		Beschreibung: &  Um die Steuerung in den \textit{Flugbereiten Zustand (Z2)} zu versetzen, müssen folgende Gesten erkannt werden:
 		\begin{itemize}
 			\item offene und geschlossene Hand
-			\item mind. 2 Sek. eine Faust
+			\item eine Faust (für mind. 2 Sek.)
 		\end{itemize}
 		Anschliessend soll der Zustandswechsel erfolgen.
 		\\
 		Ausgangslage: & Die Steuerung muss sich im \textit{Init-Zustand (Z1)} befinden.\\
-		Ergebnisse: & 30. August 2015: 
+		Ergebnisse: & \textit{30. August 2015:}
 		Die Steuerung wurde korrekt in den \textit{Flugbereiten Zustand (Z2)} gesetzt.
 		\\
 		Massnahmen: & -\\
@@ -146,10 +146,10 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 		\hline
 		Titel: & T2.1 - Übergang in \textit{Flug-Zustand (Z3)}\\
 		Status: & \textit{ok}\\
-		Beschreibung: &  Wird eine offene Hand erkannt, wird die Höhe der Hand Null-Referenz der Höhe verwendet.
+		Beschreibung: &  Wenn eine offene Hand erkannt wird, soll die Höhe der Hand als Null-Referenz für den Thrust gelten.
 		\\
 		Ausgangslage: & Die Steuerung muss sich im \textit{Flugbereiten Zustand (Z2)} befinden.\\
-		Ergebnisse: & 30. August 2015: 
+		Ergebnisse: & \textit{30. August 2015:}
 		Funktioniert.
 		\\
 		Massnahmen: & -\\
@@ -163,7 +163,7 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 \end{figure}
 
 
-\subsubsection{T2.2 - Offene Hand auf ungültiger Höhe erkannt}
+\subsubsection{T2.2 - Offene Hand auf ungültiger Höhe erkennen}
 \begin{table}[H]
 	\centering
 	\small\renewcommand{\arraystretch}{1.4}
@@ -173,14 +173,14 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 	%
 	\begin{tabularx}{0.9\textwidth}{ L{0.15\linewidth} | X  }%
 		\hline
-		Titel: & Offene Hand auf ungültiger Höhe erkannt\\
+		Titel: & T2.2 - Offene Hand auf ungültiger Höhe erkennen\\
 		Status: & \textit{ok}\\
 		Beschreibung: &  
 		Wird die Hand auf einer ungültigen Höhe (nicht innerhalb 10 -- 35 cm über dem Sensor) erkannt, soll eine Meldung ausgegeben werden und in den \textit{Reset-Zustand} gewechselt werden.
 		\\
 		Ausgangslage: & Die Steuerung muss sich im \textit{Flugbereiten Zustand (Z2)} befinden.\\
-		Ergebnisse: & 30. August 2015: 
-		Funktioniert.
+		Ergebnisse: & \textit{30. August 2015:}
+		Es wird korrekt in den \textit{Reset-Zustand} gewechselt und die Meldung wird ausgegeben.
 		\\
 		Massnahmen: & -\\
 		\hline
@@ -213,8 +213,8 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 		Wird im Flug eine Faust erkannt, soll sofort in den Reset-Zustand gewechselt werden.
 		\\
 		Ausgangslage: & Die Steuerung muss sich im \textit{Flug-Zustand (Z3)} befinden.\\
-		Ergebnisse: & 30. August 2015: 
-		Funktioniert.
+		Ergebnisse: & \textit{30. August 2015:}
+		Der \textit{Flug-Zustand (Z3)} wird bei auftretender Faust-Geste sofort verlassen. Die Steuerung befindet sich anschliessend im \textit{Reset-Zustand}.
 		\\
 		Massnahmen: & -\\
 		\hline
@@ -223,7 +223,7 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\textwidth]{images/testing/t3_1_success_state_reset_edit.png}
-	\caption{Konsolen-Output: T3.1 - T3.1 - Kontrollierter Flugabbruch / Übergang in Reset-Zustand}
+	\caption{Konsolen-Output: T3.1 - Kontrollierter Flugabbruch / Übergang in Reset-Zustand}
 \end{figure}
 
 
@@ -244,7 +244,7 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 		Erst wenn sich die Hand höher als die Schutzzone befindet, soll die Drohne losfliegen.
 		\\
 		Ausgangslage: & Die Steuerung muss sich im \textit{Flug-Zustand (Z3)} befinden.\\
-		Ergebnisse: & 30. August 2015: 
+		Ergebnisse: & \textit{30. August 2015:}
 		Funktioniert.
 		\\
 		Massnahmen: & -\\
@@ -272,8 +272,8 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 		Titel: & TA.1 - Mehrere Hände erkannt oder Hand verloren\\
 		Status: & \textit{ok}\\
 		Beschreibung: &  Sobald mehrere Hände erkennt werden oder keine Hand mehr erkannt wird, soll in den \textit{Reset-Zustand} gewechselt werden.\\
-		Ausgangslage: & Programm wurde erfolgreich initialisiert. Es spielt keine Rolle in welchem Zustand sich die Steuerung befindet.\\
-		Ergebnisse: & 30. August 2015: 
+		Ausgangslage: & Das Programm wurde erfolgreich initialisiert. Es spielt keine Rolle in welchem Zustand sich die Steuerung befindet.\\
+		Ergebnisse: & \textit{30. August 2015:}
 		Sobald mehr als eine Hand erkannt wird oder die Hand verloren geht, wird sofort in den \textit{Reset-Zustand} gewechselt.
 		\\
 		Massnahmen: & -\\
@@ -304,7 +304,7 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 		Anschliessend kann das Programm beendet und bei Bedarf neu gestartet werden.
 		\\
 		Ausgangslage: & Die Verbindung zur Drohne wurde hergestellt. Es spielt keine Rolle in welchem Zustand sich die Steuerung befindet.\\
-		Ergebnisse: & 30. August 2015: 
+		Ergebnisse: & \textit{30. August 2015:}
 		Die Steuerung wird erfolgreich in den \textit{Off-Zustand (Z0)} versetzt.
 		\\
 		Massnahmen: & -\\

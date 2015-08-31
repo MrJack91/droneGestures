@@ -18,12 +18,12 @@ class State1InitHandler(BaseStateHandler):
 
             # remember time -> fist must be hold for 2 seconds
             self.time_ref = time.time()
-            print 'fist dedected! hold it for 2s...'
+            print 'Fist dedected! Hold it for 2s...'
 
         elif self.hand.grab_strength == 1 and self.time_ref is not None:
             # fist must be holded for minimum 2 s
             if time.time() - self.time_ref > 2:
-                print 'fist is valid! drone will fly, if you open your hand...'
+                print 'Fist is valid! Drone will fly, if you open your hand...'
                 self.next_state = PilotingStates.PilotingStates.STATE_2_FLIGHTREADY
                 self.time_ref = None
 
