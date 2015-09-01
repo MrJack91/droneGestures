@@ -22,7 +22,7 @@ Eine der allerersten bekannten \gls{glos:droneLabel} war wohl von den Brüder Mo
 \subsubsection{Waffenträger}
 Später wurde das Potenzial von \glspl{glos:droneLabel} besonders für kriegerische Zwecke erforscht und entwickelt.
 
-\begin{wrapfigure}{r}{0.4\textwidth}
+\begin{wrapfigure}{R}{0.4\textwidth}
 	\includegraphics[width=1.0\linewidth]{images/analysis/balloonbombs1849.jpg}
  	\caption[Bombing by Balloon, 1848]{Bombing by Balloon, 1848 (Quelle: \fullcite{Remote_Piloted_Aerial_Vehicles_2015-03-21})}
 \end{wrapfigure}
@@ -56,15 +56,18 @@ Im Jahr 2014 wurde der Einsatz für landwirtschaftliche Zwecke erprobt und auch 
 
 
 \section{Quadrocopter Steuerung}
-\begin{wrapfigure}{r}{0.4\textwidth}
+\begin{wrapfigure}{R}{0.4\textwidth}
+	\vspace{-3\baselineskip}
 	\includegraphics[width=1.0\linewidth]{images/analysis/crazyflize.jpg}
 	\caption[Crazyflie 2.0]{Crazyflie 2.0 (Quelle: \fullcite{Crazyflie_2.0_Seeedstudio_2015-03-22})}
+	\vspace{-1.5\baselineskip}
 \end{wrapfigure}
 Der Quadrocopter eignet sich als \gls{glos:droneLabel}, da die Steuerung ausschliesslich über die vier Rotoren realisiert wird.
 Weitere mechanische Steuerkomponente entfallen, was die Komplexität des Luftfahrzeuges deutlich vereinfacht.
 Je zwei der Rotoren drehen in dieselbe Richtung (im bzw. gegen den Uhrzeigersinn) und stehen sich gegenüber.
 
 Generell gilt für vorliegendes Dokument, insofern nicht anders vermerkt oder aus dem Kontext ersichtlich, dass der Begriff Drohne mit dem Begriff Quadrocopter gleichzustellen ist (davon ausgeschlossen ist \secref{sec:recherche}).
+
 
 \subsection{Steuerung}
 Bezüglich der Flugeigenschaften entspricht ein Quadrocopter am ehesten einem Hubschrauber und gehört ebenfalls zur Kategorie der  \gls{glos:vtolLabel}-Flugzeugen.
@@ -135,10 +138,12 @@ Dazu wird der Gestensensor von Leap Motion verwendet (weitere Informationen zum 
 %\subsection{System}
 In der Ausgangslage gibt es zwei Fremdsysteme (blau eingefärbt): der Leap Motion (\secref{subsec:leapmotion}) und die Crazyflie (\secref{subsec:isAnalyseDrone}).
 
+%\vspace{-1\baselineskip}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{figures/system_is.pdf}
 	\caption{System-Überblick: Ist-Zustand}
+	\vspace{-3\baselineskip}
 \end{figure}
 
 Beide Systeme sind quelloffen, haben eine aktive Community und funktionieren selbstständig und vollständig.
@@ -149,7 +154,7 @@ Folgend werden die zwei Systeme genauer beschrieben.
 \newpage
 \subsection{Gestensensor}
 \label{subsec:leapmotion}
-\begin{wrapfigure}{r}{0.4\textwidth}
+\begin{wrapfigure}{R}{0.4\textwidth}
 	\includegraphics[width=1.0\linewidth]{images/analysis/leap_simple.png}
 	\caption[Leap Motion Sensor]{Leap Motion Sensor (Quelle: \fullcite{Move_Over_Kinect:_Early_Gestural_Musical_Demos_for_Leap_Motion_Look_Terrific_-_Create_Digital_Music_2015-03-27})}
 \end{wrapfigure}
@@ -188,7 +193,7 @@ Die Messdaten werden mit einem internen Handmodell kombiniert, so dass immer ein
 Weitere Informationen könne übersichtlich auf der Website des Herstellers\footcite{Leap_Motion_Motion_Controller_2015-03-27} gefunden werden.
 
 \subsubsection{Anwendungsbereich}
-\begin{wrapfigure}{r}{0.4\textwidth}
+\begin{wrapfigure}{R}{0.4\textwidth}
 	\includegraphics[width=1.0\linewidth]{images/analysis/leap_vr.png}
 %	\caption[Oculus Rift VR]{\gls{vrLabel} Oculus Rift (Quelle: \fullcite{Leap_Motion_Developers_2015-03-27})}
 	\caption[Oculus Rift VR]{\acrshort{vrLabel} Oculus Rift (Quelle: \fullcite{Leap_Motion_Developers_2015-03-27})}

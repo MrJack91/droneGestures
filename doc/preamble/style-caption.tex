@@ -7,13 +7,13 @@
 { % multiline captions
 % -- Formatting
   format    = plain,  % plain, hang
-  indention  = 0em,   % indention of text 
+  indention  = 0em,   % indention of text
   labelformat = default,% default, empty, simple, brace, parens
   labelsep   = colon,  % none, colon, period, space, quad, newline, endash
   textformat  = simple, % simple, period
 % -- Justification
   justification = justified, %RaggedRight, justified, centering
-  singlelinecheck = true, % false (true=ignore justification setting in 
+  singlelinecheck = true, % false (true=ignore justification setting in
 %single line)
 % -- Fonts
   labelfont  = {small,bf},
@@ -31,7 +31,7 @@
   skip    = 10pt, % vertical space between the caption and the figure
   position = auto, % top, auto, bottom
 % -- Lists
-  % list=no, % suppress any entry to list of figure 
+  % list=no, % suppress any entry to list of figure
   listformat = subsimple, % empty, simple, parens, subsimple, subparens
 % -- Names & Numbering
   % figurename = Abb. %
@@ -41,8 +41,8 @@
   % figurewithin=chapter
   % tablewithin=chapter
 %-- hyperref related options
-  hypcap=true, % (true, false) 
-  % true=all hyperlink anchors are placed at the 
+  hypcap=true, % (true, false)
+  % true=all hyperlink anchors are placed at the
   % beginning of the (floating) environment
   %
   hypcapspace=0.5\baselineskip
@@ -71,7 +71,7 @@
   justification=RaggedRight
 }
 
-% Short Names 
+% Short Names
 \IfDefined{wrapfigure}{%
   \captionsetup[wrapfigure]{style=captionStyleTemplateShortDefault}}
 \IfDefined{wrapfloat}{%
@@ -101,7 +101,7 @@
     hypcap=false
   }
   % make subcaptions be referenced as 5.3(b)
-  \renewcommand\thesubfigure{(\alph{subfigure})} 
+  \renewcommand\thesubfigure{(\alph{subfigure})}
 }
 
 % style options for subfig
