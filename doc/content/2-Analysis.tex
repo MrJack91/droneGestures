@@ -131,7 +131,7 @@ Da die handpositions-basierte Steuerung der intuitivsten und einfachsten Steueru
 Im Gegensatz zur soeben erwähnten, bereits existierenden handpositions-basierte Steuerung, soll die zu implementierende Steuerung jegliche Steuermanöver (Yaw, Pitch, Roll, Thrust) unterstützen.
 Zudem soll die Steuer-Initialisierung und die Steuerung sicher ablaufen. Dazu werden verschiedene Zustände implementiert, in der sich die Steuerung befinden kann.
 
-Dazu wird der Gestensensor von Leap Motion verwendet (weitere Informationen zum Sensor sind im \secref{subsec:leapmotion} beschrieben).
+Es wird der Gestensensor von Leap Motion verwendet (weitere Informationen zum Sensor sind im \secref{subsec:leapmotion} beschrieben).
 
 
 %\subsubsection{Sensoren Integration auf bestehende Steuerungen}
@@ -150,8 +150,8 @@ In der Ausgangslage gibt es zwei Fremdsysteme (blau eingefärbt): der Leap Motio
 	\vspace{-3\baselineskip}
 \end{figure}
 
-Beide Systeme sind quelloffen, haben eine aktive Community und funktionieren selbstständig und vollständig.
-Dazu soll eine Steuerung (Controlling) umgesetzt werden, welche die zwei Systeme verbindet, so dass die Drohne schlussendlich via Gesten geflogen werden kann.
+Beide Systeme sind Open Source, haben eine aktive Community und funktionieren selbstständig und vollständig.
+Dazu soll eine Steuerung (Controlling) umgesetzt werden, welche die zwei Systeme verbindet, so dass die Drohne via Gesten gesteuert werden kann.
 
 Folgend werden die zwei Systeme genauer beschrieben.
 
@@ -352,11 +352,11 @@ Es folgt eine Kostenzusammenstellung der verwendeten Ressourcen:
 \section{Soll-Analyse}
 Die Crazyflie soll mit dem Leap Motion, via Gesten, gesteuert werden können.
 Die Umsetzung soll in Python erfolgen.
-Die Lösung soll in zwei Teilen umgesetzt werden: in einer Gestenerkennung und einer Drohnensteuerung.
+% Die Lösung soll in zwei Teilen umgesetzt werden: in einer Gestenerkennung und einer Drohnensteuerung.
 
 Die detaillierte Definition der Steuerung wird im \secref{sec:gestureControll} beschrieben.
 
-Die Umsetzung der Steuerung (orange eingefärbt) kann in drei logische Komponenten eingeteilt werden: die Gestenerkennung, die Drohne und die Steuerlogik.
+Die Umsetzung der Steuerung (orange eingefärbt) kann in drei logische Komponenten eingeteilt werden: die Gestenerkennung, die Drohnesteuerung und die Steuerlogik.
 
 \begin{figure}[H]
 	\centering
@@ -365,17 +365,17 @@ Die Umsetzung der Steuerung (orange eingefärbt) kann in drei logische Komponent
 \end{figure}
 
 \subsection{Gestenerkennung}
-Die Kompenente der Gestenerkennung, erkennt die Gesten vom Leap Motion Sensor. Die Daten werden analysiert und ausgewertet.
+Die Kompenente der Gestenerkennung, empfängt die Gesten vom Leap Motion Sensor. Die Daten werden analysiert und ausgewertet.
 Eine allgemeine Gestenerkennung wird von Leap Motion zur Verfügung gestellt, die muss jedoch auf die zu erkennenden Gesten der Steuerung angepasst werden.
 
 Die Gestenerkennung soll unabhängig der Drohne entwickelt und getestet werden können.
 
-\subsection{Drohne}
+\subsection{Drohnesteuerung}
 Die Drohne wird als alleinstehendes System betrachtet, das durch ein \gls{apiLabel} gesteuert werden kann. Zudem können Messdaten abgerufen werden. Nebst der Nutzung der \gls{apiLabel} sollten an der Drohne keine Veränderungen notwendig sein.
 
 \subsection{Steuerlogik}
-Die Steuerlogik beinhaltet das korrekte bilden der Steuerbefehle aus den verfügbaren Gesteninformationen.
-Er verbindet die Gestenerkennung mit der Drohne.
+Die Steuerlogik beinhaltet das korrekte Bilden der Steuerbefehle aus den verfügbaren Gesteninformationen.
+Sie verbindet die Gestenerkennung mit der Drohne.
 
 Hier befindet sich der Hauptteil des umzusetzenden Codes. Abhängig vom Zustand der Drohne, werden andere Gesten erkannt und andere Befehle generiert.
 

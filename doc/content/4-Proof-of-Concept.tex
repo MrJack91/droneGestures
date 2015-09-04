@@ -13,7 +13,7 @@ Folglich sind die zwei Hauptkomponenten der Umsetzung der \textit{Crazyflie Cont
 
 \subsection{Crazyflie Controller}
 \label{sec:poc:controllerCrazyflie}
-Der Crazyflie Controller stellt die Verbindung zur Drohne her, durch die Steuerkommandos übermittelt werden können.
+Der Crazyflie Controller stellt die Verbindung zur Drohne her, über die Steuerkommandos übermittelt werden können.
 Dabei stellt das Management der Verbindung den Hauptteil des Codes dieses Controllers dar.
 Beim Verbindungsaufbau, sowie bei erfolgreicher Verbindung müssen mögliche Fehler-Events abgefangen werden und der Zustand der Verbindung muss von aussen abrufbar sein.
 Ansonsten hat der Crazyflie Controller keine Aufgabe.
@@ -254,6 +254,7 @@ Somit erzwingt der neue \textit{Flug-Zustand (Z3)} nicht explizit, dass sich die
 
 
 \section{Mögliche Erweiterungen}
+\label{sec:extensions}
 Bereits bei der Planung der Arbeit wurden mögliche Erweiterungen, in Form von Prioritäten die bei genügen Zeit umgesetzt werden sollen, eingeplant.
 Während der Entwicklung wurden weitere Ideen gesammelt.
 Eine Übersicht möglicher Erweiterungen wird folgend kurz zusammengefasst.
@@ -266,41 +267,41 @@ Falls Probleme zwischen der Steuerung und einem externen System auftreten, sollt
 \subsection{Sound Unterstützung}
 Zum jetzigen Zeitpunkt wird ein Zustandswechsel der Steuerung in der Konsole ausgegeben.
 Somit muss während der Initialisierung ständig ein Blick auf den Konsolen-Output geworfen werden.
-Um dies zu umgehen, könnte bei jedem erfolgreichen Zustandswechsel ein Ton ausgegeben werden.
-Falls die Steuerung zurück in den \textit{Reset-Zustand} fällt, soll ein anderer Ton den Benutzer über den Wechsel informieren.
+Um dies zu umgehen, könnte bei jedem erfolgreichen Zustandswechsel ein Ton abgespielt werden.
+Falls die Steuerung zurück in den \textit{Reset-Zustand} fällt, soll ein weiterer Ton den Benutzer über den Wechsel informieren.
 
 \subsection{User Interface mit mehr Informationen}
 Momentan zeigt die Anwendung lediglich den Zustand der Steuerung an.
 Weitere Informationen zu den externen Systemen, wie der Akkustand, die Verbindungsqualität oder zusätzliche Debug-Informationen könnten regelmässig (z.b. alle 5 Sekunden) ausgegeben werden.
 Alternativ dem Konsolen-Output könnte auch ein \gls{guiLabel} verwendet werden. So könnten die Informationen übersichtlicher und einfacher dargestellt werden.
 
-\subsection{Flug Improvements, einfachere Steuerung}
-Um die Steuerung zu vereinfachen, könnten aktuelle Gesten-Informationen mit vorgängigen Gesten und dem Zustand der Drohne kombiniert werden. Daraus kann dann ein intelligentes Steuerkommando berechnet werden.
+\subsection{Flug Improvements / einfachere Steuerung}
+Um die Steuerung zu vereinfachen, könnten aktuelle Gesteninformationen mit vorgängigen Gesten und dem Zustand der Drohne kombiniert werden. Daraus kann dann ein intelligentes Steuerkommando berechnet werden.
 Beispiele dazu wäre das Abschwächen von starken Steueranweisungen oder das automatische Stabilisieren der Drohne, wenn die Hand vertikal ruhig gehalten wird.
 
 \newpage
 \subsection{Automatische Flugmanöver}
-In der ursprünglichen Planung wurden bereits automatische Flugmanöver erwähnt.
+In der ursprünglichen Planung wurden automatische Flugmanöver erwähnt.
 Auf Grund der knappen Zeit der Umsetzung, wurden solche Manöver bereits vor Projektbeginn aus der Aufgabenstellung wieder entfernt.
 
 Es folgt eine Liste mit möglichen automatischen Flugmanövern:
 \begin{itemize}
 	\item \textbf{Stabilisieren:}
-	Per eigener Geste, soll die Drohne in einen Schwebeflug versetzt werden können. Dabei haltet die Drohne möglichst genau die Position in der Luft.
+	Via einer Gestenbewegung, soll die Drohne in einen Schwebeflug versetzt werden. Dabei haltet die Drohne möglichst genau die Position in der Luft.
 
 	\item \textbf{Landung:}
-	Dabei soll die Drohne automatisch kontrolliert und sicher landen können. Die Landung kann entweder durch eine Geste, oder bei kritischen Situationen wie einer Kommunikationsstörung ausgelöst werden.
-	Da das Umfeld der Drohne nicht bekannt ist, wäre eine stabile, langsame Senkung der Höhe (mit Hilfe dem Gyrometers und dem Accelerometer) am Besten geeignet.
+	Die Drohne soll automatisch, kontrolliert und sicher landen können. Die Landung kann entweder durch eine Geste, oder bei kritischen Situationen wie einer Kommunikationsstörung ausgelöst werden.
+	Da das Umfeld der Drohne nicht bekannt ist, wäre eine stabile, langsame Senkung der Höhe, mit Hilfe des Gyrometers und des Accelerometers, am Besten geeignet.
 
 	\item \textbf{Kunstflug:}
-	Unter Kunstflugmanöver sind spezielle Flugformen gemeint. Zum Beispiel das abfliegen eines Quadrates oder einen Überschlag etc.
-	
+	Unter Kunstflugmanöver sind spezielle Flugformen gemeint. Zum Beispiel das Abfliegen eines Quadrates oder die Ausführung eines Überschlages etc.
+
 	\item \textbf{Flucht:}
 	Fluchtmanöver sollten das Einfangen oder Abschiessen der Drohne verhindern, indem schnelle, sprunghafte Bewegungen in drei Dimensionen ausgeführt werden.
 	Solche Fluchtmanöver könnten anhand von externen Sensoren ausgelöst werden.
 	Dabei muss überprüft werden, ob in der Richtung in der das Manöver ausgeführt werden soll, auch genügend freien Platz vorhanden ist.
 	Dazu sind weitere Sensoren wie Distanzmesser oder Kameras notwendig.
-	
+
 \end{itemize}
 
 
@@ -311,7 +312,7 @@ Es folgt eine Liste mit möglichen automatischen Flugmanövern:
 Folgend werden einzelne Sequenzen mit Hilfe eines Sequenz-Diagrammes genauer aufgezeigt.
 
 \subsubsection{Programmstart}
-Die ersten zwei Diagramme zeigen den Ablauf der Initialisierung der Controller bis hin zur Abarbeitung des Frames vom Leap Motion auf.
+Die ersten zwei Diagramme zeigen den Ablauf der Initialisierung der Controller bis zur Abarbeitung des Frames vom Leap Motion auf.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\textwidth]{figures/poc/seq_dia_crazyflie.png}
