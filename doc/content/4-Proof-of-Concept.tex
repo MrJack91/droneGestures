@@ -254,16 +254,56 @@ Somit erzwingt der neue \textit{Flug-Zustand (Z3)} nicht explizit, dass sich die
 
 
 \section{Mögliche Erweiterungen}
-\todo{wird noch ausformuliert...}
+Bereits bei der Planung der Arbeit wurden mögliche Erweiterungen, in Form von Prioritäten die bei genügen Zeit umgesetzt werden sollen, eingeplant.
+Während der Entwicklung wurden weitere Ideen gesammelt.
+Eine Übersicht möglicher Erweiterungen wird folgend kurz zusammengefasst.
+
+\subsection{Hilfstexte in der Konsole}
+Um die Anwendung für Dritte zu vereinfachen, sollte in der Konsole, nebst dem aktuellen Zustand der Steuerung, auch noch der nächste notwendige Schritt angezeigt werden.
+Zudem könnte zu Beginn eine allgemeine Steueranleitung eingeblendet werden.
+Falls Probleme zwischen der Steuerung und einem externen System auftreten, sollten nebst der Fehlermeldung auch noch Lösungsmöglichkeiten angezeigt werden.
+
+\subsection{Sound Unterstützung}
+Zum jetzigen Zeitpunkt wird ein Zustandswechsel der Steuerung in der Konsole ausgegeben.
+Somit muss während der Initialisierung ständig ein Blick auf den Konsolen-Output geworfen werden.
+Um dies zu umgehen, könnte bei jedem erfolgreichen Zustandswechsel ein Ton ausgegeben werden.
+Falls die Steuerung zurück in den \textit{Reset-Zustand} fällt, soll ein anderer Ton den Benutzer über den Wechsel informieren.
+
+\subsection{User Interface mit mehr Informationen}
+Momentan zeigt die Anwendung lediglich den Zustand der Steuerung an.
+Weitere Informationen zu den externen Systemen, wie der Akkustand, die Verbindungsqualität oder zusätzliche Debug-Informationen könnten regelmässig (z.b. alle 5 Sekunden) ausgegeben werden.
+Alternativ dem Konsolen-Output könnte auch ein \gls{guiLabel} verwendet werden. So könnten die Informationen übersichtlicher und einfacher dargestellt werden.
+
+\subsection{Flug Improvements, einfachere Steuerung}
+Um die Steuerung zu vereinfachen, könnten aktuelle Gesten-Informationen mit vorgängigen Gesten und dem Zustand der Drohne kombiniert werden. Daraus kann dann ein intelligentes Steuerkommando berechnet werden.
+Beispiele dazu wäre das Abschwächen von starken Steueranweisungen oder das automatische Stabilisieren der Drohne, wenn die Hand vertikal ruhig gehalten wird.
+
+\subsection{Automatische Flugmanöver}
+In der ursprünglichen Planung wurden bereits automatische Flugmanöver erwähnt.
+Auf Grund der knappen Zeit der Umsetzung, wurden solche Manöver bereits vor Projektbeginn aus der Aufgabenstellung wieder entfernt.
+
+Es folgt eine Liste mit möglichen automatischen Flugmanövern:
 \begin{itemize}
-	\item Hilfstexte für Bedienung in Konsolen Output
-	\item Statuswechsel mit Sound anzeigen
-	\item GUI mit Informationen (Debug, Akku)
-	\item Flug Improvements z.B. mit Faktor auf Steuerung (evt. nicht lineare Steuerung)
-	***
+	\item \textbf{Stabilisieren:}
+	Per eigener Geste, soll die Drohne in einen Schwebeflug versetzt werden können. Dabei haltet die Drohne möglichst genau die Position in der Luft.
+
+	\item \textbf{Landung:}
+	Dabei soll die Drohne automatisch kontrolliert und sicher landen können. Die Landung kann entweder durch eine Geste, oder bei kritischen Situationen wie einer Kommunikationsstörung ausgelöst werden.
+	Da das Umfeld der Drohne nicht bekannt ist, wäre eine stabile, langsame Senkung der Höhe (mit Hilfe dem Gyrometers und dem Accelerometer) am Besten geeignet.
+
+	\item \textbf{Kunstflug:}
+	Unter Kunstflugmanöver sind spezielle Flugformen gemeint. Zum Beispiel das abfliegen eines Quadrates oder einen Überschlag etc.
+	
+	\item \textbf{Flucht:}
+	Fluchtmanöver sollten das Einfangen oder Abschiessen der Drohne verhindern, indem schnelle, sprunghafte Bewegungen in drei Dimensionen ausgeführt werden.
+	Solche Fluchtmanöver könnten anhand von externen Sensoren ausgelöst werden.
+	Dabei muss überprüft werden, ob in der Richtung in der das Manöver ausgeführt werden soll, auch genügend freien Platz vorhanden ist.
+	Dazu sind weitere Sensoren wie Distanzmesser oder Kameras notwendig.
+	
 \end{itemize}
 
 
+\newpage
 \section{Diagramme}
 
 \subsection{Ablauf - Sequenz-Diagramme}
