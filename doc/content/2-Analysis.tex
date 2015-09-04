@@ -79,7 +79,7 @@ Um sich nun in eine Richtung zu \textit{gieren}, werden die Drehzahlen von jewei
 Um dem Piloten die Steuerung zu erleichtern, befinden sich oft verschiedenfarbige Markierungen oder LED's an der Vorder- oder Rückseite des Quadrocopters.
 Die Steuerung erfolgt üblicherweise aus relativer Sicht der Drohne und erfordert somit ein Umdenken des Piloten.\footcite{Quadrocopter__Wikipedia_2015-03-22}
 
-
+\newpage
 \subsection{Bereits bestehende Arbeiten}
 Da Drohnen erst während der letzten Zeit aufgekommen und erschwinglich geworden sind, lassen sich sehr viele Drohnen-Projekte mit verschiedenster Hardware finden.
 Folgend wird der Fokus besonders auf Projekte mit einer Gestensteuerung und deren Steuerungsmöglichkeiten gelegt.
@@ -127,8 +127,12 @@ Zusammengefasst können die Steuerungsmöglichkeiten in folgende Kategorien eing
 	Trotzdem wird auf Hackday eine Drohne mit einer \gls{glos:wearableLabel}-Steuerung vorgestellt.\footcite{Wearable_Gesture_Controlled_Drone_Hackaday_2015-04-29}
 \end{itemize}
 
-Da die handpositions-basierte Steuerung der intuitivsten Steuerung entspricht, wird in vorliegender Arbeit diese implementiert.
+Da die handpositions-basierte Steuerung der intuitivsten und einfachsten Steuerung entspricht, und es bisher nur wenige dokumentierte  Implementationen gibt, wird in vorliegender Arbeit diese implementiert.
+Im Gegensatz zur soeben erwähnten, bereits existierenden handpositions-basierte Steuerung, soll die zu implementierende Steuerung jegliche Steuermanöver (Yaw, Pitch, Roll, Thrust) unterstützen.
+Zudem soll die Steuer-Initialisierung und die Steuerung sicher ablaufen. Dazu werden verschiedene Zustände implementiert, in der sich die Steuerung befinden kann.
+
 Dazu wird der Gestensensor von Leap Motion verwendet (weitere Informationen zum Sensor sind im \secref{subsec:leapmotion} beschrieben).
+
 
 %\subsubsection{Sensoren Integration auf bestehende Steuerungen}
 
