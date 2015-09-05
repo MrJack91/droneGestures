@@ -2,7 +2,7 @@
 
 Controll Crazyflie Nano Quadcopter by Bitcraze with Leap Motion controller
 
-Die Arbeit wurde als Semesterarbeit an der ZHAW umgesetzt.
+Die Arbeit wurde als Semesterarbeit an der [ZHAW](http://zhaw.ch) umgesetzt.
 
 ## Abstract
 In dieser Arbeit wird die Umsetzung einer Gestensteuerung für eine Drohne beschrieben. Als Drohne wird der Crazyflie 2.0 Nano Quadcopter von Bitcraze verwendet. Für die Gestenerkennung wird auf den Leap Motion Sensor zurückgegriffen.
