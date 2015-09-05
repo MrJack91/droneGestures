@@ -5,15 +5,15 @@ Controll Crazyflie Nano Quadcopter by Bitcraze with Leap Motion controller
 Die Arbeit wurde als Semesterarbeit an der [ZHAW](http://zhaw.ch) umgesetzt.
 
 ## Abstract
-In dieser Arbeit wird die Umsetzung einer Gestensteuerung für eine Drohne beschrieben. Als Drohne wird der Crazyflie 2.0 Nano Quadcopter von Bitcraze verwendet. Für die Gestenerkennung wird auf den Leap Motion Sensor zurückgegriffen.
+In diesem Dokument wird die Umsetzung einer Gestensteuerung für eine Drohne beschrieben. Als Drohne wird der Crazyflie 2.0 Nano Quadcopter von Bitcraze verwendet. Für die Gestenerkennung wird auf den Leap Motion Sensor zurückgegriffen.
 
-Das Hauptziel der Steuerung ist die intuitive Bedienung, die aus einfachen Handgesten abgeleitet werden kann. Die Umsetzung soll die Vorteile, so wie auch mögliche Probleme einer Gestensteuerungen aufzeigen.
+Das Hauptziel der Steuerung ist die intuitive Bedienung, die aus einfachen Handgesten abgeleitet werden kann. Die Umsetzung soll die Vorteile, so wie auch möglichen Probleme einer Gestensteuerung aufzeigen. Zusätzlich zur Steuerung, wird auf die Problematik der Initialisierung der Gestensteuerung eingegangen. Wie kann sichergestellt werden, dass unabsichtlich ausgelöste Gesten keine Auswirkungen auf die Drohne haben? Nebst dem Konzept wird eine Umsetzung anhand der Crazyflie und dem Leap Motion Sensor in Python implementiert.
 
-Zusätzlich der Steuerung, wird auf die Problematik der Initialisierung der Gestensteuerung eingegangen. Wie kann sichergestellt werden, dass unabsichtlich ausgelöste Gesten keine Auswirkungen auf die Drohne haben?
+Für die Erarbeitung einer Gestensteuerung ist eine klare Gliederung unabdingbar. So ist zu Beginn eine gründliche Recherche der Beschaffenheit von Quadrocoptern notwendig. Nur so kann anschliessend eine Ist- und eine Soll-Analyse erstellt werden. Aufgrund dieser Analyse lässt sich das Konzept der Gestensteuerung definieren, sowie die auf erster Stufe erkannten Probleme bereits zu eruieren.
 
-Nebst dem Konzept, wird eine Umsetzung anhand der Crazyflie und dem Leap Motion Sensor in Python implementiert.
+Auf der Basis der konkreten Implementierung, welche durch Tests verifiziert wurde, können nun Rückschlüsse auf das Konzept gewonnen werden, wodurch dieses bei Bedarf präzisiert werden kann.
 
-Im Rahmen der Analyse, wurde eine Recherche über Drohnen vorgestellt.
+Nur so kann unter Berücksichtigung aller Vor- und Nachteile einer Gestensteuerung eine Schlussfolgerung erarbeitet und ein Fazit gezogen werden.
 
 ## Vollständige Dokumentation
 Die ganze Dokumentation ist als [PDF](https://github.com/MrJack91/droneGestures/raw/master/doc/drone.pdf) vorhanden.
