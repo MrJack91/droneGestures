@@ -14,7 +14,7 @@ Nebst dem Konzept, wird eine Umsetzung anhand der Crazyflie und dem Leap Motion 
 Im Rahmen der Analyse, wurde eine Recherche über Drohnen vorgestellt.
 
 ## Vollständige Dokumentation
-
+Die ganze Dokumentation ist als [PDF](https://github.com/MrJack91/droneGestures/raw/master/doc/drone.pdf) vorhanden.
 
 ## Projekt Struktur
 Das Projekt besteht aus zwei Teilen: der Dokumentation (/doc/*) und der Umsetzung in Pyhton (/code/*).
