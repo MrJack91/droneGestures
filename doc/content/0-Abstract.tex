@@ -1,19 +1,31 @@
 % !TeX encoding=utf8
 % !TeX spellcheck = de_CH_frami
 
-\subsection*{Summary}
-Eine programmierbare Drohne (Crazyflie Nano Quadcopter von Bitcraze) soll mit einer Steuerung per Hand (Gestensteuerung von Leap Motion) ergänzt werden. Die Drohne soll intuitiv und einfach mit Möglichkeiten der Hand-/Gestenerkennung gesteuert werden können.
+\subsection*{Abstract}
+In diesem Dokument wird die Umsetzung einer Gestensteuerung für eine Drohne beschrieben. Als Drohne wird der Crazyflie 2.0 Nano Quadcopter von Bitcraze verwendet. Für die Gestenerkennung wird auf den Leap Motion Sensor zurückgegriffen.
+
+Das Hauptziel der Steuerung ist die intuitive Bedienung, die aus einfachen Handgesten abgeleitet werden kann. Die Umsetzung soll die Vorteile, so wie auch mögliche Probleme einer Gestensteuerungen aufzeigen.
+
+Zusätzlich der Steuerung, wird auf die Problematik der Initialisierung der Gestensteuerung eingegangen. Wie kann sichergestellt werden, dass unabsichtlich ausgelöste Gesten keine Auswirkungen auf die Drohne haben?
+
+Nebst dem Konzept, wird eine Umsetzung anhand der Crazyflie und dem Leap Motion Sensor in Python implementiert.
+
+Im Rahmen der Analyse, wurde eine Recherche über Drohnen vorgestellt.
+
+% Eine programmierbare Drohne (Crazyflie Nano Quadcopter von Bitcraze) soll mit einer Steuerung per Hand (Gestensteuerung von Leap Motion) ergänzt werden. Die Drohne soll intuitiv und einfach mit Möglichkeiten der Hand-/Gestenerkennung gesteuert werden können.
 \begin{flushright}
 	\textit{Michael Hadorn}	
 \end{flushright}
+
+\vfill
 
 %
 \mbox{}\\[0.5\baselineskip]\noindent
 \textbf{Schlagwörter:} 
 Leap Motion, Crazyflie 2.0, Gestensteuerung, Quadcopter, Drohne
 
-\vfill
-\subsection*{Versionen Übersicht}
+\newpage
+\subsection*{Versionsübersicht}
 \begin{center}
 	\centering
 	\small\renewcommand{\arraystretch}{1.4}
@@ -36,7 +48,7 @@ Leap Motion, Crazyflie 2.0, Gestensteuerung, Quadcopter, Drohne
 \vspace{-1.0\baselineskip}
 {\footnotesize * Eine genauere Übersicht der Änderungen kann auf GitHub eingesehen werden.\footcite{github_droneGestures_2015-05-01}}
 
-\vspace{0.5\baselineskip}
+\vfill
 
 \subsection*{Danksagung}
 Mein besonderer Dank gilt Sina Masquiren, Jonathan Hadorn und Karin Hadorn für die vollständige und detaillierte Korrekturlesung und das geteilte Interesse an den durch diese Arbeit gewonnenen Erkenntnissen von mir.\\

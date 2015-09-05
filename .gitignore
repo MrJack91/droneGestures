@@ -23,7 +23,7 @@
 # *.pdf
 TemplateDocumentation.pdf
 workstation-in-the-cloud.pdf
-drone.pdf
+#drone.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
