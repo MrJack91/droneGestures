@@ -6,9 +6,10 @@
 
 \section{Vorgehen}
 Jeder der folgenden Tests wurde vor der Umsetzung definiert.
-Nach erfolgter Umsetzung wurden alle Tests durchgeführt.
+Nach der Umsetzung wurden alle Tests durchgeführt und ausgewertet.
 
-Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische Tests (im \secref{sec:stateSpecificTest}) und in allgemeine Tests (im \secref{sec:generalTest}).
+Die Tests können in zwei Kategorien eingeteilt werden:
+In zustandsspezifische Tests (im \secref{sec:stateSpecificTest}) und in allgemeine Tests (im \secref{sec:generalTest}).
 
 \newpage
 \section{Zustandsspezifische Tests}
@@ -55,7 +56,7 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 		\hline
 		Titel: & T0.2 - Verbindung zur Drohne ist fehlgeschlagen\\
 		Status: & \textit{ok}\\
-		Beschreibung: & Wenn bei der Initialisierung des Programmes, die Drohne nicht korrekt verbunden werden kann, soll die Steuerung nicht beginnen (ausser der Debug-Mode ist aktiv). Zudem soll eine Fehlermeldung ausgegeben werden. Beim Abbrechen des Programmes, sollen alle Komponenten heruntergefahren werden.\\
+		Beschreibung: & Wenn bei der Initialisierung des Programmes, die Drohne nicht korrekt verbunden werden kann, soll die Steuerung nicht beginnen (ausser der Debug-Mode ist aktiv). Zudem soll eine Fehlermeldung ausgegeben werden. Beim Abbrechen des Programmes sollen alle Komponenten heruntergefahren werden.\\
 		Ausgangslage: & -\\
 		Ergebnisse: & \textit{30. August 2015:}
 		Der Test war erfolgreich. Die Steuerung wurde nicht gestartet. Die Fehlermeldung wurde ausgegeben. Beim Abbruch, wurden alle Komponenten heruntergefahren.
@@ -84,11 +85,11 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 		\hline
 		Titel: & T0.3 - Verbindung zum Leap Motion ist fehlgeschlagen\\
 		Status: & \textit{ok}\\
-		Beschreibung: & Wenn bei der Initialisierung des Programmes, der Leap Motion nicht korrekt verbunden werden kann, soll die Steuerung nicht beginnen.
-		Beim Abbrechen des Programmes, sollen alle Komponenten erfolgreich heruntergefahren werden.\\
+		Beschreibung: & Wenn bei der Initialisierung des Programmes der Leap Motion nicht korrekt verbunden werden kann, soll die Steuerung nicht beginnen.
+		Beim Abbrechen des Programmes sollen alle Komponenten erfolgreich heruntergefahren werden.\\
 		Ausgangslage: & -\\
 		Ergebnisse: & \textit{30. August 2015:}
-		Der Test war erfolgreich. Beim Abbruch, wurden alle Komponenten heruntergefahren.
+		Der Test war erfolgreich. Beim Abbruch wurden alle Komponenten heruntergefahren.
 		\\
 		Massnahmen: & -\\
 		\hline
@@ -139,7 +140,7 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 
 \newpage
 \subsection{Flugbereiten Zustand (Z2)}
-\subsubsection{T2.1 - Übergang in Flug-Zustand (Z3)}
+\subsubsection{T2.1 - Übergang in den Flug-Zustand (Z3)}
 \begin{table}[H]
 	\centering
 	\small\renewcommand{\arraystretch}{1.4}
@@ -195,7 +196,7 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\textwidth]{images/testing/t2_2_invalid_height_edit.png}
-	\caption{Konsolen-Output: T2.2 - Übergang in Flug-Zustand (Z3)}
+	\caption{Konsolen-Output: T2.2 - Offene Hand auf ungültiger Höhe erkennen}
 	\vspace{-1\baselineskip}
 \end{figure}
 
@@ -236,7 +237,7 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 \end{figure}
 
 \newpage
-\subsubsection{T3.2 - No-Thrust Zone}
+\subsubsection{T3.2 - No Thrust Zone}
 \begin{table}[H]
 	\centering
 	\small\renewcommand{\arraystretch}{1.4}
@@ -246,10 +247,10 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 	%
 	\begin{tabularx}{0.9\textwidth}{ L{0.15\linewidth} | X  }%
 		\hline
-		Titel: & T3.2 - No-Thrust Zone\\
+		Titel: & T3.2 - No Thrust Zone\\
 		Status: & \textit{ok}\\
 		Beschreibung: &  
-		Nachdem die Steuerung initialisiert wurde und die relative Höhe der offenen Hand gemessen wurde, soll eine zusätzliche Schutzzone (2\,cm) in der noch kein Thrust gesendet wird, erzeugt werden.
+		Nachdem die Steuerung initialisiert und die relative Höhe der offenen Hand gemessen wurde, soll eine zusätzliche Schutzzone (2\,cm) in der noch kein Thrust gesendet wird, erzeugt werden.
 		Erst wenn sich die Hand höher als die Schutzzone befindet, soll die Drohne losfliegen.
 		\\
 		Ausgangslage: & Die Steuerung muss sich im \textit{Flug-Zustand (Z3)} befinden.\\
@@ -293,7 +294,7 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\textwidth]{images/testing/ta_1_lost_multi_hand_2_edit.png}
-	\caption{TA.1 - Mehrere Hände erkannt oder Hand verloren}
+	\caption{Konsolen-Output: TA.1 - Mehrere Hände erkannt oder Hand verloren}
 	\vspace{-1\baselineskip}
 \end{figure}
 
@@ -325,7 +326,7 @@ Die Tests können in zwei Kategorien eingeteilt werden: in zustandsspezifische T
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\textwidth]{images/testing/ta_2_disconnect_drone_edit.png}
-	\caption{TA.2 - Mehrere Hände erkannt oder Hand verloren}
+	\caption{Konsolen-Output: TA.2 - Verbindungsunterbruch zur Drohne}
 	\vspace{-1\baselineskip}
 \end{figure}
 

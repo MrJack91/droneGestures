@@ -4,7 +4,7 @@
 \label{sec:gestureControll}
 
 Ziel dieser Steuerung ist es, die Drohne sehr einfach steuern zu können.
-Das auswendig Lernen der möglichen Gesten soll durch intuitive Schlussfolgerungen des Anwendungswunsches entfallen.
+Das Auswendig Lernen der möglichen Gesten soll durch intuitive Schlussfolgerungen des Anwendungswunsches wegfallen.
 Der Grundgedanke der Steuerung soll die Hand sein, welche die Drohne verkörpert.
 
 \begin{framed}
@@ -30,10 +30,9 @@ Folgend wird auf die grundlegenden Flugmanöver eingegangen.
 
 \subsubsection{Init}
 \label{sec:concept:init}
-
 Da die Hand die Drohne repräsentieren soll, muss eine initiale Position eingenommen werden, aus dieser die Drohne anschliessend (relativ gemessen) gesteuert werden kann.
 
-Dieser Prozess vom Finden der initialen Position wird folgend als \textit{Init-Prozess} bezeichnet und sieht wie folgt aus:
+Dieser Prozess des Findens der initialen Position wird folgend als \textit{Init-Prozess} bezeichnet und sieht wie folgt aus:
 
 \begin{itemize}
 	\item Die Drohne befindet sich im \textit{Init-Zustand (Z1)}.
@@ -44,17 +43,18 @@ Dieser Prozess vom Finden der initialen Position wird folgend als \textit{Init-P
 \end{itemize}
 
 \subsubsection{Start / Thrust (Höhe)}
-Um mit der Drohne abzuheben wird die offene Hand nach oben bewegt. Dabei gilt, umso höher die Hand zur relativen Position gehoben wird, desto mehr drehen die Rotoren und umso schneller bewegt sich die Drohne nach oben (dies entspricht dem \textit{Thrust}).
+Um mit der Drohne abzuheben wird die offene Hand nach oben bewegt.
+Dabei gilt: Umso höher die Hand zur relativen Position gehoben wird, desto mehr drehen die Rotoren und umso schneller bewegt sich die Drohne nach oben (dies entspricht dem \textit{Thrust}).
 
-Umgekehrtes gilt auch: wird die Hand gesenkt, senkt sich auch die Drehzahl der Rotoren, sprich die Drohne verliert an Steigung.
+Umgekehrtes gilt auch: Wird die Hand gesenkt, senkt sich auch die Drehzahl der Rotoren, sprich die Drohne verliert an Steigung.
 Der \textit{Thrust} kann während des ganzen Fluges mit diesen Bewegungen gesteuert werden.
 Die Drohne befindet sich, sobald sie abgehoben ist, im \textit{Flug-Zustand (Z3)} (mit drehenden Rotoren in der Luft).
 
 \subsubsection{Flug}
 Während dem Flug kann nebst dem \textit{Thrust}, die Drehung (\textit{Yaw}) und die Neigung (\textit{Pitch/Roll}) gesteuert werden.
 Auch hier gilt jeweils, dass die Drohne sich nach der Hand ausrichtet.
-Die Drohne ist solange im \textit{Flug-Zustand (Z3)} bis sie wieder auf festem Untergrund ist, dann ist sie wieder im \textit{flugbereiten Zustand (Z2)}.
-Bezüglich der Steuermöglichkeiten ändert sich weder im \textit{Flug- (Z3)} noch im \textit{flugbereiten Zustand (Z2)} etwas.
+Die Drohne ist solange im \textit{Flug-Zustand (Z3)} bis sie sich erneut auf festem Untergrund befindet, dann ist sie wieder im \textit{flugbereiten Zustand (Z2)}.
+Bezüglich der Steuerungsmöglichkeiten ändert sich weder im \textit{Flug- (Z3)} noch im \textit{flugbereiten Zustand (Z2)} etwas.
 Sprich es ist kein Zustandswechsel nötig, um die Drohne zu landen.
 
 %\textbf{Bemerkung zur Steuerung:} Grundsätzlich wird der Level (Power) einer Steueranweisung, gemäss der Abweichung der natürlichen, rechtwinkligen, vertikalen Achsen gesetzt, wobei eine ca. 60\textdegree-Abweichung dem Maximum entspricht.\\
@@ -76,11 +76,11 @@ Analog zum Thrust bedeutet eine flache Drehung der Hand (Drehung an der vertikal
 Beim Pitch und Roll dreht sich die Drohne um eine horizontale Rotations-Achse. Beim Pitch hebt oder neigt die Drohne ihre Front. Bei Roll sinkt oder erhebt sich eine Seite.
 
 \subsubsection{Finish}
-Befindet sich die Drohne im \textit{flugbereiten Zustand (Z2)}, kann via eine Faust-Geste, die Steuerung abgebrochen werden.
+Befindet sich die Drohne im \textit{flugbereiten Zustand (Z2)}, kann durch die Faust-Geste, die Steuerung abgebrochen werden.
 Die Drohne reagiert bis zum nächsten \textit{Init-Prozess} nicht mehr.
 
 \newpage
-\subsection{Zustands Übersicht}
+\subsection{Zustandsübersicht}
 \label{sec:concept:stateoverview}
 %Die Drohne kann aus Sicht der Steuerung, insofern sie eingeschaltet ist, vier Zustände einnehmen:
 Die Steuerung kann sich, insofern sie eingeschaltet ist, in vier Zuständen (Z1 -- Z4) befinden:
@@ -95,25 +95,24 @@ Die Steuerung kann sich, insofern sie eingeschaltet ist, in vier Zuständen (Z1 
 Die Drohne ist ausgeschaltet.
 
 \subsubsection{Init-Zustand (Z1)}
-Die Drohne kann nicht geflogen werden, sondern eine Hand muss zuerst in der initialen Position erkannt werden.
+Die Drohne kann nicht geflogen werden, denn eine Hand muss zuerst in der initialen Position erkannt werden.
 
-\subsubsection{Flugbereiten Zustand (Z2)}
+\subsubsection{Flugbereiter Zustand (Z2)}
 Die Drohne fliegt nicht, hat aber eine korrekt initialisierte Hand für die Steuerung registriert. Dies kann nach und vor einem Flug sein.
 
 \subsubsection{Flug-Zustand (Z3)}
 Die Drohne befindet sich in der Luft.
 
 \subsubsection{Unkontrollierten Zustand (Z4)}
-%todo correct
-Die Hand wird während dem Flug nicht mehr erkannt oder die Verbindung zur Drohne ist temporär unterbrochen.
-Um solche Aussetzer überbrücken zu können, soll sich die Drohne beim Auftreten eines eben genannten Ereignisses, für ca. 2 Sekunden in der Luft halten.
-Falls sich das Problem nicht innerhalb einer bestimmten Zeit auflöst, soll die Drohne notgelandet werden, resp. werden die Rotoren ausgeschaltet).
+Die Hand wird während des Fluges nicht mehr erkannt oder die Verbindung zur Drohne ist temporär unterbrochen.
+Um solche Aussetzer überbrücken zu können, soll sich die Drohne beim Auftreten eines eben genannten Ereignisses, für zwei Sekunden in der Luft halten.
+Falls sich das Problem nicht innerhalb der zwei Sekunden auflöst, soll die Drohne notgelandet werden, resp. werden die Rotoren ausgeschaltet.
 
 %%%
 
 %todo
 \section{Problembehandlung}
-Während den verschiedenen Zustände können verschiedene Fehler auftreten:
+Während den verschiedenen Zuständen können verschiedene Fehler auftreten:
 
 \subsubsection{Init-Zustand (Z1)}
 
@@ -126,7 +125,7 @@ Während den verschiedenen Zustände können verschiedene Fehler auftreten:
 	%
 	\begin{tabularx}{0.9\textwidth}{ L{0.121\linewidth} | X  }%
 		\hline
-		Problem: & Faust wird nicht erkannt oder mehrere Hände werden erkannt.\\
+		Problem: & Die Faust wird nicht erkannt oder mehrere Hände werden erkannt.\\
 		Risiko: & \textit{gering}\\
 		Folge: & Die Drohne kann nicht abheben. Der \textit{Init-Zustand (Z1)} wird belassen.\\
 		\hline
@@ -135,20 +134,20 @@ Während den verschiedenen Zustände können verschiedene Fehler auftreten:
 
 
 
-\subsubsection{Flugbereiten Zustand (Z2)}
+\subsubsection{Flugbereiter Zustand (Z2)}
 
 \begin{table}[H]
 	\centering
 	\small\renewcommand{\arraystretch}{1.4}
 	\rowcolors{1}{tablerowcolor}{tablebodycolor}
 	%
-	\captionabove{Problem: \textit{Flugbereiten Zustand (Z2)} -- Hand-Erkennung}
+	\captionabove{Problem: \textit{Flugbereiter Zustand (Z2)} -- Hand-Erkennung}
 	%
 	\begin{tabularx}{0.9\textwidth}{ L{0.121\linewidth} | X  }%
 		\hline
 		Problem: & Die Hand wird nicht mehr erkannt.\\
 		Risiko: & \textit{gering}\\
-		Folge: & Die Drone setzt sich zurück in den \textit{Init-Zustand (Z1)}. (Die Drohne befindet sich noch auf dem Boden.)\\
+		Folge: & Die Drohne setzt sich zurück in den \textit{Init-Zustand (Z1)}. (Die Drohne befindet sich noch auf dem Boden.)\\
 		\hline
 	\end{tabularx}
 \end{table}
@@ -169,7 +168,7 @@ Während den verschiedenen Zustände können verschiedene Fehler auftreten:
 		Risiko: & \textit{gering}\\
 		Verhalten: &
 		Wie im \secref{subsec:isAnalyseDrone} unter API beschrieben, gilt ein Steuerbefehl für 500\,ms.
-		Wird die Verbindung unterbrochen, fliegt die Drohne daher maximal eine halbe Sekunde unkontrolliert, bevor die Rotoren ausgeschaltet werden und die Drohne abstürzt. Da die Zustände nur aus der Steuerungssicht existieren, muss die Drohne erneut verbunden und initialisiert werden.\\
+		Wird die Verbindung unterbrochen, fliegt die Drohne daher maximal eine halbe Sekunde unkontrolliert weiter, bevor die Rotoren ausgeschaltet werden und die Drohne abstürzt. Da die Zustände nur aus der Steuerungssicht existieren, muss die Drohne erneut verbunden und initialisiert werden.\\
 		Folge: & Die Drohne wird nach max. 500\,ms unkontrolliert notgelandet.\\
 		\hline
 	\end{tabularx}
@@ -187,7 +186,7 @@ Während den verschiedenen Zustände können verschiedene Fehler auftreten:
 		\hline
 		Problem: & Die Hand wird nicht mehr erkannt oder mehrere Hände werden erkannt.\\
 		Risiko: & \textit{sehr gross}\\
-		Verhalten: & Der Thrust wird sofort auf mässiges Level getrimmt. Falls länger als $t$ Sekunden keine Hand erkannt wird, werden die Rotoren ausgeschaltet. Die Drohne wechselt in den Init-Zustand (Z1).\\
+		Verhalten: & Der Thrust wird sofort auf mässiges Level getrimmt. Falls länger als zwei Sekunden keine Hand erkannt wird, werden die Rotoren ausgeschaltet. Die Drohne wechselt in den Init-Zustand (Z1).\\
 		Folge: & Die Drohne befindet sich ungesteuert in der Luft oder wird notgelandet (resp. stürzt ab).\\
 		\hline
 	\end{tabularx}
