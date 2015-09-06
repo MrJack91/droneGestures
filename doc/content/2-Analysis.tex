@@ -26,7 +26,7 @@ Später wurde das Potenzial von \glspl{glos:droneLabel} besonders für kriegeris
 	\includegraphics[width=1.0\linewidth]{images/analysis/balloonbombs1849.jpg}
  	\caption[Bombing by Balloon, 1848]{Bombing by Balloon, 1848 (Quelle: \fullcite{Remote_Piloted_Aerial_Vehicles_2015-03-21})}
 \end{wrapfigure}
-So wurden bereits 1849 vom österreichischen Königsreich unbemannte Heissluftballone mit Bomben im Krieg gegen Venedig losgeschickt.
+So wurden bereits 1849 vom österreichischen Königreich unbemannte Heissluftballone mit Bomben im Krieg gegen Venedig losgeschickt.
 Weder die "`\glspl{glos:droneLabel}"' selbst, noch das Abwerfen der Bomben konnte jedoch aktiv gesteuert werden.
 Die Heissluftballone flogen mit dem Wind und die Bomben wurde per Zeitzünder gezündet. Tatsächlich erreichten einzelne Ballone ihr Ziel und konnten Schaden anrichten, andere jedoch wurden vom Wind zurück geweht und zerstörten das eigene Territorium Österreichs. \footcite{Remote_Piloted_Aerial_Vehicles_2015-03-21}
 
@@ -48,7 +48,7 @@ Obschon viele Aufgabenbereiche gewaltfrei sind, dienen \glspl{glos:droneLabel} t
 
 \subsubsection{Heutige Einsätze von Drohnen}
 Seit 2013 werden in Grand Forks County im US-Bundesstaat North Dakota \glspl{glos:droneLabel} zur Verbrecherjagd eingesetzt, resp. zur Personensuche.\footcite{Grand_Forks_Drone_Assisted_Policing_2015-08-28}
-Zudem darf in Grand Forks County seit August 2015 eine Drohnen sogar mit einem Taser bestückt werden. \footcite{First_State_Legalizes_Taser_Drones_for_Cops_Thanks_to_a_Lobbyist_The_Daily_Beast_2015-08-28}
+Zudem darf in Grand Forks County seit August 2015 eine \gls{glos:droneLabel} sogar mit einer Elektroschockpistole bestückt werden. \footcite{First_State_Legalizes_Taser_Drones_for_Cops_Thanks_to_a_Lobbyist_The_Daily_Beast_2015-08-28}
 
 Auch Amazon kündet ihren "`\textit{Prime Air}"'-Service an, der Pakete direkt vor die Haustür liefert.\footcite{Amazon_Prime_Air_2015-08-28}
 
@@ -71,12 +71,12 @@ Generell gilt für vorliegendes Dokument, insofern nicht anders vermerkt wird od
 
 \subsection{Steuerung}
 Bezüglich der Flugeigenschaften entspricht ein Quadrocopter am ehesten einem Hubschrauber und gehört ebenfalls zur Kategorie der  \gls{glos:vtolLabel}-Flugzeugen.
-Es sind jegliche Steuermöglichkeiten im dreidimensionalen Raum möglich (steigen/sinken "`\textit{thrust}"', gieren/drehen "`\textit{yaw}"', nicken "`\textit{pitch}"' und rollen "`\textit{roll}"').
+Es sind jegliche Steuermöglichkeiten im dreidimensionalen Raum möglich (steigen/sinken "`\textit{Thrust}"', gieren/drehen "`\textit{Yaw}"', nicken "`\textit{Pitch}"' und rollen "`\textit{Roll}"').
 
 Durch das, dass die Rotoren in entgegengesetzte Richtungen drehen, hebt sich das auf das Traggestell übertragene Drehmoment auf und der Quadrocopter kann ohne Drehung fliegen.
 Um sich nun in eine Richtung zu \textit{gieren}, werden die Drehzahlen von jeweils zwei gegenüberliegende Rotoren gleichmässig verändert, so dass der Drehmoment auf das Traggestell nicht mehr neutralisiert wird und sich so eine Drehung ergibt.
 
-Um dem Piloten die Steuerung zu erleichtern, befinden sich oft verschiedenfarbige Markierungen oder LED's an der Vorder- oder Rückseite des Quadrocopters.
+Um dem Piloten die Steuerung zu erleichtern, befinden sich oft verschiedenfarbige Markierungen oder LEDs an der Vorder- oder Rückseite des Quadrocopters.
 Die Steuerung erfolgt üblicherweise aus relativer Sicht der Drohne und erfordert somit ein Umdenken des Piloten.\footcite{Quadrocopter__Wikipedia_2015-03-22}
 
 \newpage
@@ -105,7 +105,7 @@ Zusammengefasst können die Steuerungsmöglichkeiten in folgende Kategorien eing
 
 			\item \textbf{Handrichtungsbasierte Steuerung:}
 			Diese Steuerung ist an der Benutzung eines gewohnten Hebels oder Joysticks angelehnt. Die Drohne bewegt sich analog der Hand. Dabei spielt der Winkel der Hand keine Rolle.
-			Beispielsweise bedeutet eine Hand die vor dem Zentrum des Sensores liegt, dass die Drohne nach vorne fliegen soll. Das Pitch-Manöver wird oft durch spezielle Gesten wie \textit{Kreisen} umgesetzt.
+			Beispielsweise bedeutet eine Hand die vor dem Zentrum des Sensors liegt, dass die Drohne nach vorne fliegen soll. Das Pitch-Manöver wird oft durch spezielle Gesten wie \textit{Kreisen} umgesetzt.
 			Ein Beispiel wird im Blog von Leap Motion vorgestellt.\footcite{The_Beginning_of_a_Drone_Revolution_Leap_Motion_Blog_2015-04-29}
 
 			\item \textbf{Handpositionsbasierte Steuerung:}
@@ -128,7 +128,7 @@ Zusammengefasst können die Steuerungsmöglichkeiten in folgende Kategorien eing
 \end{itemize}
 
 Da die handpositionsbasierte Steuerung der intuitivsten und einfachsten Steuerung entspricht, und es bisher nur wenige dokumentierte  Umsetzungen gibt, wird in der vorliegenden Arbeit diese implementiert.
-Im Gegensatz zur soeben erwähnten, bereits existierenden handpositions-basierte Steuerung, soll vorliegende Steuerung jegliche Steuermanöver (Yaw, Pitch, Roll, Thrust) unterstützen.
+Im Gegensatz zur soeben erwähnten, bereits existierenden handpositionsbasierte Steuerung, soll vorliegende Steuerung jegliche Steuermanöver (Yaw, Pitch, Roll, Thrust) unterstützen.
 Zudem soll die Steuer-Initialisierung und die Steuerung sicher ablaufen. Dazu werden verschiedene Zustände definiert, in der sich die Steuerung befinden kann.
 
 Als Gestenerkennungssensor wird bei vorliegendem Projekt der Leap Motion verwendet (weitere Informationen zum Sensor sind im \secref{subsec:leapmotion} beschrieben).
@@ -248,7 +248,7 @@ Die \textit{Crazyflie} gibt es momentan in zwei Versionen: als "`\textit{Crazyfl
 
 Alle Informationen zur \textit{Crazyflie} sind im Wiki von Bitcraze vorhanden.\footcite{index_Bitcraze_Wiki_2015-03-29}
 
-Versionsunabhängige Informationen zu  \textit{Clients}, \textit{Development}, \textit{Architcture}, \textit{\gls{apiLabel}}, \textit{Protocols} und \textit{Analysis} sind unter "`Crazyflie"' (allgemein) abgelegt.\footcite{doc_crazyflie_index_Bitcraze_Wiki_2015-03-29}
+Versionsunabhängige Informationen zu  \textit{Clients}, \textit{Development}, \textit{Architecture}, \textit{\gls{apiLabel}}, \textit{Protocols} und \textit{Analysis} sind unter "`Crazyflie"' (allgemein) abgelegt.\footcite{doc_crazyflie_index_Bitcraze_Wiki_2015-03-29}
 
 Versionsspezifische Daten der \textit{Crazyflie 2.0} werden separat aufgeführt.\footcite{projects_crazyflie2_index_Bitcraze_Wiki_2015-03-29}
 
@@ -265,11 +265,11 @@ Die Kommunikation zwischen Client und Drohne erfolgt über das \gls{crtpLabel}, 
 
 Folgende Werte können gemessen werden:
 \begin{itemize}
-	\item \textbf{"'MPU-9250"'}\footcite{MEMS_Gyro-Accel_Gyroscope_Accelerometer_Processing_-_MPU-9250_Nine-Axis_2015-03-30} (Gyro-, Accelero-, Magentometer)
+	\item \textbf{"'MPU-9250"'}\footcite{MEMS_Gyro-Accel_Gyroscope_Accelerometer_Processing_-_MPU-9250_Nine-Axis_2015-03-30} (Gyro-, Accelero-, Magnetometer)
 	\begin{itemize}
 		\item Der \textbf{Gyrometer} misst die Erdanziehungskraft auf alle drei Seiten. Damit kann die Position und die Abweichung festgestellt werden.
 		\item Der \textbf{Accelerometer} misst die Beschleunigung.
-		\item Der \textbf{Magentometer} misst die zwei-dimensionale Ausrichtung (Kompass) und stellt auch langsame Abweichungen, die der Gyro nicht messen kann, fest.
+		\item Der \textbf{Magnetometer} misst die zwei-dimensionale Ausrichtung (Kompass) und stellt auch langsame Abweichungen, die der Gyro nicht messen kann, fest.
 	\end{itemize}
 	\item \textbf{"'LPS25H"'}\footcite{Class-Leading_Miniature_Pressure_Sensor_from_STMicroelectronics_Powers_New_Chapter_in_Mobile_Innovation_2015-03-30} (High precision pressure sensor)\\
 	\textbf{Barometer:} Misst den Druck auf +/- 0.2\,mbar genau, damit kann die Höhe auf ca. 12\,m genau angenähert werden (was hauptsächlich auf die Abhängigkeit von Luftfeuchtigkeit und Temperatur zurückzuführen ist).
@@ -355,7 +355,7 @@ Die Umsetzung soll in Python erfolgen.
 
 Die detaillierte Definition der Steuerung wird im \secref{sec:gestureControll} beschrieben.
 
-Die Umsetzung der Steuerung (orange eingefärbt) kann in drei logische Komponenten eingeteilt werden: die Gestenerkennung, die Drohnesteuerung und die Steuerlogik.
+Die Umsetzung der Steuerung (orange eingefärbt) kann in drei logische Komponenten eingeteilt werden: die Gestenerkennung, die Drohnensteuerung und die Steuerlogik.
 
 \begin{figure}[H]
 	\centering
@@ -369,7 +369,7 @@ Eine allgemeine Gestenerkennung wird von Leap Motion zur Verfügung gestellt, mu
 
 Die Gestenerkennung soll unabhängig der Drohne entwickelt und getestet werden können.
 
-\subsection{Drohnesteuerung}
+\subsection{Drohnensteuerung}
 Die Drohne wird als alleinstehendes System betrachtet, das durch ein \gls{apiLabel} gesteuert werden kann. Zudem können Messdaten abgerufen werden. Nebst der Nutzung der \gls{apiLabel} sollten an der Drohne keine Veränderungen notwendig sein.
 
 \subsection{Steuerlogik}

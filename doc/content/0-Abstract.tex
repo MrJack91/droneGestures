@@ -2,7 +2,7 @@
 % !TeX spellcheck = de_CH_frami
 
 \subsection*{Abstract}
-In diesem Dokument wird die Umsetzung einer Gestensteuerung für eine Drohne beschrieben. Als Drohne wird der Crazyflie 2.0 Nano Quadcopter von Bitcraze verwendet. Für die Gestenerkennung wird auf den Leap Motion Sensor zurückgegriffen.
+In diesem Dokument wird die Umsetzung einer Gestensteuerung für eine Drohne beschrieben. Als Drohne wird der Crazyflie 2.0 Nano Quadrocopter von Bitcraze verwendet. Für die Gestenerkennung wird auf den Leap Motion Sensor zurückgegriffen.
 
 Das Hauptziel der Steuerung ist die intuitive Bedienung, die aus einfachen Handgesten abgeleitet werden kann. Die Umsetzung soll die Vorteile, so wie auch möglichen Probleme einer Gestensteuerung aufzeigen. Zusätzlich zur Steuerung, wird auf die Problematik der Initialisierung der Gestensteuerung eingegangen. Wie kann sichergestellt werden, dass unabsichtlich ausgelöste Gesten keine Auswirkungen auf die Drohne haben? Nebst dem Konzept wird eine Umsetzung anhand der Crazyflie und dem Leap Motion Sensor in Python implementiert.
 
@@ -12,7 +12,7 @@ Auf der Basis der konkreten Implementierung, welche durch Tests verifiziert wurd
 
 Nur so kann unter Berücksichtigung aller Vor- und Nachteile einer Gestensteuerung eine Schlussfolgerung erarbeitet und ein Fazit gezogen werden.
 
-% Eine programmierbare Drohne (Crazyflie Nano Quadcopter von Bitcraze) soll mit einer Steuerung per Hand (Gestensteuerung von Leap Motion) ergänzt werden. Die Drohne soll intuitiv und einfach mit Möglichkeiten der Hand-/Gestenerkennung gesteuert werden können.
+% Eine programmierbare Drohne (Crazyflie Nano Quadrocopter von Bitcraze) soll mit einer Steuerung per Hand (Gestensteuerung von Leap Motion) ergänzt werden. Die Drohne soll intuitiv und einfach mit Möglichkeiten der Hand-/Gestenerkennung gesteuert werden können.
 \begin{flushright}
 	\textit{Michael Hadorn}	
 \end{flushright}
@@ -22,7 +22,7 @@ Nur so kann unter Berücksichtigung aller Vor- und Nachteile einer Gestensteueru
 %
 \mbox{}\\[0.5\baselineskip]\noindent
 \textbf{Schlagwörter:} 
-Leap Motion, Crazyflie 2.0, Gestensteuerung, Quadcopter, Drohne
+Leap Motion, Crazyflie 2.0, Gestensteuerung, Quadrocopter, Drohne
 
 \newpage
 \subsection*{Versionsübersicht}
@@ -35,7 +35,7 @@ Leap Motion, Crazyflie 2.0, Gestensteuerung, Quadcopter, Drohne
 		\textbf{Version*} & \textbf{Datum} & \textbf{Kommentar}\\
 		\hline
 		- & 09.02.15 & Dokument Erstellung \\
-		v0.0.1 & 20.03.15 & 1. Abgabe: Steuerbeschrieb\\
+		v0.0.1 & 20.03.15 & 1. Abgabe: Steuerungsbeschrieb\\
 		v0.0.2 & 30.03.15 & 2. Abgabe: Recherche \\
 		v0.0.3 & 01.05.15 & 3. Abgabe: Ist-Analyse \\
 		v0.0.4 & 31.05.15 & 4. Abgabe: Soll-Analyse \\

@@ -1,6 +1,6 @@
 \chapter{Konzept}
 
-\section{Detaillierter Gesten-Steuerbeschrieb}
+\section{Detaillierter Gesten-Steuerungsbeschrieb}
 \label{sec:gestureControll}
 
 Ziel dieser Steuerung ist es, die Drohne sehr einfach steuern zu können.
@@ -35,10 +35,10 @@ Da die Hand die Drohne repräsentieren soll, muss eine initiale Position eingeno
 Dieser Prozess des Findens der initialen Position wird folgend als \textit{Init-Prozess} bezeichnet und sieht wie folgt aus:
 
 \begin{itemize}
-	\item Die Drohne befindet sich im \textit{Init-Zustand (Z1)}.
+	\item Die Steuerung befindet sich im \textit{Init-Zustand (Z1)}.
 	\item Die Hand wird auf idealer Höhe platziert (ca. 10 -- 20\,cm über dem Sensor).
-	\item Die Position gilt als eingenommen, sobald nach einer Faust wiederum die offene Hand erkannt wird. (offene Hände in nicht idealen Höhen werden ignoriert.)
-	\item Die Drohne befindet sich nun im \textit{flugbereiten Zustand (Z2)} (die Rotoren drehen nicht).
+	\item Die Position gilt als eingenommen, sobald nach einer Faust wiederum die offene Hand erkannt wird. Bei offenen Händen in nicht idealen Höhen wird eine Fehler ausgegeben.)
+	\item Die Steuerung befindet sich nun im \textit{flugbereiten Zustand (Z2)} (die Rotoren drehen nicht).
 	\item Die Hand bleibt geöffnet. Eine erneute Erkennung einer Faust-Geste löst einen Zustandswechsel vom \textit{flugbereiten Zustand (Z2)} zurück in den \textit{Init-Zustand (Z1)} aus.
 \end{itemize}
 
@@ -48,12 +48,12 @@ Dabei gilt: Umso höher die Hand zur relativen Position gehoben wird, desto mehr
 
 Umgekehrtes gilt auch: Wird die Hand gesenkt, senkt sich auch die Drehzahl der Rotoren, sprich die Drohne verliert an Steigung.
 Der \textit{Thrust} kann während des ganzen Fluges mit diesen Bewegungen gesteuert werden.
-Die Drohne befindet sich, sobald sie abgehoben ist, im \textit{Flug-Zustand (Z3)} (mit drehenden Rotoren in der Luft).
+Die Steuerung befindet sich, sobald die Drohne abgehoben (mit drehenden Rotoren in der Luft) ist, im \textit{Flug-Zustand (Z3)}.
 
 \subsubsection{Flug}
 Während dem Flug kann nebst dem \textit{Thrust}, die Drehung (\textit{Yaw}) und die Neigung (\textit{Pitch/Roll}) gesteuert werden.
 Auch hier gilt jeweils, dass die Drohne sich nach der Hand ausrichtet.
-Die Drohne ist solange im \textit{Flug-Zustand (Z3)} bis sie sich erneut auf festem Untergrund befindet, dann ist sie wieder im \textit{flugbereiten Zustand (Z2)}.
+Die Steuerung ist solange im \textit{Flug-Zustand (Z3)} bis sich die Drohne erneut auf festem Untergrund befindet, dann wechselt die Steuerung wieder in den \textit{flugbereiten Zustand (Z2)}.
 Bezüglich der Steuerungsmöglichkeiten ändert sich weder im \textit{Flug- (Z3)} noch im \textit{flugbereiten Zustand (Z2)} etwas.
 Sprich es ist kein Zustandswechsel nötig, um die Drohne zu landen.
 
@@ -76,7 +76,7 @@ Analog zum Thrust bedeutet eine flache Drehung der Hand (Drehung an der vertikal
 Beim Pitch und Roll dreht sich die Drohne um eine horizontale Rotations-Achse. Beim Pitch hebt oder neigt die Drohne ihre Front. Bei Roll sinkt oder erhebt sich eine Seite.
 
 \subsubsection{Finish}
-Befindet sich die Drohne im \textit{flugbereiten Zustand (Z2)}, kann durch die Faust-Geste, die Steuerung abgebrochen werden.
+Befindet sich die Steuerung im \textit{flugbereiten Zustand (Z2)}, kann sie durch die Faust-Geste, abgebrochen werden.
 Die Drohne reagiert bis zum nächsten \textit{Init-Prozess} nicht mehr.
 
 \newpage

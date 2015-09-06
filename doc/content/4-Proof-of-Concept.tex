@@ -1,14 +1,14 @@
-\chapter{Proof-of-Concept}
+\chapter{Proof of Concept}
 
 \section{Systemübersicht}
-Das Proof-of-Concept beinhaltet die Logik und Kommunikation zwischen dem Gestensensor und der Drohne über die jeweils bestehenden \gls{apiLabel}'s (orange eingefärbter Teil).
+Das Proof of Concept beinhaltet die Logik und Kommunikation zwischen dem Gestensensor und der Drohne über die jeweils bestehenden \gls{apiLabel}'s (orange eingefärbter Teil).
 
 Folglich sind die zwei Hauptkomponenten der Umsetzung der \textit{Crazyflie Controller} (\secref{sec:poc:controllerCrazyflie}) und der \textit{Detection Controller} (\secref{sec:poc:controllerDetection}).
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{figures/system_poc.pdf}
-	\caption{System-Überblick: Proof-of-Concept}
+	\caption{System-Überblick: Proof of Concept}
 \end{figure}
 
 \subsection{Crazyflie Controller}
@@ -250,7 +250,7 @@ Dies ist jedoch mit den Sensoren schwierig zu erkennen und bringt für die imple
 
 Daher wurde der Wechsel vom \textit{flugbereiten Zustand (Z2)} in den \textit{Flug-Zustand (Z3)} neu definiert.
 Der Wechsel erfolgt sobald eine offene Hand (innerhalb akzeptierter Höhe) erkannt wird.
-Somit erzwingt der neue \textit{Flug-Zustand (Z3)} nicht explizit, dass sich die Drohne in der Luft befindet, jedoch die Steuerung (Gestenerkennung inklusiv Befehlsübermittlung) entspricht den Möglichkeiten, die der Pilot in der Luft zur Verfügung hat.
+Somit erzwingt der neue \textit{Flug-Zustand (Z3)} nicht explizit, dass sich die Drohne in der Luft befindet, jedoch die Steuerung (Gestenerkennung inklusive Befehlsübermittlung) entspricht den Möglichkeiten, die der Pilot in der Luft zur Verfügung hat.
 
 
 
