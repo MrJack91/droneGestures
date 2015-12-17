@@ -1,6 +1,6 @@
 # droneGestures
 
-Controll Crazyflie Nano Quadcopter by Bitcraze with Leap Motion controller
+Controll Crazyflie Nano Quadcopter by Bitcraze with Leap Motion controller on OS X (Mac)
 
 Die Arbeit wurde als Semesterarbeit an der [ZHAW](http://zhaw.ch) umgesetzt.
 
@@ -19,7 +19,7 @@ Nur so kann unter Berücksichtigung aller Vor- und Nachteile einer Gestensteueru
 Die ganze Dokumentation ist als [PDF](https://github.com/MrJack91/droneGestures/raw/master/doc/drone.pdf) vorhanden.
 
 ## Projekt Struktur
-Das Projekt besteht aus zwei Teilen: der Dokumentation ([/doc](https://github.com/MrJack91/droneGestures/tree/master/doc)) und der Umsetzung in Pyhton ([/code](https://github.com/MrJack91/droneGestures/tree/master/code)).
+Das Projekt besteht aus zwei Teilen: der Dokumentation ([/doc](https://github.com/MrJack91/droneGestures/tree/master/doc)) und der Umsetzung in Pyhton ([/code](https://github.com/MrJack91/droneGestures/tree/master/code)) auf OS X ausführbar.
 
 ## Demo
 Auf [Youtube](https://youtu.be/dNCrFgdL1TM).
